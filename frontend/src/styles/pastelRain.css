@@ -1,0 +1,45 @@
+/* 🌈 Pastel rain layer */
+.pastel-rain-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Individual pastel drops */
+.pastel-drop {
+  position: absolute;
+  top: -12px;
+  width: var(--size);
+  height: var(--size);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-color: hsl(var(--hue), 85%, 65%);
+  opacity: var(--opacity);
+  animation-name: pastelFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+
+/* Falling animation */
+@keyframes pastelFall {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+/* Ensure content stays above rain */
+.page,
+.hero,
+.section,
+.card {
+  position: relative;
+  z-index: 5;
+}
