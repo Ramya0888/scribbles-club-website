@@ -801,6 +801,8 @@ a {
   padding: 2rem 1.5rem;
   margin-top: 4rem;
   text-align: center;
+  position: relative;
+  z-index: 100;
 }
 
 .footer-content {

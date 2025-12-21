@@ -41,7 +41,7 @@ export default function Footer() {
   }, [showTeam]);
 
   return (
-    <footer className="site-footer">
+    <footer className="site-footer" style={{ marginTop: '4rem' }}>
       <div className="footer-content">
         <p className="footer-copyright">
           © 2025 Scribbles, the official Arts Club of CEG
@@ -53,7 +53,7 @@ export default function Footer() {
             onClick={() => setShowTeam(!showTeam)}
             ref={popupRef}
           >
-            Web and Dev Team, Scribbles
+            Deputy Heads of Web and Dev Team, Scribbles - (2025-26)
             {showTeam && (
               <div className="tech-team-popup">
                 {technicalTeam.map((member) => (
