@@ -3,22 +3,22 @@ import React, { useState, useEffect, useRef } from 'react';
 const technicalTeam = [
   {
     name: 'Abirami',
-    image: '/team/abirami.jpg',
-    linkedin: 'https://linkedin.com/in/abirami'
+    image: '/team/abi.webp',
+    linkedin: 'https://www.linkedin.com/in/abirami-ramanathan-707521285/'
   },
   {
     name: 'Hashim',
-    image: '/team/hashim.jpg',
-    linkedin: 'https://linkedin.com/in/hashim'
+    image: '/team/has.jpeg',
+    linkedin: 'https://www.linkedin.com/in/hashim-m-160b96340/'
   },
   {
     name: 'Ramya',
-    image: '/team/ramya.jpg',
-    linkedin: 'https://linkedin.com/in/ramya'
+    image: '/team/ramy.jpg',
+    linkedin: 'https://www.linkedin.com/in/ramyalnkdn/'
   },
   {
     name: 'Sathish',
-    image: '/team/sathish.jpg',
+    image: '/team/sath.webp',
     linkedin: 'https://linkedin.com/in/sathish'
   }
 ];
