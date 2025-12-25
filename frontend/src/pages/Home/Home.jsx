@@ -221,13 +221,14 @@ const featuredArtworks = [
 
 const navBlocks = [
   { title: 'Gallery', desc: 'Curated works from weekly drops.', href: '/gallery', isInternal: true },
-  { title: 'Events', desc: 'Workshops, sketchwalks, pop-ups.', href: 'events.html' },
-  { title: 'Blog', desc: 'Process notes, prompts, and tips.', href: 'blog.html' },
-  { title: 'Contact', desc: 'Reach us for collabs and invites.', href: 'contact.html' },
-  { title: 'Testimonials', desc: 'What members, alumni, and collaborators say about Scribbles.', href: '/testimonials', isInternal: true },
-  { title: 'Newsletter', desc: 'Get weekly art drops, events, and prompts in your inbox.', href: '/newsletter', isInternal: true },
-  { title: 'Join Us', desc: 'Hop into the community spaces.', href: 'javascript:void(0)', isModal: true },
+  { title: 'Events', desc: 'Workshops, sketchwalks, pop-ups.', href: '/events', isInternal: true },
+  { title: 'Blog', desc: 'Process notes, prompts, and tips.', href: '/blog', isInternal: true },
+  { title: 'Contact', desc: 'Reach us for collabs and invites.', href: '/contact', isInternal: true },
+  { title: 'Testimonials', desc: 'What members say.', href: '/testimonials', isInternal: true },
+  { title: 'Newsletter', desc: 'Weekly art drops.', href: '/newsletter', isInternal: true },
+  { title: 'Join Us', desc: 'Hop into the community spaces.', href: '#', isModal: true },
 ];
+
 
 function JoinModal({ isOpen, onClose }) {
   if (!isOpen) return null;

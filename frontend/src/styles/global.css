@@ -770,7 +770,7 @@ a {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20'><path d='M5 10 Q 25 0, 45 10 T 85 10 T 125 10 T 165 10 T 195 10' fill='none' stroke='%23f39eb6' stroke-width='4' stroke-linecap='round'/></svg>");
 }
 
-.gallery-row { /* horizontal scroller for gallery */ }
+
 
 .gallery-card {
   background: #fff;
@@ -894,4 +894,30 @@ a {
   font-size: 0.85rem;
   color: #fff;
   font-weight: 500;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.contact-card input,
+.contact-card textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 0.5rem 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.success-text {
+  margin-top: 1rem;
+  color: #6b9b37;
 }

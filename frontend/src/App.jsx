@@ -5,6 +5,8 @@ import NewsletterPage from './pages/Newsletter/Newsletter.jsx';
 import GalleryPage from './pages/Gallery/Gallery.jsx';
 import TestimonialsPage from './pages/Testimonials/Testimonials.jsx';
 import VideoPage from './pages/Video/Video.jsx';
+import Contact from "./pages/Contact/Contact";
+
 import "./styles/pastelRain.css";
 
 
@@ -17,6 +19,8 @@ export default function App() {
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/testimonials" element={<TestimonialsPage />} />
         <Route path="/video" element={<VideoPage />} />
+        <Route path="/contact" element={<Contact />} />
+
       </Routes>
     </BrowserRouter>
   );
