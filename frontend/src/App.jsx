@@ -5,8 +5,9 @@ import NewsletterPage from './pages/Newsletter/Newsletter.jsx';
 import GalleryPage from './pages/Gallery/Gallery.jsx';
 import TestimonialsPage from './pages/Testimonials/Testimonials.jsx';
 import VideoPage from './pages/Video/Video.jsx';
+import ArtGallery from './pages/ArtGallery';
+import CreativeJournal from './pages/CreativeJournal';
 import "./styles/pastelRain.css";
-
 
 export default function App() {
   return (
@@ -17,6 +18,8 @@ export default function App() {
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/testimonials" element={<TestimonialsPage />} />
         <Route path="/video" element={<VideoPage />} />
+        <Route path="/art-gallery" element={<ArtGallery />} />
+        <Route path="/journal" element={<CreativeJournal />} />
       </Routes>
     </BrowserRouter>
   );
