@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # dependencies
 node_modules/
 
@@ -13,3 +14,41 @@ npm-debug.log*
 yarn-error.log*
 
 
+=======
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+
+# Vite
+.vite/
+frontend/node_modules/
+backend/node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+>>>>>>> bde4ccb87eba5f2e58b1d4324cf8b65e7812e3e9
+# dependencies
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# environment variables
+.env
+.env.local
+
+# vite
+.vite/
+
+# logs
+npm-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
