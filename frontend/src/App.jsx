@@ -7,8 +7,9 @@ import TestimonialsPage from './pages/Testimonials/Testimonials.jsx';
 import VideoPage from './pages/Video/Video.jsx';
 import Contact from "./pages/Contact/Contact";
 
+import ArtGallery from './pages/ArtGallery';
+import CreativeJournal from './pages/CreativeJournal';
 import "./styles/pastelRain.css";
-
 
 export default function App() {
   return (
@@ -21,6 +22,8 @@ export default function App() {
         <Route path="/video" element={<VideoPage />} />
         <Route path="/contact" element={<Contact />} />
 
+        <Route path="/art-gallery" element={<ArtGallery />} />
+        <Route path="/journal" element={<CreativeJournal />} />
       </Routes>
     </BrowserRouter>
   );
