@@ -220,6 +220,8 @@ const featuredArtworks = [
 ];
 
 const navBlocks = [
+  { title: 'Art Gallery', desc: 'Explore curated artworks from our collection.', href: '/art-gallery', isInternal: true },
+  { title: 'Creative Journal', desc: 'Read inspiring posts, tutorials, and art stories.', href: '/journal', isInternal: true },
   { title: 'Gallery', desc: 'Curated works from weekly drops.', href: '/gallery', isInternal: true },
   { title: 'Events', desc: 'Workshops, sketchwalks, pop-ups.', href: '/events', isInternal: true },
   { title: 'Blog', desc: 'Process notes, prompts, and tips.', href: '/blog', isInternal: true },
@@ -286,7 +288,8 @@ function Hero({ onJoinClick }) {
         </p>
         <div className="hero-actions">
           <button className="btn primary" onClick={onJoinClick}>Join the Club</button>
-          <Link className="btn ghost" to="/gallery">See the Gallery</Link>
+          <Link className="btn ghost" to="/art-gallery">Art Gallery</Link>
+          <Link className="btn ghost" to="/journal">Creative Journal</Link>
           <Link className="btn ghost" to="/testimonials">Testimonials</Link>
         </div>
       </div>
@@ -358,7 +361,8 @@ function QuickButtons({ onJoinClick }) {
       </div>
       <div className="quick-grid">
         <button className="btn block" onClick={onJoinClick}>Join Us</button>
-        <a className="btn block" href="gallery.html">Explore Art</a>
+        <Link className="btn block" to="/art-gallery">Art Gallery</Link>
+        <Link className="btn block" to="/journal">Creative Journal</Link>
         <a className="btn block" href="events.html">Upcoming Events</a>
       </div>
     </section>
@@ -431,7 +435,8 @@ function AboutSection() {
         <div style={{ marginTop: '2rem', display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <button onClick={handleMeetTeam} className="btn primary">Meet Our Team</button>
           <button onClick={handleStoryClick} className="btn ghost">The Scribbles Story</button>
-          <Link to="/gallery" className="btn ghost">Our Gallery</Link>
+          <Link to="/art-gallery" className="btn ghost">Art Gallery</Link>
+          <Link to="/journal" className="btn ghost">Creative Journal</Link>
           <Link to="/video" className="btn ghost">The Official Intro Video!</Link>
         </div>
       </div>
@@ -542,4 +547,3 @@ export default function HomePage() {
 );
 
 }
-
