@@ -292,6 +292,7 @@ function Hero({ onJoinClick }) {
           <Link className="btn ghost" to="/journal">Creative Journal</Link>
           <Link className="btn ghost" to="/testimonials">Testimonials</Link>
           <Link className="btn ghost" to="/contact">Contact Us</Link>
+          <Link className="btn ghost" to="/events">Events</Link>
         </div>
       </div>
     </header>
@@ -364,7 +365,7 @@ function QuickButtons({ onJoinClick }) {
         <button className="btn block" onClick={onJoinClick}>Join Us</button>
         <Link className="btn block" to="/art-gallery">Art Gallery</Link>
         <Link className="btn block" to="/journal">Creative Journal</Link>
-        <a className="btn block" href="events.html">Upcoming Events</a>
+        <Link className="btn block" to="/events">Upcoming Events</Link>
       </div>
     </section>
   );

@@ -1,0 +1,37 @@
+/* 🌈 Pastel rain layer for Events page only */
+.pastel-rain-events {
+  position: fixed;
+  inset: 0;
+  pointer-events: none; /* clicks pass through */
+  z-index: 0;           /* background layer */
+  overflow: hidden;
+}
+
+/* Individual pastel drops */
+.pastel-drop-events {
+  position: absolute;
+  top: -12px;
+  width: var(--size);
+  height: var(--size);
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background-color: hsl(var(--hue), 85%, 65%);
+  opacity: var(--opacity);
+  animation-name: pastelFallEvents;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Falling animation */
+@keyframes pastelFallEvents {
+  from { transform: translateY(0); }
+  to   { transform: translateY(110vh); }
+}
+
+/* Ensure Events content stays above rain */
+.events-page {
+  position: relative;
+  z-index: 1; /* above rain */
+}

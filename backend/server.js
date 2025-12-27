@@ -47,6 +47,7 @@ app.use('/api/artworks', require('./routes/artworks'));
 app.use('/api/posts', require('./routes/posts'));
 app.use('/api/artists', require('./routes/artists'));
 
+
 // Health check route
 app.get('/', (req, res) => {
   res.json({
