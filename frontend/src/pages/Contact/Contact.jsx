@@ -1,7 +1,9 @@
 // src/pages/Contact/Contact.jsx
 import React, { useState } from "react";
-import "./Contact.css"; // create a CSS file for styling
+import "./Contact.css";
+import "../../styles/ContactPastelRain.css";  // create a CSS file for styling
 import emailjs from "@emailjs/browser";
+import { Link } from "react-router-dom";
 import { 
   FaInstagram, 
   FaPinterestP, 
@@ -41,10 +43,55 @@ export default function Contact() {
         console.error("Email error:", error);
       });
   };
-  
+  const dropCount = 50;
 
   return (
-    <div className="contact-page page">
+    <div className="contact-page page" style={{ position: "relative", overflow: "hidden"}}>
+      {/* Pastel Rain */}
+      <div className="contact-pastel-rain-layer">
+        {Array.from({ length: dropCount }).map((_, i) => (
+          <span
+            key={i}
+            className="contact-pastel-drop"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDuration: `${9 + Math.random() * 8}s`,
+              animationDelay: `${Math.random() * 5}s`,
+              opacity: 0.3 + Math.random() * 0.5,
+              width: `${4 + Math.random() * 6}px`,
+              height: `${4 + Math.random() * 6}px`,
+              "--hue": Math.floor(180 + Math.random() * 360),
+            }}
+          />
+        ))}
+      </div>
+      {/* Back to Home Button */}
+      <div style={{ margin: "1rem 0", position: "relative", zIndex: 10 }}>
+        <Link
+          to="/"
+          style={{
+            display: "inline-block",
+            padding: "0.5rem 1rem",
+            backgroundColor: "#f39eb6", // pink color same as other buttons
+            color: "#fff",
+            borderRadius: "8px",
+            textDecoration: "none",
+            fontWeight: 500,
+            boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+            transition: "transform 0.2s, background-color 0.2s",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.transform = "scale(1.05)";
+            e.target.style.backgroundColor = "#ff85c2"; // hover pink
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.transform = "scale(1)";
+            e.target.style.backgroundColor = "#ff6eb4";
+          }}
+        >
+          ← Back to Home
+        </Link>
+      </div>
       <h1>Contact Us</h1>
       <p>Reach out to Scribbles Art Club for collaborations or inquiries.</p>
 
