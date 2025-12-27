@@ -291,6 +291,7 @@ function Hero({ onJoinClick }) {
           <Link className="btn ghost" to="/art-gallery">Art Gallery</Link>
           <Link className="btn ghost" to="/journal">Creative Journal</Link>
           <Link className="btn ghost" to="/testimonials">Testimonials</Link>
+          <Link className="btn ghost" to="/contact">Contact Us</Link>
         </div>
       </div>
     </header>

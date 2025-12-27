@@ -91,4 +91,19 @@
       grid-template-columns: 1fr;
     }
   }
+  .social-icons a {
+    color: var(--warm-pink);
+    background: var(--soft-cream);
+    padding: 12px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
   
+  .social-icons a:hover {
+    transform: translateY(-4px);
+    background: var(--light-pink);
+  }
+    
