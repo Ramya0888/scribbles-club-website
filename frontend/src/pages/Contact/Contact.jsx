@@ -2,6 +2,13 @@
 import React, { useState } from "react";
 import "./Contact.css"; // create a CSS file for styling
 import emailjs from "@emailjs/browser";
+import { 
+  FaInstagram, 
+  FaPinterestP, 
+  FaLinkedinIn, 
+  FaYoutube 
+} from "react-icons/fa";
+
 
 
 export default function Contact() {
@@ -89,11 +96,37 @@ export default function Contact() {
       {/* Social Media & Email */}
       <div className="contact-card">
         <h3>Follow Us</h3>
+       
         <div className="social-icons">
-          <a href="https://www.instagram.com/scribbles_ceg?igsh=MWg5cGFzN2twMGxkYQ==" target="_blank" rel="noreferrer">📸</a>
-          <a href="https://in.pinterest.com/scribblesceg/" target="_blank" rel="noreferrer">📌</a>
-          <a href="https://www.linkedin.com/company/scribblesceg/" target="_blank" rel="noreferrer">💼</a>
-        </div>
+   <a
+    href="https://www.instagram.com/scribbles_ceg?igsh=MWg5cGFzN2twMGxkYQ=="
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram"
+  >
+    <FaInstagram />
+  </a>
+
+  <a
+    href="https://in.pinterest.com/scribblesceg/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Pinterest"
+  >
+    <FaPinterestP />
+  </a>
+
+  <a
+    href="https://www.linkedin.com/company/scribblesceg/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="LinkedIn"
+  >
+    <FaLinkedinIn />
+  </a>
+
+</div>
+
         <h4>Official Email:</h4>
         <p>scribbles.ceg@gmail.com</p>
       </div>
