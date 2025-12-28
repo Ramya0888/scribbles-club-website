@@ -225,7 +225,7 @@ const navBlocks = [
   { title: 'Gallery', desc: 'Curated works from weekly drops.', href: '/gallery', isInternal: true },
   { title: 'Events', desc: 'Workshops, sketchwalks, pop-ups.', href: '/events', isInternal: true },
   { title: 'Blog', desc: 'Process notes, prompts, and tips.', href: '/blog', isInternal: true },
-  { title: 'Contact', desc: 'Reach us for collabs and invites.', href: '/contact', isInternal: true },
+  { title: 'Contact Us', desc: 'Reach us for collabs and invites.', href: '/contact', isInternal: true },
   { title: 'Testimonials', desc: 'What members say.', href: '/testimonials', isInternal: true },
   { title: 'Newsletter', desc: 'Weekly art drops.', href: '/newsletter', isInternal: true },
   { title: 'Join Us', desc: 'Hop into the community spaces.', href: '#', isModal: true },

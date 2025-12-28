@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Events.css"; // reuse existing events styles
+import "./Events.css";
 
 const CountdownTimer = ({ targetDate }) => {
   const calculateTimeLeft = () => {

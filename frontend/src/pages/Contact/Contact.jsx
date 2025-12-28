@@ -1,7 +1,7 @@
 // src/pages/Contact/Contact.jsx
 import React, { useState } from "react";
 import "./Contact.css";
-import "../../styles/ContactPastelRain.css";  // create a CSS file for styling
+import "../../styles/ContactPastelRain.css";  
 import emailjs from "@emailjs/browser";
 import { Link } from "react-router-dom";
 import { 
@@ -72,7 +72,7 @@ export default function Contact() {
           style={{
             display: "inline-block",
             padding: "0.5rem 1rem",
-            backgroundColor: "#f39eb6", // pink color same as other buttons
+            backgroundColor: "#f39eb6", 
             color: "#fff",
             borderRadius: "8px",
             textDecoration: "none",
@@ -82,7 +82,7 @@ export default function Contact() {
           }}
           onMouseEnter={(e) => {
             e.target.style.transform = "scale(1.05)";
-            e.target.style.backgroundColor = "#ff85c2"; // hover pink
+            e.target.style.backgroundColor = "#ff85c2"; 
           }}
           onMouseLeave={(e) => {
             e.target.style.transform = "scale(1)";
