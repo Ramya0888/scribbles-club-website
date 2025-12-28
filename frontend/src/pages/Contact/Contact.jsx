@@ -171,6 +171,14 @@ export default function Contact() {
   >
     <FaLinkedinIn />
   </a>
+  <a
+    href="https://youtube.com/@scribbles_ceg?si=QHCU0wiHXvBulcqT"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="YouTube"
+  >
+    <FaYoutube />
+  </a>
 
 </div>
 
