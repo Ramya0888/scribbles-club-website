@@ -56,8 +56,11 @@ const Events = () => {
 
         <div className="thooriga-intro-card">
           <p>
-            Thooriga is an immersive experience filled with colours, creativity,
-            laughter, playful games, workshops, stalls, and a gallery that brings ideas to life.
+          Thooriga is an immersive experience filled with colours, creativity,
+          laughter, and playful games alongside interactive workshops, vibrant
+          stalls, and a gallery that brings ideas to life. This isn’t just an art
+          event — it’s a space to create, explore, play, and connect. From hands-on
+          experiences to moments of joyful chaos, every corner promises something exciting.
           </p>
         </div>
 
