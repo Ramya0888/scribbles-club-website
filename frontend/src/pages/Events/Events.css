@@ -87,54 +87,6 @@
     margin: 10px auto 0;
     border-radius: 2px;
   }
-  /* ===== PAST EVENTS ===== */
-  .past-events {
-    margin-top: 60px;
-  }
-  
-  .past-event-card {
-    background: #fff;
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    box-shadow: var(--card-shadow);
-    margin-bottom: 40px;
-  }
-  
-  .past-event-card h3 {
-    font-size: 24px;
-    margin-bottom: 6px;
-    color: var(--text-main);
-  }
-  
-  .winners-list h4 {
-    margin: 12px 0 6px;
-    font-size: 18px;
-  }
-  
-  .winners-list ul {
-    list-style-type: disc;
-    padding-left: 20px;
-  }
-  
-  .past-event-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
-    margin-top: 16px;
-  }
-  
-  .past-event-gallery img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    border-radius: var(--radius-md);
-    box-shadow: var(--card-shadow);
-    transition: transform 0.3s ease;
-  }
-  
-  .past-event-gallery img:hover {
-    transform: scale(1.05);
-  }
   
   /* ===== EVENTS GALLERY ===== */
 
@@ -331,10 +283,7 @@
     transform: perspective(800px) rotateX(6deg) translateY(-10px);
     box-shadow: 0 22px 48px rgba(0,0,0,0.2);
   }
-  .curly-title {
-    font-size: 2.4rem;
-    letter-spacing: 0.5px;
-  }
+  
   
   .event-desc {
     font-size: 15.5px;
@@ -344,4 +293,315 @@
   .event-date-time {
     font-size: 13.5px;
   }
-  
+  /* Scribbles Presents */
+.scribbles-presents {
+  text-align: center;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  color: #2b2b2b;
+  margin-bottom: 6px;
+  font-family: "Segoe Script", "Comic Sans MS", cursive;
+}
+
+/* Arch-shaped glitter title */
+.thooriga-arch {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 20px 0 10px;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-family: "Comic Sans MS", "Segoe Script", cursive;
+  letter-spacing: 3px;
+}
+
+/* Avoid blur, make text crisp & dark pink */
+.thooriga-arch span {
+  display: inline-block;
+  transform: translateY(calc(-18px * sin(var(--i))));
+  background: linear-gradient(120deg, #ff6aa2, #ff9ecf, #ffd1e8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    0 0 2px rgba(255, 105, 180, 0.6),
+    0 0 6px rgba(255, 105, 180, 0.5),
+    0 0 10px rgba(255, 170, 200, 0.4);
+
+  animation: sparkle 2.5s ease-in-out infinite alternate;
+  filter: none;              /* removes blur */
+}
+
+/* Slight glow animation */
+@keyframes sparkle {
+  0% {
+    text-shadow:
+      0 0 2px rgba(255, 105, 180, 0.6),
+      0 0 6px rgba(255, 105, 180, 0.5),
+      0 0 10px rgba(255, 170, 200, 0.4);
+  }
+  100% {
+    text-shadow:
+      0 0 4px rgba(255, 105, 180, 0.8),
+      0 0 10px rgba(255, 105, 180, 0.7),
+      0 0 18px rgba(255, 170, 200, 0.6);
+  }
+}
+
+
+/* Tagline */
+.thooriga-tagline {
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+/* Intro Card */
+.thooriga-intro-card {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  background: #fff;
+  padding: 24px 30px;
+  border-radius: 18px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+  text-align: center;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* Countdown line */
+.countdown-heading {
+  text-align: center;
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: #ff5fa2;
+}
+/* ===== PASTEL RAIN BACKGROUND ===== */
+/* Pastel rain background */
+/* Bigger, brighter pastel rain */
+/* Subtle but visible pastel rain */
+.events-page {
+  position: relative;
+  min-height: 100vh;
+}
+
+
+
+.thooriga-arch {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 40px 0 20px;
+  font-size: 5rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+.thooriga-arch span {
+  color: #ff4f8b; /* darker pink */
+  text-shadow:
+    0 0 6px rgba(255, 79, 139, 0.6),
+    0 0 12px rgba(255, 174, 200, 0.9),
+    0 0 20px rgba(255, 255, 255, 0.8);
+  animation: waveFloat 3s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.12s);
+  display: inline-block;
+  transform-origin: center;
+}
+
+
+
+
+/* Floating wave */
+@keyframes waveFloat {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-14px); }
+  100% { transform: translateY(0px); }
+}
+.scribbles-presents {
+  font-family: "Segoe Script", "Comic Sans MS", cursive;
+  color: #4b1f3a;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+/* 🌟 Upcoming Events Section */
+.upcoming-title {
+  text-align: center;
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 60px;
+
+  /* Darker, classy gradient */
+  background: linear-gradient(
+    120deg,
+    #3b0a45,   /* deep plum */
+    #0b2d4a,   /* midnight blue */
+    #5a1a1a    /* deep wine */
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* subtle glow for readability */
+  text-shadow: 
+    0 2px 10px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(90, 26, 26, 0.25);
+}
+.upcoming-title:hover {
+  text-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.55),
+    0 0 26px rgba(59, 10, 69, 0.35);
+}
+
+
+/* 🎴 Rummy Grid */
+.rummy-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 28px;
+  justify-items: center;
+}
+
+/* 🃏 Card */
+.rummy-card {
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 3 / 4;
+  border-radius: 20px;
+  padding: 22px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.28),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  color: #1f1f1f;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  transform: translateX(-200px) translateY(-120px) rotate(-15deg) scale(0.6);
+  opacity: 0;
+}
+
+/* ✨ Deal Animation */
+.rummy-grid.deal .rummy-card {
+  animation: dealCard 0.8s ease forwards;
+  animation-delay: calc(var(--i) * 0.12s);
+}
+
+@keyframes dealCard {
+  to {
+    transform: translate(0) rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* 🌈 Glitter Glow */
+.rummy-glow {
+  position: absolute;
+  inset: -40%;
+  background: conic-gradient(
+    from 180deg,
+    transparent,
+    #ff8ad8,
+    #8fd3f4,
+    #ffd194,
+    transparent
+  );
+  opacity: 0.35;
+  animation: spinGlow 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes spinGlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ✨ Hover Lift */
+.rummy-card:hover {
+  transform: translateY(-12px) scale(1.05);
+  box-shadow: 0 30px 60px rgba(255, 105, 180, 0.25);
+}
+
+/* 📱 Responsive */
+@media (max-width: 1100px) {
+  .rummy-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .rummy-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* 🖼 Card Image */
+.rummy-img-wrap {
+  width: 100%;
+  height: 55%;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25);
+}
+
+.rummy-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease, filter 0.6s ease;
+  filter: saturate(1.1) contrast(1.05);
+}
+
+/* ✨ Hover zoom + shimmer */
+.rummy-card:hover .rummy-img-wrap img {
+  transform: scale(1.12);
+  filter: saturate(1.25) contrast(1.15);
+}
+/*events curly*/
+/*curly title*/
+.upcoming-events-title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.curly-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 18px;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #000;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.curly-title::after {
+  content: '';
+  position: absolute;
+  left: 0;                    /* start from beginning */
+  bottom: -6px;
+  width: 100%;                /* full word width */
+  height: 22px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%; /* stretch to full width */
+  opacity: 0.95;
+  pointer-events: none;
+
+  background-image: url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'>\
+  <path d='M5 10 Q 25 0, 45 10 T 85 10 T 125 10 T 165 10 T 195 10' \
+  fill='none' stroke='%23f39eb6' stroke-width='4' stroke-linecap='round'/>\
+  </svg>");
+}
+
+

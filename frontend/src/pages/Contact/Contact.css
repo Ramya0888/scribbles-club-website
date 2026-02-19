@@ -106,4 +106,33 @@
     transform: translateY(-4px);
     background: var(--light-pink);
   }
+  /*curly title*/
+  .contact-title {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    
+    .curly-title {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 14px;
+      font-size: 2.8rem;          /* Bigger title */
+      font-weight: 800;          /* Bold & premium */
+      color: #000;               /* Black title text */
+      letter-spacing: 1px;
+    }
+    
+    .curly-title::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -6px;
+      width: 90%;                /* Wider curly underline */
+      height: 20px;              /* Thicker curve */
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0.95;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20'><path d='M5 10 Q 25 0, 45 10 T 85 10 T 125 10 T 165 10 T 195 10' fill='none' stroke='%23f39eb6' stroke-width='4' stroke-linecap='round'/></svg>");
+    }
     
