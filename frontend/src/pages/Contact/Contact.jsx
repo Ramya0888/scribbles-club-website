@@ -8,7 +8,8 @@ import {
   FaInstagram, 
   FaPinterestP, 
   FaLinkedinIn, 
-  FaYoutube 
+  FaYoutube,
+  FaEnvelope 
 } from "react-icons/fa";
 
 
@@ -92,7 +93,10 @@ export default function Contact() {
           ← Back to Home
         </Link>
       </div>
-      <h1>Contact Us</h1>
+      <div className="contact-title">
+  <h2 className="curly-title">Contact Us</h2>
+</div>
+
       <p>Reach out to Scribbles Art Club for collaborations or inquiries.</p>
 
       {/* Contact Form */}
@@ -143,48 +147,55 @@ export default function Contact() {
       {/* Social Media & Email */}
       <div className="contact-card">
         <h3>Follow Us</h3>
-       
+
         <div className="social-icons">
-   <a
-    href="https://www.instagram.com/scribbles_ceg?igsh=MWg5cGFzN2twMGxkYQ=="
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Instagram"
-  >
-    <FaInstagram />
-  </a>
+          <a
+            href="https://www.instagram.com/scribbles_ceg?igsh=MWg5cGFzN2twMGxkYQ=="
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <FaInstagram />
+          </a>
 
-  <a
-    href="https://in.pinterest.com/scribblesceg/"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Pinterest"
-  >
-    <FaPinterestP />
-  </a>
+          <a
+            href="https://in.pinterest.com/scribblesceg/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Pinterest"
+          >
+            <FaPinterestP />
+          </a>
 
-  <a
-    href="https://www.linkedin.com/company/scribblesceg/"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="LinkedIn"
-  >
-    <FaLinkedinIn />
-  </a>
-  <a
-    href="https://youtube.com/@scribbles_ceg?si=QHCU0wiHXvBulcqT"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="YouTube"
-  >
-    <FaYoutube />
-  </a>
+          <a
+            href="https://www.linkedin.com/company/scribblesceg/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedinIn />
+          </a>
 
-</div>
+          <a
+            href="https://youtube.com/@scribbles_ceg?si=QHCU0wiHXvBulcqT"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube"
+          >
+            <FaYoutube />
+          </a>
+          <a
+  href="https://mail.google.com/mail/?view=cm&fs=1&to=scribbles.ceg@gmail.com&su=Hello%20Scribbles&body=Hi%20Team,"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Email"
+>
+  <FaEnvelope />
+</a>
 
-        <h4>Official Email:</h4>
-        <p>scribbles.ceg@gmail.com</p>
+        </div>
       </div>
+
     </div>
   );
 }

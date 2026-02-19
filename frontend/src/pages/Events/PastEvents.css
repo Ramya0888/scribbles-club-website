@@ -1,0 +1,213 @@
+/* 🌸 Past Events Section */
+.past-events-section {
+  padding: 120px 8%;
+  position: relative;
+}
+
+/* 🌺 Title */
+.past-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  margin-bottom: 80px;
+  background: linear-gradient(120deg, #7b0f2c, #ff3f81, #ff8fc7, #ffd194);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(255, 63, 129, 0.5);
+}
+
+/* 🎞 Slider Layout */
+.past-slider {
+  display: grid;
+  grid-template-columns: 65% 35%;
+  gap: 40px;
+  align-items: center;
+  border-radius: 30px;
+  padding: 35px;
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 122, 217, 0.12),
+    rgba(143, 211, 244, 0.12),
+    rgba(255, 209, 148, 0.12)
+  );
+
+  backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 30px 80px rgba(255, 122, 217, 0.25),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+
+  animation: fadeSlide 0.9s ease;
+}
+
+/* ✨ Glitter gradient overlay */
+.past-slider::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 122, 217, 0.3), transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(143, 211, 244, 0.3), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(255, 209, 148, 0.3), transparent 50%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* 🖼 Image Area (65%) */
+.past-image-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(255, 122, 217, 0.3);
+}
+
+.past-image-wrap img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  border-radius: 26px;
+  transition: transform 1.2s ease, filter 0.6s ease;
+  filter: contrast(1.1) saturate(1.1);
+}
+
+.past-image-wrap:hover img {
+  transform: scale(1.08);
+  filter: contrast(1.15) saturate(1.2);
+}
+
+/* ✨ Image Glow */
+.image-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, rgba(255, 122, 217, 0.4), rgba(143, 211, 244, 0.4)),
+    radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.2), transparent 40%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* 📝 Content Card (35%) */
+.past-content {
+  background: rgba(20, 10, 25, 0.65);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 35px rgba(255, 122, 217, 0.25);
+}
+
+/* 🏷 Event Title */
+.past-content h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  background: linear-gradient(120deg, #ff7ad9, #8fd3f4, #ffd194);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 📅 Date – darker pink */
+.past-date {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  color: #ff2f7a;
+  text-shadow: 0 0 12px rgba(255, 47, 122, 0.6);
+}
+
+/* 🧾 Description – richer contrast */
+.past-desc {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* 🔘 Dots */
+.past-dots {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 35px;
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.dot.active {
+  background: linear-gradient(120deg, #ff7ad9, #8fd3f4, #ffd194);
+  box-shadow:
+    0 0 12px rgba(255, 122, 217, 0.9),
+    0 0 20px rgba(143, 211, 244, 0.7);
+  transform: scale(1.4);
+}
+
+/* 🎬 Animation */
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 📱 Responsive */
+@media (max-width: 900px) {
+  .past-slider {
+    grid-template-columns: 1fr;
+  }
+
+  .past-image-wrap img {
+    height: 260px;
+  }
+
+  .past-content {
+    margin-top: 20px;
+  }
+}
+/*curly title*/
+.past-events-title {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  
+  .curly-title {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 14px;
+    font-size: 2.8rem;          /* Bigger title */
+    font-weight: 800;          /* Bold & premium */
+    color: #000;               /* Black title text */
+    letter-spacing: 1px;
+  }
+  
+  .curly-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -6px;
+    width: 90%;                /* Wider curly underline */
+    height: 20px;              /* Thicker curve */
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.95;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20'><path d='M5 10 Q 25 0, 45 10 T 85 10 T 125 10 T 165 10 T 195 10' fill='none' stroke='%23f39eb6' stroke-width='4' stroke-linecap='round'/></svg>");
+  }
+  

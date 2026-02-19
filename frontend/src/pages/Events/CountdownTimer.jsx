@@ -36,8 +36,7 @@ const CountdownTimer = ({ targetDate }) => {
 
   return (
     <section className="countdown-section">
-      <h2 className="curly-title">Upcoming Major Event</h2>
-      <div className="countdown-container">
+     <div className="countdown-container">
         <div className="countdown-box">
           <div className="countdown-number">{timeLeft.days}</div>
           <div className="countdown-label">Days</div>
