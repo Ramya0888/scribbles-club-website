@@ -603,5 +603,109 @@
   fill='none' stroke='%23f39eb6' stroke-width='4' stroke-linecap='round'/>\
   </svg>");
 }
+.events-title {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+/* 🔥 Make cards fill full width (2 per row) */
+/* 🚀 FORCE BIG RECTANGLE CARDS */
 
+.upcoming-section .rummy-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important; /* 2 per row */
+  gap: 50px !important;
+  width: 100% !important;
+  padding: 0 60px !important;
+  box-sizing: border-box;
+}
 
+/* 🔥 REMOVE width restrictions */
+.upcoming-section .rummy-card {
+  width: 100% !important;
+  max-width: none !important;
+  height: 360px; /* rectangle look */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* 🔥 BIG IMAGE */
+.upcoming-section .rummy-img-wrap {
+  width: 100%;
+  height: 220px !important;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.upcoming-section .rummy-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 🔥 TEXT SPACING */
+.upcoming-section .rummy-card h3 {
+  font-size: 1.4rem;
+  margin-top: 12px;
+}
+
+.upcoming-section .rummy-card p {
+  font-size: 1.05rem;
+}
+.upcoming-main-title {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+/* 🔥 Featured Single Event Card */
+/* 🔥 Featured Single Event Card */
+.featured-event-card {
+  width: 70%;
+  margin: 30px auto;
+  background: linear-gradient(135deg, #ffe4ec, #ffd6e8);
+  border-radius: 25px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+  /* ✨ glass + soft glow */
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-event-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3);
+}
+
+/* 🖼 Image */
+.featured-event-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* 📄 Content */
+.featured-content {
+  margin-top: 15px;
+}
+
+.featured-content h3 {
+  font-size: 1.8rem;
+  color: #d63384; /* dark pink */
+}
+
+.featured-content p {
+  font-size: 1.05rem;
+  color: #333;
+  margin-top: 10px;
+}
+.sub-event-title {
+  text-align: center;
+  margin: 30px 0 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #444;
+}
