@@ -86,17 +86,17 @@ const Events = () => {
   
   const techofesEvents = [
     {
-      title: "Techofes’26",
-      date: "Jan 2026",
-      description: "The biggest cultural fest filled with music, dance, and tech.",
-      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1766831715/cld-sample-2.jpg",
+      title: "Art Mayhem",
+      date: "28 Feb 2026",
+      description: "A high-energy team-based art competition combining creativity with chaos. Participants recreate artworks from memory and draw under physical distractions, testing focus, teamwork, and adaptability.",
+      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774887294/art_mayeham_zim3mg.jpg"
     },
     {
-      title: "Pro Shows",
-      date: "Jan 2026",
-      description: "Celebrity performances and electrifying nights.",
-      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1766831715/cld-sample-2.jpg",
-    },
+      title: "Beat Drop Brush Drop",
+      date: "27 Feb 2026",
+      description: "A fun, fast-paced team event blending art with music and movie decoding. From identifying films through drawings to sketching along with beats, it challenges creativity and quick thinking.",
+      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774887306/brushdrop_ksa84h.jpg"
+    }
   ];
 
   return (
