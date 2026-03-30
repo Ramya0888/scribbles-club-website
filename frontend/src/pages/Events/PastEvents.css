@@ -69,13 +69,12 @@
 
 .past-image-wrap img {
   width: 100%;
-  height: 440px;
+  aspect-ratio: 4 / 3;   /* 🔥 KEY FIX */
   object-fit: cover;
   border-radius: 26px;
   transition: transform 1.2s ease, filter 0.6s ease;
   filter: contrast(1.1) saturate(1.1);
 }
-
 .past-image-wrap:hover img {
   transform: scale(1.08);
   filter: contrast(1.15) saturate(1.2);
@@ -174,9 +173,8 @@
   }
 
   .past-image-wrap img {
-    height: 260px;
+    aspect-ratio: 4 / 3; /* 🔥 consistent on mobile */
   }
-
   .past-content {
     margin-top: 20px;
   }
@@ -210,4 +208,129 @@
     opacity: 0.95;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20'><path d='M5 10 Q 25 0, 45 10 T 85 10 T 125 10 T 165 10 T 195 10' fill='none' stroke='%23f39eb6' stroke-width='4' stroke-linecap='round'/></svg>");
   }
+  /*mobile*/
+  /* 🌸 MOBILE RESPONSIVE FIX */
+  @media (max-width: 900px) {
+    .past-slider {
+      display: grid;
+      grid-template-columns: 1fr;   /* 🔥 stack layout */
+      gap: 20px;
+      padding: 20px;               /* 🔥 remove side overflow */
+    }
   
+    .past-image-wrap {
+      width: 100%;
+    }
+  
+    .past-image-wrap img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+    }
+  
+    .past-content {
+      padding: 20px;
+    }
+  
+    .past-content h3 {
+      font-size: 1.5rem;
+    }
+  
+    .past-desc {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  }
+  
+  /* 🎯 SLIDER WRAPPER FIX */
+  .past-slider {
+    position: relative;
+    overflow: visible; /* 🔥 allow buttons outside */
+  }
+  
+  /* 🎯 CONTROLS CONTAINER */
+  .slider-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+  
+  /* 🔥 BUTTON STYLE */
+  .slider-controls button {
+    pointer-events: all;
+  
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+  
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+  
+    background: linear-gradient(135deg, #ff7ad9, #8fd3f4, #ffd194);
+  
+    box-shadow:
+      0 0 15px rgba(255, 122, 217, 0.8),
+      0 0 30px rgba(143, 211, 244, 0.7);
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    transition: all 0.3s ease;
+  }
+  
+  /* ✨ HOVER */
+  .slider-controls button:hover {
+    transform: scale(1.15);
+  }
+  
+  /* 🚀 POSITION OUTSIDE (KEY FIX) */
+  .slider-controls button:first-child {
+    transform: translateX(-60%); /* left outside */
+  }
+  
+  .slider-controls button:last-child {
+    transform: translateX(60%);  /* right outside */
+  }
+  
+  /* 📱 MOBILE (KEEP SAME SIDE POSITION) */
+  @media (max-width: 900px) {
+    .slider-controls button {
+      width: 44px;
+      height: 44px;
+      font-size: 18px;
+    }
+  
+    .slider-controls button:first-child {
+      transform: translateX(-40%);
+    }
+  
+    .slider-controls button:last-child {
+      transform: translateX(40%);
+    }
+  }
+  /* 🎴 WORKSHOPS GRID (RUMMY GRID FIX) */
+.rummy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* 📱 MOBILE STACK */
+@media (max-width: 600px) {
+  .rummy-grid {
+    grid-template-columns: 1fr; /* 🔥 full width cards */
+  }
+
+  .rummy-card {
+    width: 100%;
+  }
+}

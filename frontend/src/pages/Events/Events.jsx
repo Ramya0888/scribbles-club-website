@@ -10,17 +10,78 @@ const Events = () => {
   const dropCount = 50;
   const thoorigaEvents = [
     {
-      title: "Thooriga’26",
+      title: "Speed Art Battle",
       date: "21 Feb 2026",
-      description: "A grand artistic celebration with colors, chaos, and creativity.",
-      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1766840331/Screenshot_2025-12-27_182517_czs103.png",
+      description: "A high-energy timed art challenge where participants create artwork based on a common theme. Unique twists like unlocking materials through puzzles and mid-round restrictions test both creativity and adaptability.",
+      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774625184/speed_art_nwngcp.jpg"
     },
     {
-      title: "Thooriga Gallery",
+      title: "Paint Balls",
       date: "21 Feb 2026",
-      description: "Showcasing student masterpieces and live art.",
-      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1766840331/Screenshot_2025-12-27_182517_czs103.png",
+      description: "Teams recreate a given image while opponents try to disrupt them using water balloons. A fun mix of strategy, teamwork, and chaos on the playground.",
+      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774625140/paint_ball_sun1qq.jpg"
     },
+    {
+      title: "Art Without Hands",
+      date: "21 Feb 2026",
+      description: "Participants create artwork using unconventional tools like sponges, leaves, and straws instead of their hands. A fun and challenging way to explore creativity differently.",
+      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774625031/Art_without_hands_v8ygnv.jpg"
+    },
+    {
+      title: "Pass the Canvas",
+      date: "21 Feb 2026",
+      description: "A collaborative art event where participants pass their canvas when music stops and continue each other’s work. The result is a unique group masterpiece filled with mixed ideas.",
+      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774625143/pass_the_canvas_jtof8u.jpg"
+    },
+    {
+      title: "Mandala / Zentangle Art",
+      date: "21 Feb 2026",
+      description: "A calming art session focused on creating intricate mandala or zentangle patterns. Perfect for relaxation, focus, and artistic expression.",
+      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774625283/mandola_rk9kth.jpg"
+    },
+    {
+      title: "Run and Draw",
+      date: "21 Feb 2026",
+      description: "One teammate observes a reference image and describes it verbally while the other draws it. Communication skills and memory play a key role in recreating the artwork.",
+      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774859689/run_and_draw_ly8t27.jpg"
+    },
+    {
+      title: "Mystery Box Craft",
+      date: "21 Feb 2026",
+      description: "Participants create crafts using randomly assigned materials from a mystery box. Creativity, teamwork, and innovation are key to building something unique.",
+      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774625230/Mystery_box_challenge_rgiqot.jpg"
+    },
+    {
+      title: "Sell the Scribble",
+      date: "21 Feb 2026",
+      description: "Teams create quick artwork and pitch it confidently like a business idea. Inspired by Shark Tank, this event rewards creativity, humor, and presentation skills.",
+      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774625181/sell_the_scribble_t1mse3.jpg"
+    },
+    {
+      title: "Hand and Face Painting",
+      date: "21 Feb 2026",
+      description: "A vibrant event where Scribbles members painted creative designs on participants’ hands and faces. It added color, fun, and an artistic vibe to the entire event atmosphere.",
+      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774625076/Face_painting_uk8ktj.jpg"
+    },
+    {
+      title: "Musical Sketch Challenge",
+      date: "21 Feb 2026",
+      description: "A fun pre-event where participants sketch stick-figure dance moves based on popular songs played. Quick thinking and creativity help capture the most recognizable moves within the time limit.",
+      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774625280/Musical_sketch_qtb8tf.jpg"
+    },
+    {
+      title: "No Hands Painting Challenge",
+      date: "21 Feb 2026",
+      description: "A quirky pre-event where participants create artwork without using their dominant hand. Using elbows or the non-dominant hand, this challenge tests coordination, adaptability, and creativity.",
+      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774625107/No_hands_painting_o3owpj.jpg"
+    },
+    {
+      title: "Colour Recall Challenge",
+      date: "21 Feb 2026",
+      description: "A memory-based pre-event where participants recreate a colored image after observing it briefly. Accuracy in colors and details determines the winner under time pressure.",
+      image: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774625031/colour_recall_rywpvv.jpg"
+    },
+   
   ];
   
   const techofesEvents = [
@@ -71,21 +132,21 @@ const Events = () => {
 
       {/* Hero Section */}
       <div className="events-title">
-  <h2 className="curly-title">Events</h2>
+  <h2 className="curly-title main-title">Events</h2>
 </div>
 <div style={{ position: "relative", zIndex: 2 }}>
 
-<div style={{ position: "relative", zIndex: 2 }}>
+
 
 {/* 🔥 Upcoming Event Title */}
-<div className="upcoming-main-title">
+{/*<div className="upcoming-main-title">
   <h2 className="curly-title">Upcoming Event</h2>
-</div>
+</div>*/}
 
 {/* ⏳ Countdown */}
-<CountdownTimer targetDate="2026-02-19T09:00:00" />
+{/*<CountdownTimer targetDate="2026-02-19T09:00:00" />*/}
 
-{/* 🌟 Featured Event Card */}
+{/* 🌟 Featured Event Card 
 <div className="featured-event-card">
   <img
     src="https://res.cloudinary.com/djcyst7fi/image/upload/v1766840314/Screenshot_2025-12-27_182504_mlr1lj.png"
@@ -99,16 +160,10 @@ const Events = () => {
       games, workshops, and colorful expressions all in one place.
     </p>
   </div>
-</div>
+</div>*/}
 
 {/* 🔽 Existing grid */}
-<UpcomingEvents />
-
-</div>
-
-</div>
-
-      <section className="thooriga-hero" style={{ position: "relative", zIndex: 2 }}>
+<section className="thooriga-hero" style={{ position: "relative", zIndex: 2 }}>
         
         
         <p className="scribbles-presents">Our Signature Event</p>
@@ -137,23 +192,36 @@ const Events = () => {
         </div>
      </section>
 
-      
-      
-     {/* 🎯 Past Events Section */}
+
+
+
+</div>
+{/* 🎯 Past Events Section */}
 <div style={{ position: "relative", zIndex: 2 }}>
-
-  {/* 🔥 MAIN HEADING */}
-  <div className="past-events-title">
-    <h2 className="curly-title">Past Events</h2>
-  </div>
-
-  {/* 🎨 Thooriga Section */}
-  <h3 className="sub-event-title">Thooriga’26</h3>
+<div className="events-title">
+{/* 🎨 Thooriga Section */}
+  <h3 className="curly-title">Events from Thooriga’26</h3>
   <PastEvents events={thoorigaEvents} />
 
+</div>
+<div>
+<UpcomingEvents />
+</div>
+      
+      
+
+
+  
+
+
+
   {/* 🎭 Techofes Section */}
-  <h3 className="sub-event-title">Techofes’26</h3>
+<div className="events-title">
+{/* 🎨 Thooriga Section */}
+  <h3 className="curly-title">Events from Techofes’26</h3>
   <PastEvents events={techofesEvents} />
+
+</div>
 
 </div>
       
