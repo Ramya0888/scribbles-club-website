@@ -135,4 +135,102 @@
       opacity: 0.95;
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20'><path d='M5 10 Q 25 0, 45 10 T 85 10 T 125 10 T 165 10 T 195 10' fill='none' stroke='%23f39eb6' stroke-width='4' stroke-linecap='round'/></svg>");
     }
-    
+    /*mobile*/
+    /* 🌸 MOBILE OPTIMIZATION (FINAL CLEAN FIX) */
+
+@media (max-width: 900px) {
+
+  /* Page spacing */
+  .contact-page {
+    padding: 30px 14px;
+  }
+
+  /* Title */
+  .curly-title {
+    font-size: 2rem;
+  }
+
+  .contact-page p {
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+  }
+
+  /* Grid → single column */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Cards */
+  .contact-card {
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  /* Form inputs */
+  .contact-card input,
+  .contact-card textarea {
+    font-size: 0.95rem;
+    padding: 10px 12px;
+  }
+
+  /* Button */
+  .contact-card button {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  /* Map */
+  .contact-card iframe {
+    height: 320px;
+    border-radius: 10px;
+  }
+
+  /* Social section */
+  .contact-card h3 {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+
+  /* Social icons */
+  .social-icons {
+    gap: 16px;
+  }
+
+  .social-icons a {
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
+    padding: 0;
+  }
+
+  /* Back button */
+  .contact-page a {
+    font-size: 0.85rem !important;
+    padding: 6px 12px !important;
+  }
+}
+
+
+/* 📱 EXTRA SMALL DEVICES */
+@media (max-width: 480px) {
+
+  .curly-title {
+    font-size: 1.7rem;
+  }
+
+  .contact-page {
+    padding: 20px 10px;
+  }
+
+  .contact-card {
+    padding: 15px;
+  }
+
+  .social-icons a {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
