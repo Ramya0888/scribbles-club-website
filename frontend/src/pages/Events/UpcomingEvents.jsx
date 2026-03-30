@@ -6,7 +6,7 @@ const events = [
   {
     title: "T-Shirt Painting Workshop",
     desc: "Held on Mar 23, 2026",
-    img: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774634832/resin_art_1_av7y2d.jpg",
+    img: "https://res.cloudinary.com/djcyst7fi/image/upload/v1774887429/tshirt_bofzjw.jpg",
   },
   {
     title: "Clay Article Key Holder Workshop",
