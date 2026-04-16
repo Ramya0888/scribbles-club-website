@@ -220,7 +220,7 @@ const featuredArtworks = [
 ];
 
 const navBlocks = [
-  { title: 'Art Gallery', desc: 'Explore curated artworks from our collection.', href: '/art-gallery', isInternal: true },
+  { title: 'Art Gallery', desc: 'Explore curated artworks from our collection.', href: '/gallery', isInternal: true },
   { title: 'Creative Journal', desc: 'Read inspiring posts, tutorials, and art stories.', href: '/journal', isInternal: true },
   { title: 'Gallery', desc: 'Curated works from weekly drops.', href: '/gallery', isInternal: true },
   { title: 'Events', desc: 'Workshops, sketchwalks, pop-ups.', href: '/events', isInternal: true },
@@ -288,7 +288,7 @@ function Hero({ onJoinClick }) {
         </p>
         <div className="hero-actions">
           <button className="btn primary" onClick={onJoinClick}>Join the Club</button>
-          <Link className="btn ghost" to="/art-gallery">Art Gallery</Link>
+          <Link className="btn ghost" to="/gallery">Art Gallery</Link>
           <Link className="btn ghost" to="/journal">Creative Journal</Link>
           <Link className="btn ghost" to="/testimonials">Testimonials</Link>
           <Link className="btn ghost" to="/contact">Contact Us</Link>
@@ -363,7 +363,7 @@ function QuickButtons({ onJoinClick }) {
       </div>
       <div className="quick-grid">
         <button className="btn block" onClick={onJoinClick}>Join Us</button>
-        <Link className="btn block" to="/art-gallery">Art Gallery</Link>
+        <Link className="btn block" to="/gallery">Art Gallery</Link>
         <Link className="btn block" to="/journal">Creative Journal</Link>
         <Link className="btn block" to="/events">Upcoming Events</Link>
       </div>
@@ -437,7 +437,7 @@ function AboutSection() {
         <div style={{ marginTop: '2rem', display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <button onClick={handleMeetTeam} className="btn primary">Meet Our Team</button>
           <button onClick={handleStoryClick} className="btn ghost">The Scribbles Story</button>
-          <Link to="/art-gallery" className="btn ghost">Art Gallery</Link>
+          <Link to="/gallery" className="btn ghost">Art Gallery</Link>
           <Link to="/journal" className="btn ghost">Creative Journal</Link>
           <Link to="/video" className="btn ghost">The Official Intro Video!</Link>
         </div>
@@ -448,15 +448,67 @@ function AboutSection() {
 
 // ===== THE SCRIBBLES STORY TIMELINE =====
 const milestones = [
-  { date: '2018 — Founding Year', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.' },
-  { date: '2019 — First Campus Exhibition', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus ante dapibus diam.' },
-  { date: '2020 — Community Sketchwalks', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis sem at nibh elementum.' },
-  { date: '2021 — Digital Weekly Prompts', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit tempus porttitor.' },
-  { date: '2022 — Artist Talks & Workshops', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod.' },
-  { date: '2023 — Inter-College Collaborations', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum.' },
-  { date: '2024 — Newsletter & Zine Launch', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum.' },
-  { date: '2025 — Scribbles Art Fest', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur.' },
-];
+  { 
+    date: '14 OCT 2025', 
+    text: 'PENCIL SKETCH TUTORIALS - Learn the fundamentals of pencil sketching with professional artists.' 
+  },
+  { 
+    date: '20 OCT 2025', 
+    text: 'ART WITHOUT LIMITS - A creative workshop exploring art beyond traditional boundaries.' 
+  },
+  { 
+    date: '23 DEC 2025', 
+    text: 'ART UNPLUGGED - Disconnect from technology and reconnect with traditional art forms.' 
+  },
+  { 
+    date: '23-24 JAN 2026', 
+    text: 'FACE PAINTING - Two-day workshop on creative face painting techniques and designs.' 
+  },
+  { 
+    date: '23 JAN 2026', 
+    text: 'CHAOTIC CANVASS - Embrace the chaos and create spontaneous, expressive artworks.' 
+  },
+  { 
+    date: '12 FEB 2026', 
+    text: 'PENCIL SKETCH TUTORIAL - Advanced pencil sketching techniques for all skill levels.' 
+  },
+  { 
+    date: '20 FEB 2026', 
+    text: 'THOORIGA PRE EVENTS: Doodle Arts – Collective Canvass, Blindfold Guide Drawing Challenge, Colour Recall Challenge, Musical Sketch Challenge, No Hands Painting Challenge, Sketch and Guess Challenge.' 
+  },
+  { 
+    date: '21 FEB 2026', 
+    text: 'THOORIGA WORKSHOPS: Resin Keychain Workshop, Tote Bag Painting Workshop.' 
+  },
+  { 
+    date: '21 FEB 2026', 
+    text: 'THOORIGA EVENTS: Art Without Hands, Pass the Canvass, Mandala / Zentangle, Run and Draw, Mystery Box Craft, Sell the Scribble.' 
+  },
+  { 
+    date: '21 FEB 2026', 
+    text: 'THOORIGA SIGNATURE EVENTS: Paintball, Speed Art Battle - The ultimate creative competitions.' 
+  },
+  { 
+    date: '27 FEB 2026', 
+    text: 'TECHOFESS EVENTS: Brush Drop Beat Drop - Where art meets music and rhythm.' 
+  },
+  { 
+    date: '28 FEB 2026', 
+    text: 'TECHOFESS EVENTS: Art Mayhem - High-energy collaborative art challenges.' 
+  },
+  { 
+    date: '13 MAR 2026', 
+    text: 'TECHOFESS EVENTS: Acrylic Painting Workshop - Master acrylic painting techniques.' 
+  },
+  { 
+    date: '14 MAR 2026', 
+    text: 'TECHOFESS EVENTS: Resin Keychain Workshop - Create stunning resin accessories.' 
+  },
+  { 
+    date: '15 MAR 2026', 
+    text: 'TECHOFESS EVENTS: Clay Article Keyholder Workshop - Handcraft unique clay keyholders.' 
+  },
+];;
 
 function StorySection() {
   return (
