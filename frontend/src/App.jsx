@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import Splash from './components/Splash';
 import HomePage from './pages/Home/Home.jsx';
 import NewsletterPage from './pages/Newsletter/Newsletter.jsx';
 import GalleryPage from './pages/Gallery/Gallery.jsx';
@@ -46,6 +47,7 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
+      <Splash />
       <AnimatedRoutes />
     </BrowserRouter>
   );
