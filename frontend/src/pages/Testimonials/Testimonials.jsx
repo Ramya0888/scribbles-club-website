@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
 
 // Create 7 items per section with placeholder images/quotes
 const officeBearers = Array.from({ length: 7 }).map((_, i) => ({
@@ -217,7 +217,7 @@ export default function TestimonialsPage() {
           />
         ))}
       </div>
-      <Link className="back-link" to="/">← Back to Home</Link>
+      <Navbar />
       <header className="section-header center">
         <p className="eyebrow">Member Reflections</p>
         <h2 className="curly-title">Testimonials</h2>

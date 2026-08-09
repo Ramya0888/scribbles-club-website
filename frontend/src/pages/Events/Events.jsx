@@ -2,7 +2,7 @@ import React from "react";
 import CountdownTimer from "./CountdownTimer";
 import PastEvents from "./PastEvents";
 import UpcomingEvents from "./UpcomingEvents";
-import { Link } from "react-router-dom";
+import Navbar from "../../components/Navbar";
 import "./Events.css";
 import "../../styles/ContactPastelRain.css";
 
@@ -123,12 +123,8 @@ const Events = () => {
         ))}
       </div>
 
-      {/* Back to Home */}
-      <div className="events-topbar" style={{ position: "relative", zIndex: 2 }}>
-        <Link to="/" className="back-home-btn">
-          ← Back to Home
-        </Link>
-      </div>
+      {/* All site navigation lives in the shared navbar */}
+      <Navbar />
 
       {/* Hero Section */}
       <div className="events-title">

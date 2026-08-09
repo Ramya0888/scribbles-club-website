@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Navbar from '../../components/Navbar';
 
 export default function NewsletterPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -13,7 +13,7 @@ export default function NewsletterPage() {
 
   return (
     <div className="newsletter-page">
-      <Link className="back-link" to="/">← Back to Home</Link>
+      <Navbar />
 
       <section className="nl-hero">
         <p className="eyebrow">Scribbles Art Club</p>

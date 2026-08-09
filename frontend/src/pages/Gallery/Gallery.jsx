@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import Footer from '../../components/Footer';
+import Navbar from '../../components/Navbar';
 
 // Workshop events data with vibrant colors
 const workshopEvents = [
@@ -513,6 +513,7 @@ export default function GalleryPage() {
       }}
     >
       {/* Animated floating particles background */}
+      <Navbar />
       <div
         style={{
           position: "fixed",
@@ -581,43 +582,6 @@ export default function GalleryPage() {
           }}
         />
       </div>
-
-      {/* Back Link */}
-      <Link
-        to="/"
-        style={{
-          position: "fixed",
-          top: "24px",
-          left: "24px",
-          zIndex: 100,
-          display: "inline-flex",
-          alignItems: "center",
-          gap: "8px",
-          padding: "10px 24px",
-          background: "rgba(255,255,255,0.15)",
-          backdropFilter: "blur(12px)",
-          borderRadius: "40px",
-          textDecoration: "none",
-          color: "white",
-          fontFamily: "'Poppins', system-ui, sans-serif",
-          fontWeight: 500,
-          fontSize: "14px",
-          transition: "all 0.3s ease",
-          border: "1px solid rgba(255,255,255,0.2)",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "translateX(-5px)";
-          e.currentTarget.style.background = "rgba(255,255,255,0.25)";
-          e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = "translateX(0)";
-          e.currentTarget.style.background = "rgba(255,255,255,0.15)";
-          e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)";
-        }}
-      >
-        <span style={{ fontSize: "20px" }}>←</span> Back to Home
-      </Link>
 
       {/* Page Header */}
       <header
