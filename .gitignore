@@ -17,6 +17,7 @@ frontend/dist/
 # logs
 npm-debug.log*
 yarn-error.log*
+dev-server.log
 
 # OS
 .DS_Store
