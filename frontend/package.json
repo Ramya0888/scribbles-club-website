@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
-   
     "lucide-react": "^0.562.0",
+    "motion": "^13.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.5.0",
