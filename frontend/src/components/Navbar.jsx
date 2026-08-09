@@ -24,15 +24,15 @@ function JoinModal({ onClose }) {
           </a>
 
           <a
-            href="https://chat.whatsapp.com/YOUR_GROUP_LINK"
+            href="https://whatsapp.com/channel/0029Vb6K9wSD38CMsi1OGE1X"
             target="_blank"
             rel="noopener noreferrer"
             className="modal-link"
           >
             <span className="link-icon">💬</span>
             <span className="link-text">
-              <strong>WhatsApp Group</strong>
-              <span className="link-desc">Join our community</span>
+              <strong>WhatsApp Channel</strong>
+              <span className="link-desc">Follow our updates</span>
             </span>
           </a>
         </div>
