@@ -554,6 +554,14 @@ a {
   padding: 0.5rem 1rem;
 }
 
+.navbar-links a.active {
+  color: var(--warm-pink);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
 .navbar-toggle {
   display: none;
   flex-direction: column;

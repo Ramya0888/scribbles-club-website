@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function JoinModal({ onClose }) {
   return (
@@ -46,6 +46,9 @@ export default function Navbar({ onAboutClick }) {
   const [joinOpen, setJoinOpen] = useState(false);
   const navRef = useRef(null);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const isActive = (path) => pathname === path;
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -99,13 +102,13 @@ export default function Navbar({ onAboutClick }) {
           </button>
 
           <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
-            <Link to="/" onClick={closeMenu} style={{ textDecoration: 'none' }}>Home</Link>
-            <Link to="/events" onClick={closeMenu} style={{ textDecoration: 'none' }}>Events</Link>
-            <Link to="/gallery" onClick={closeMenu} style={{ textDecoration: 'none' }}>Gallery</Link>
-            <Link to="/video" onClick={closeMenu} style={{ textDecoration: 'none' }}>Intro Video</Link>
-            <Link to="/testimonials" onClick={closeMenu} style={{ textDecoration: 'none' }}>Testimonials</Link>
-            <Link to="/newsletter" onClick={closeMenu} style={{ textDecoration: 'none' }}>Newsletter</Link>
-            <Link to="/contact" onClick={closeMenu} style={{ textDecoration: 'none' }}>Contact Us</Link>
+            <Link to="/" onClick={closeMenu} className={isActive('/') ? 'active' : ''} style={{ textDecoration: 'none' }}>Home</Link>
+            <Link to="/events" onClick={closeMenu} className={isActive('/events') ? 'active' : ''} style={{ textDecoration: 'none' }}>Events</Link>
+            <Link to="/gallery" onClick={closeMenu} className={isActive('/gallery') ? 'active' : ''} style={{ textDecoration: 'none' }}>Gallery</Link>
+            <Link to="/video" onClick={closeMenu} className={isActive('/video') ? 'active' : ''} style={{ textDecoration: 'none' }}>Intro Video</Link>
+            <Link to="/testimonials" onClick={closeMenu} className={isActive('/testimonials') ? 'active' : ''} style={{ textDecoration: 'none' }}>Testimonials</Link>
+            <Link to="/newsletter" onClick={closeMenu} className={isActive('/newsletter') ? 'active' : ''} style={{ textDecoration: 'none' }}>Newsletter</Link>
+            <Link to="/contact" onClick={closeMenu} className={isActive('/contact') ? 'active' : ''} style={{ textDecoration: 'none' }}>Contact Us</Link>
             <button className="navbar-link-btn" onClick={handleAbout}>About Us</button>
             <button className="navbar-link-btn navbar-join" onClick={handleJoin}>Join</button>
           </div>
