@@ -91,7 +91,7 @@ logo.style.left = r.img.left + r.img.width / 2 + 'px';
         }
       };
       rafId = requestAnimationFrame(tick);
-    }, 4450);
+    }, 4600);
 
     const tSwap = setTimeout(() => {
       cancelAnimationFrame(rafId);

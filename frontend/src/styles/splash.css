@@ -36,8 +36,8 @@ body.brand-hiding .navbar-brand span {
   left: 50vw;
   transform: translate(-50%, -50%);
   z-index: 5;
-  width: 52px;
-  height: 52px;
+  width: 76px;
+  height: 76px;
   opacity: 1;
   will-change: opacity;
 }
