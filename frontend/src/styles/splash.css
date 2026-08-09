@@ -16,12 +16,6 @@ body.splash-live .navbar {
   background: transparent;
 }
 
-.splash-root.hide {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
 .splash-geo {
   position: absolute;
   inset: 0;
