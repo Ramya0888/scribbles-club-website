@@ -1,6 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
+function FlipText({ text }) {
+  return (
+    <span className="flip-text">
+      {Array.from(text).map((ch, i) => (
+        <span className="flip-letter" key={i} style={{ '--i': i }}>
+          <span className="flip-face flip-front">{ch === ' ' ? '\u00A0' : ch}</span>
+          <span className="flip-face flip-back">{ch === ' ' ? '\u00A0' : ch}</span>
+        </span>
+      ))}
+    </span>
+  );
+}
+
 function JoinModal({ onClose }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -102,15 +115,15 @@ export default function Navbar({ onAboutClick }) {
           </button>
 
           <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
-            <Link to="/" onClick={closeMenu} className={isActive('/') ? 'active' : ''} style={{ textDecoration: 'none' }}>Home</Link>
-            <Link to="/events" onClick={closeMenu} className={isActive('/events') ? 'active' : ''} style={{ textDecoration: 'none' }}>Events</Link>
-            <Link to="/gallery" onClick={closeMenu} className={isActive('/gallery') ? 'active' : ''} style={{ textDecoration: 'none' }}>Gallery</Link>
-            <Link to="/video" onClick={closeMenu} className={isActive('/video') ? 'active' : ''} style={{ textDecoration: 'none' }}>Intro Video</Link>
-            <Link to="/testimonials" onClick={closeMenu} className={isActive('/testimonials') ? 'active' : ''} style={{ textDecoration: 'none' }}>Testimonials</Link>
-            <Link to="/newsletter" onClick={closeMenu} className={isActive('/newsletter') ? 'active' : ''} style={{ textDecoration: 'none' }}>Newsletter</Link>
-            <Link to="/contact" onClick={closeMenu} className={isActive('/contact') ? 'active' : ''} style={{ textDecoration: 'none' }}>Contact Us</Link>
-            <button className="navbar-link-btn" onClick={handleAbout}>About Us</button>
-            <button className="navbar-link-btn navbar-join" onClick={handleJoin}>Join</button>
+            <Link to="/" onClick={closeMenu} className={isActive('/') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Home" /></Link>
+            <Link to="/events" onClick={closeMenu} className={isActive('/events') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Events" /></Link>
+            <Link to="/gallery" onClick={closeMenu} className={isActive('/gallery') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Gallery" /></Link>
+            <Link to="/video" onClick={closeMenu} className={isActive('/video') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Intro Video" /></Link>
+            <Link to="/testimonials" onClick={closeMenu} className={isActive('/testimonials') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Testimonials" /></Link>
+            <Link to="/newsletter" onClick={closeMenu} className={isActive('/newsletter') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Newsletter" /></Link>
+            <Link to="/contact" onClick={closeMenu} className={isActive('/contact') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Contact Us" /></Link>
+            <button className="navbar-link-btn" onClick={handleAbout}><FlipText text="About Us" /></button>
+            <button className="navbar-link-btn navbar-join" onClick={handleJoin}><FlipText text="Join" /></button>
           </div>
         </div>
       </nav>
