@@ -32,8 +32,8 @@ body.brand-hiding .navbar-brand span {
 
 .splash_logo {
   position: fixed;
-  top: 50vh;
-  left: 50vw;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
   width: 52px;
@@ -110,7 +110,7 @@ body.brand-hiding .navbar-brand span {
   font-weight: bold;
   font-family: 'Pangolin', cursive, sans-serif;
   color: #1f1f1f;
-  white-space: nowrap;
+white-space: nowrap;
   animation:
     on 0.45s ease-out 3.2s forwards;
 }
@@ -217,17 +217,6 @@ body.brand-hiding .navbar-brand span {
     100% {
       -webkit-clip-path: polygon(42vw 40vh, 58vw 40vh, 58vw 60vh, 42vw 60vh);
       clip-path: polygon(42vw 40vh, 58vw 40vh, 58vw 60vh, 42vw 60vh);
-    }
-  }
-
-  @keyframes emerge {
-    from {
-      opacity: 0;
-      transform: translate(-50%, -50%) translateY(28px) scale(0.8);
-    }
-    to {
-      opacity: 1;
-      transform: translate(-50%, -50%) translateY(48px) scale(1);
     }
   }
 
