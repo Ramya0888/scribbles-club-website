@@ -610,7 +610,7 @@ a {
   }
 
   .navbar-links.open {
-    max-height: 480px;
+    max-height: 560px;
     opacity: 1;
   }
 
@@ -619,6 +619,10 @@ a {
     padding: 0.9rem 2rem;
     font-size: 1rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .navbar-links .navbar-link-btn {
+    text-align: left;
   }
 
   .navbar-links .navbar-join {

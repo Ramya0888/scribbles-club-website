@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import TeamMemberCard from '../About/TeamMemberCard';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -178,48 +179,6 @@ const featuredArtworks = [
     image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80',
   },
 ];
-
-function JoinModal({ isOpen, onClose }) {
-  if (!isOpen) return null;
-
-  return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>×</button>
-        <h2 className="modal-title">Join Scribbles Art Club</h2>
-        <p className="modal-subtitle">Connect with us on your favorite platform</p>
-        
-        <div className="modal-links">
-          <a 
-            href="https://www.instagram.com/scribbles_ceg/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="modal-link"
-          >
-            <span className="link-icon">📸</span>
-            <span className="link-text">
-              <strong>Instagram</strong>
-              <span className="link-desc">Follow for daily updates</span>
-            </span>
-          </a>
-          
-          <a 
-            href="https://chat.whatsapp.com/YOUR_GROUP_LINK" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="modal-link"
-          >
-            <span className="link-icon">💬</span>
-            <span className="link-text">
-              <strong>WhatsApp Group</strong>
-              <span className="link-desc">Join our community</span>
-            </span>
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function Hero() {
   return (
@@ -405,19 +364,19 @@ function StorySection() {
 }
 
 export default function HomePage() {
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const handleJoinClick = () => {
-    setModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setModalOpen(false);
-  };
+  const location = useLocation();
 
   const handleAboutClick = () => {
     document.getElementById('about-section')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // Scroll to a section when arriving from another page (e.g. navbar "About Us")
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      document.getElementById(location.state.scrollTo)?.scrollIntoView({ behavior: 'smooth' });
+      window.history.replaceState({}, '');
+    }
+  }, [location.state]);
 
   // Apply the home background image to the body while on Home
   useEffect(() => {
@@ -429,7 +388,7 @@ export default function HomePage() {
 
   return (
   <div className="page" style={{ position: "relative", overflow: "hidden" }}>
-    <Navbar onAboutClick={handleAboutClick} onJoinClick={handleJoinClick} />
+    <Navbar onAboutClick={handleAboutClick} />
     
     {/* 🎨 Pastel raindrop background */}
     <div className="pastel-rain-layer" style={{ marginTop: '80px' }}>
@@ -466,7 +425,6 @@ export default function HomePage() {
       <TeamSection title="" members={deputyHeads} scrollerId="deputy-heads-scroll" />
     </section>
 
-    <JoinModal isOpen={modalOpen} onClose={handleCloseModal} />
     <Footer />
   </div>
 );
