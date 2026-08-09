@@ -54,7 +54,7 @@ padding: 96px 20px;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
-    cursor: pointer;
+    cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
     transition: transform 0.2s ease;
   }
   

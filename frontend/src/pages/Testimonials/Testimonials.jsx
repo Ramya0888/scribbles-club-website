@@ -62,7 +62,7 @@ function TestimonialsRow({ title, items, scrollerId }) {
                   borderRadius: 16,
                   boxShadow: "var(--card-shadow)",
                   background: "#fff",
-                  cursor: "pointer",
+                  cursor: "url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer",
                 }}
               >
                 <div style={{ padding: "0.75rem 1rem" }}>
@@ -130,7 +130,7 @@ function TestimonialsRow({ title, items, scrollerId }) {
             border: "2px solid rgba(0,0,0,0.1)",
             background: "rgba(255,255,255,0.95)",
             backdropFilter: "blur(10px)",
-            cursor: "pointer",
+            cursor: "url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer",
             fontSize: 26,
             color: "#333",
             display: "flex",
@@ -159,7 +159,7 @@ function TestimonialsRow({ title, items, scrollerId }) {
             border: "2px solid rgba(0,0,0,0.1)",
             background: "rgba(255,255,255,0.95)",
             backdropFilter: "blur(10px)",
-            cursor: "pointer",
+            cursor: "url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer",
             fontSize: 26,
             color: "#333",
             display: "flex",

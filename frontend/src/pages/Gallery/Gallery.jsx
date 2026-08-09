@@ -66,7 +66,7 @@ const ImageCard = ({ src, alt, index, gradient, color1, color2 }) => {
           : "0 15px 35px -10px rgba(0,0,0,0.2)",
         transform: isHovered ? "translateY(-12px) scale(1.02)" : "translateY(0) scale(1)",
         transition: "all 0.4s cubic-bezier(0.34, 1.2, 0.64, 1)",
-        cursor: "pointer",
+        cursor: "url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer",
         backdropFilter: "blur(10px)",
       }}
       onMouseEnter={() => setIsHovered(true)}
@@ -413,7 +413,7 @@ const ArtisticGalleryRow = ({ event }) => {
               borderRadius: "50%",
               background: `linear-gradient(135deg, ${event.color1}, ${event.color2})`,
               border: "none",
-              cursor: "pointer",
+              cursor: "url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer",
               fontSize: "28px",
               color: "white",
               display: "flex",
@@ -474,7 +474,7 @@ const ArtisticGalleryRow = ({ event }) => {
               borderRadius: "50%",
               background: `linear-gradient(135deg, ${event.color1}, ${event.color2})`,
               border: "none",
-              cursor: "pointer",
+              cursor: "url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer",
               fontSize: "28px",
               color: "white",
               display: "flex",

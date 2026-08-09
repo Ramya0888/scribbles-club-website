@@ -23,6 +23,26 @@ body {
   background: var(--soft-cream);
   color: var(--text-main);
   min-height: 100vh;
+  cursor: url('/pointer.svg') 4 4, auto;
+}
+
+a,
+button,
+select,
+summary,
+input[type='submit'],
+input[type='checkbox'],
+label[for],
+[role='button'] {
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='search'],
+textarea {
+  cursor: text;
 }
 
 /* Home background override (set by component) */
@@ -100,7 +120,7 @@ a {
   border-radius: var(--radius-sm);
   padding: 12px 16px;
   font-weight: 600;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
@@ -276,7 +296,7 @@ a {
   height: 10px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.12);
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
@@ -415,7 +435,7 @@ a {
   border: none;
   background: transparent;
   font-size: 28px;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   color: var(--text-muted);
   transition: color 0.2s ease;
 }
@@ -485,7 +505,7 @@ a {
 .nav-button {
   border: none;
   background: #fff;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   padding: 16px;
   text-align: left;
 }
@@ -547,7 +567,7 @@ a {
 .navbar-link-btn {
   background: none;
   border: none;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   font-size: 1rem;
   font-weight: 500;
   color: #333;
@@ -625,7 +645,7 @@ a {
   padding: 8px;
   background: none;
   border: none;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
 }
 
 .navbar-toggle span {
@@ -752,7 +772,7 @@ a {
   border-radius: var(--radius-sm);
   padding: 12px 18px;
   font-weight: 600;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   background: var(--warm-pink);
   color: #fff;
   box-shadow: var(--card-shadow);
@@ -790,7 +810,7 @@ a {
   color: var(--text-main);
   text-decoration: none;
   font-weight: 600;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   transition: color 0.2s ease;
 }
 
@@ -1041,7 +1061,7 @@ a {
 
 .tech-team-link {
   color: #5bb3ff;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   position: relative;
   transition: color 0.2s ease;
 }
@@ -1185,7 +1205,7 @@ a {
   border-radius: var(--radius-sm);
   padding: 12px 22px;
   font-weight: 600;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   background: var(--warm-pink);
   color: #fff;
   box-shadow: var(--card-shadow);
