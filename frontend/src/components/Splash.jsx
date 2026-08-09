@@ -55,22 +55,19 @@ export default function Splash() {
 
     const tBrand = setTimeout(() => {
       snapToBrand();
+      const text = textRef.current;
+      if (text) {
+        text.style.transition = 'none';
+        text.style.opacity = '0';
+      }
       document.body.classList.remove('brand-hiding');
     }, 5050);
-
-    const tFade = setTimeout(() => {
-      const text = textRef.current;
-      if (!text) return;
-      text.style.transition = 'opacity 0.18s ease';
-      text.style.opacity = '0';
-    }, 5200);
 
     const tGone = setTimeout(() => setGone(true), 5500);
     return () => {
       clearTimeout(tFly);
       clearTimeout(tFix);
       clearTimeout(tBrand);
-      clearTimeout(tFade);
       clearTimeout(tGone);
       document.body.classList.remove('splash-live');
       document.body.classList.remove('brand-hiding');
