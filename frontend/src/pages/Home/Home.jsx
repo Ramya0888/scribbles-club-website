@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 import TeamMemberCard from '../About/TeamMemberCard';
+import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 const officeBearers = [
@@ -155,46 +155,6 @@ function TeamSection({ title, members, scrollerId }) {
   );
 }
 
-function Navbar({ onAboutClick, onJoinClick }) {
-  return (
-    <nav style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      zIndex: 1000,
-      background: 'rgba(255, 255, 255, 0.95)',
-      backdropFilter: 'blur(10px)',
-      boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-      padding: '1rem 2rem'
-    }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <img src="/logo.png" alt="Scribbles" style={{ width: 40, height: 40 }} />
-          <span style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Scribbles Art Club</span>
-        </div>
-        <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-          <button onClick={onAboutClick} style={{
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            fontSize: '1rem',
-            fontWeight: '500'
-          }}>About Us</button>
-          <Link to="/newsletter" style={{ textDecoration: 'none', fontSize: '1rem', fontWeight: '500' }}>Newsletter</Link>
-          <button onClick={onJoinClick} className="btn primary" style={{ padding: '0.5rem 1rem' }}>Join</button>
-        </div>
-      </div>
-    </nav>
-  );
-}
-
 const featuredArtworks = [
   {
     title: 'Echoes of Spring',
@@ -218,17 +178,6 @@ const featuredArtworks = [
     image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80',
   },
 ];
-
-const navBlocks = [
-  { title: 'Events', desc: 'Workshops, sketchwalks, pop-ups.', href: '/events', isInternal: true },
-  { title: 'Art Gallery', desc: 'Explore curated artworks from our collection.', href: '/gallery', isInternal: true },
-  { title: 'Blog', desc: 'Process notes, prompts, and tips.', href: '/blog', isInternal: true },
-  { title: 'Contact Us', desc: 'Reach us for collabs and invites.', href: '/contact', isInternal: true },
-  { title: 'Testimonials', desc: 'What members say.', href: '/testimonials', isInternal: true },
-  { title: 'Newsletter', desc: 'Weekly art drops.', href: '/newsletter', isInternal: true },
-  { title: 'Join Us', desc: 'Hop into the community spaces.', href: '#', isModal: true },
-];
-
 
 function JoinModal({ isOpen, onClose }) {
   if (!isOpen) return null;
@@ -272,7 +221,7 @@ function JoinModal({ isOpen, onClose }) {
   );
 }
 
-function Hero({ onJoinClick }) {
+function Hero() {
   return (
     <header className="hero" id="top">
       <div className="hero-logo-circle">
@@ -284,15 +233,6 @@ function Hero({ onJoinClick }) {
         <p className="muted">
           Weekly prompts, featured drops, critique circles, and events to help you keep drawing. Built for curious illustrators and makers.
         </p>
-        <div className="hero-actions">
-          
-          <button className="btn primary" onClick={onJoinClick}>Join the Club</button>
-          <Link className="btn ghost" to="/events">Events</Link>
-          <Link className="btn ghost" to="/gallery">Art Gallery</Link>
-          <Link className="btn ghost" to="/testimonials">Testimonials</Link>
-          <Link className="btn ghost" to="/contact">Contact Us</Link>
-         
-        </div>
       </div>
     </header>
   );
@@ -353,70 +293,6 @@ function FeaturedSlider() {
   );
 }
 
-function QuickButtons({ onJoinClick }) {
-  return (
-    <section className="quick section">
-      <div className="section-header">
-        <p className="eyebrow">Jump In</p>
-        <h2>Quick Buttons</h2>
-      </div>
-      <div className="quick-grid">
-        <button className="btn block" onClick={onJoinClick}>Join Us</button>
-        <Link className="btn block" to="/events">Upcoming Events</Link>
-        <Link className="btn block" to="/gallery">Art Gallery</Link>
-        
-        
-      </div>
-    </section>
-  );
-}
-
-function NavigationBlocks({ onJoinClick }) {
-  return (
-    <section className="section" id="nav-blocks">
-      <div className="section-header">
-        <p className="eyebrow">Explore</p>
-        <h2>Interactive Navigation Blocks</h2>
-      </div>
-      <div className="nav-grid">
-        {navBlocks.map((block) => (
-          block.isModal ? (
-            <button
-              key={block.title}
-              className="nav-card nav-button"
-              onClick={onJoinClick}
-            >
-              <div>
-                <h3>{block.title}</h3>
-                <p className="muted">{block.desc}</p>
-              </div>
-              <span className="chevron">→</span>
-            </button>
-          ) : block.isInternal ? (
-            <Link key={block.title} className="nav-card" to={block.href}>
-              <div>
-                <h3>{block.title}</h3>
-                <p className="muted">{block.desc}</p>
-              </div>
-              <span className="chevron">→</span>
-            </Link>
-          ) : (
-            <a key={block.title} className="nav-card" href={block.href}>
-              <div>
-                <h3>{block.title}</h3>
-                <p className="muted">{block.desc}</p>
-              </div>
-              <span className="chevron">→</span>
-            </a>
-          )
-        ))}
-      </div>
-    </section>
-  );
-}
-
- 
-
 function AboutSection() {
   const handleMeetTeam = () => {
     document.getElementById('team-section')?.scrollIntoView({ behavior: 'smooth' });
@@ -437,10 +313,6 @@ function AboutSection() {
         <div style={{ marginTop: '2rem', display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <button onClick={handleMeetTeam} className="btn primary">Meet Our Team</button>
           <button onClick={handleStoryClick} className="btn ghost">The Scribbles Story</button>
-          <Link to="/events" className="btn ghost">Events</Link>
-          <Link to="/gallery" className="btn ghost">Art Gallery</Link>
-          
-          <Link to="/video" className="btn ghost">The Official Intro Video!</Link>
         </div>
       </div>
     </section>
@@ -578,10 +450,8 @@ export default function HomePage() {
       ))}
     </div>
 
-    <Hero onJoinClick={handleJoinClick} />
+    <Hero />
     <FeaturedSlider />
-    <QuickButtons onJoinClick={handleJoinClick} />
-    <NavigationBlocks onJoinClick={handleJoinClick} />
     <AboutSection />
     <StorySection />
     

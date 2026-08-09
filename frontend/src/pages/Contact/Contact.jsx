@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./Contact.css";
 import "../../styles/ContactPastelRain.css";  
 import emailjs from "@emailjs/browser";
-import { Link } from "react-router-dom";
+import Navbar from "../../components/Navbar";
 import { 
   FaInstagram, 
   FaPinterestP, 
@@ -66,33 +66,8 @@ export default function Contact() {
           />
         ))}
       </div>
-      {/* Back to Home Button */}
-      <div style={{ margin: "1rem 0", position: "relative", zIndex: 10 }}>
-        <Link
-          to="/"
-          style={{
-            display: "inline-block",
-            padding: "0.5rem 1rem",
-            backgroundColor: "#f39eb6", 
-            color: "#fff",
-            borderRadius: "8px",
-            textDecoration: "none",
-            fontWeight: 500,
-            boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
-            transition: "transform 0.2s, background-color 0.2s",
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.transform = "scale(1.05)";
-            e.target.style.backgroundColor = "#ff85c2"; 
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.transform = "scale(1)";
-            e.target.style.backgroundColor = "#ff6eb4";
-          }}
-        >
-          ← Back to Home
-        </Link>
-      </div>
+      {/* All site navigation lives in the shared navbar */}
+      <Navbar />
       <div className="contact-title">
   <h2 className="curly-title">Contact Us</h2>
 </div>

@@ -1,12 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Footer from '../../components/Footer';
+import Navbar from '../../components/Navbar';
 
 export default function VideoPage() {
   return (
     <div className="gallery-page">
-      <Link className="back-link" to="/">← Back to Home</Link>
-      
+      <Navbar />
       <header className="section-header center">
         <p className="eyebrow">Club Vision & Vibe</p>
         <h2 className="curly-title">The Official Intro Video</h2>
