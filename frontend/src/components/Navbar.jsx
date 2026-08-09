@@ -1,54 +1,73 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const linkStyle = {
-  background: 'none',
-  border: 'none',
-  cursor: 'pointer',
-  fontSize: '1rem',
-  fontWeight: '500',
-  color: '#333',
-  textDecoration: 'none',
-};
-
 export default function Navbar({ onAboutClick, onJoinClick }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    function handleClickOutside(event) {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
+
+  const handleAbout = () => {
+    closeMenu();
+    onAboutClick?.();
+  };
+
+  const handleJoin = () => {
+    closeMenu();
+    onJoinClick?.();
+  };
+
+  const linkProps = (extra) => ({
+    style: { textDecoration: 'none' },
+    ...extra,
+  });
+
   return (
-    <nav style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      zIndex: 1000,
-      background: 'rgba(255, 255, 255, 0.95)',
-      backdropFilter: 'blur(10px)',
-      boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-      padding: '1rem 2rem',
-    }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: '1rem',
-        flexWrap: 'wrap',
-      }}>
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', color: 'inherit' }}>
-          <img src="/logo.png" alt="Scribbles" style={{ width: 40, height: 40 }} />
-          <span style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Scribbles Art Club</span>
+    <nav className="navbar" ref={navRef}>
+      <div className="navbar-inner">
+        <Link
+          to="/"
+          className="navbar-brand"
+          onClick={closeMenu}
+        >
+          <img src="/logo.png" alt="Scribbles" />
+          <span>Scribbles Art Club</span>
         </Link>
-        <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <Link to="/events" style={linkStyle}>Events</Link>
-          <Link to="/gallery" style={linkStyle}>Gallery</Link>
-          <Link to="/video" style={linkStyle}>Intro Video</Link>
-          <Link to="/testimonials" style={linkStyle}>Testimonials</Link>
-          <Link to="/newsletter" style={linkStyle}>Newsletter</Link>
-          <Link to="/contact" style={linkStyle}>Contact Us</Link>
+
+        <button
+          className={`navbar-toggle ${menuOpen ? 'open' : ''}`}
+          aria-label="Toggle navigation menu"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
+          <Link to="/events" onClick={closeMenu} {...linkProps()}>Events</Link>
+          <Link to="/gallery" onClick={closeMenu} {...linkProps()}>Gallery</Link>
+          <Link to="/video" onClick={closeMenu} {...linkProps()}>Intro Video</Link>
+          <Link to="/testimonials" onClick={closeMenu} {...linkProps()}>Testimonials</Link>
+          <Link to="/newsletter" onClick={closeMenu} {...linkProps()}>Newsletter</Link>
+          <Link to="/contact" onClick={closeMenu} {...linkProps()}>Contact Us</Link>
           {onAboutClick && (
-            <button onClick={onAboutClick} style={linkStyle}>About Us</button>
+            <button className="navbar-link-btn" onClick={handleAbout}>About Us</button>
           )}
           {onJoinClick && (
-            <button onClick={onJoinClick} className="btn primary" style={{ padding: '0.5rem 1rem' }}>Join</button>
+            <button className="navbar-link-btn navbar-join" onClick={handleJoin}>Join</button>
           )}
         </div>
       </div>
