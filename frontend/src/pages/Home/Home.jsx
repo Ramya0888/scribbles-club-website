@@ -11,21 +11,21 @@ const officeBearers = [
   { name: 'Ramkumar S', role: 'Treasurer', dept: 'Manufacturing', image: '/team/ram.JPG', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
   { name: 'Mahima S', role: 'Events Team', dept: 'IT', image: '/team/mah.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
   { name: 'Suren M', role: 'Events Team', dept: 'Mechanical', image: '/team/sur.jpeg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Sujith P', role: 'Design Team', dept: 'Manufacturing', image: '/team/suj.jpeg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+  { name: 'Sujith P', role: 'Design Team', dept: 'Manufacturing', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
   { name: 'Shevaniga S', role: 'Design Team', dept: 'IT', image: '/team/she.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
   { name: 'Naziya Kouser H', role: 'Marketing Team', dept: 'IT', image: '/team/naz.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
   { name: 'Sandhiya S', role: 'Marketing Team', dept: 'ECE', image: '/team/san.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
   { name: 'Reema', role: 'Social Media & Content', dept: 'Civil', image: '/team/ree.jpeg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
   { name: 'Kanal Illamathi A S', role: 'Social Media & Content', dept: 'ECE', image: '/team/kan.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Veenasri', role: 'Social Media & Content', dept: 'ECE', image: '', instagram: '/team/vee.jpg', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+  { name: 'Veenasri', role: 'Social Media & Content', dept: 'ECE', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
   { name: 'Barath V', role: 'Public & External Relations', dept: 'ECE', image: '/team/bar.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Preethi B', role: 'Logistics & Operations', dept: 'IT', image: '/team/pre.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+  { name: 'Preethi B', role: 'Logistics & Operations', dept: 'IT', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
   { name: 'Dhevadharshini A', role: 'Logistics & Operations', dept: 'ECE', image: '/team/dhe.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Gurumoorthi R', role: 'Web & Tech Team', dept: 'CSE', image: '/team/guru.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Subi Pinsha P', role: 'Web & Tech Team', dept: 'IT', image: '/team/subi.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+  { name: 'Gurumoorthi R', role: 'Web & Tech Team', dept: 'CSE', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+  { name: 'Subi Pinsha P', role: 'Web & Tech Team', dept: 'IT', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
   { name: 'Sarashivasri S', role: 'Web & Tech Team', dept: 'CSE', image: '/team/sara.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Deepak S', role: 'Web & Tech Team', dept: 'CSE', image: '/team/deepak.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Shanmugapriya B', role: 'Creatives', dept: 'Material Science', image: '/team/shan.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' }
+  { name: 'Deepak S', role: 'Web & Tech Team', dept: 'CSE', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+  { name: 'Shanmugapriya B', role: 'Creatives', dept: 'Material Science', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' }
 ];
 
 const deputyHeads = [
