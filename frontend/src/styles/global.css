@@ -527,9 +527,14 @@ a {
   font-size: 1.2rem;
 }
 
-.navbar-brand img {
-  width: 40px;
-  height: 40px;
+.navbar-brand img,
+.logo-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: contain;
+  padding: 8px;
+  background: #fff;
 }
 
 .navbar-links {
