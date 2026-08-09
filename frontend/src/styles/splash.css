@@ -5,6 +5,15 @@ body.splash-live .navbar {
   opacity: 0;
 }
 
+body.brand-hiding .navbar-brand span {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.navbar-brand span {
+  transition: opacity 0.25s ease 0.05s;
+}
+
 .navbar {
   transition: opacity 0.4s ease 0.2s;
 }

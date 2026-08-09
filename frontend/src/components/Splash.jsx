@@ -24,7 +24,9 @@ export default function Splash() {
       const brand = document.querySelector('.navbar-brand span');
       if (!text || !brand) return;
       const cs = window.getComputedStyle(brand);
+      text.style.font = cs.font;
       text.style.lineHeight = cs.lineHeight;
+      text.style.letterSpacing = cs.letterSpacing;
       const tr = text.getBoundingClientRect();
       const br = brand.getBoundingClientRect();
       const curLeft = parseFloat(text.style.left);
@@ -45,33 +47,33 @@ export default function Splash() {
       text.style.top = r.top + r.height / 2 + 'px';
       text.style.transform = 'translate(0, -50%)';
       text.style.fontSize = '1.2rem';
+      document.body.classList.add('brand-hiding');
       document.body.classList.remove('splash-live');
     }, 4150);
 
-    const tFix = setTimeout(() => {
+    const tFix = setTimeout(snapToBrand, 4900);
+
+    const tBrand = setTimeout(() => {
       snapToBrand();
+      document.body.classList.remove('brand-hiding');
+    }, 5050);
+
+    const tFade = setTimeout(() => {
       const text = textRef.current;
-      const brand = document.querySelector('.navbar-brand span');
-      if (text && brand) {
-        const cs = window.getComputedStyle(brand);
-        const tr = text.getBoundingClientRect();
-        const br = brand.getBoundingClientRect();
-        console.table({
-          'brand rect': { left: br.left, top: br.top, w: br.width, h: br.height },
-          'loader rect': { left: tr.left, top: tr.top, w: tr.width, h: tr.height },
-          deltaPx: { x: br.left - tr.left, y: br.top - tr.top },
-          brandFont: cs.fontFamily,
-          lineHeight: cs.lineHeight,
-        });
-      }
-    }, 4900);
+      if (!text) return;
+      text.style.transition = 'opacity 0.18s ease';
+      text.style.opacity = '0';
+    }, 5200);
 
     const tGone = setTimeout(() => setGone(true), 5500);
     return () => {
       clearTimeout(tFly);
       clearTimeout(tFix);
+      clearTimeout(tBrand);
+      clearTimeout(tFade);
       clearTimeout(tGone);
       document.body.classList.remove('splash-live');
+      document.body.classList.remove('brand-hiding');
     };
   }, []);
 
