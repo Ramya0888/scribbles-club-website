@@ -2,64 +2,35 @@ import React, { useState } from "react";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 
-// Create 7 items per section with placeholder images/quotes
-const officeBearers = Array.from({ length: 7 }).map((_, i) => ({
-  name: [
-    "Sowmya",
-    "Venkatraman",
-    "Lavanyalakshmi",
-    "Ramkumar",
-    "Mahima",
-    "Suren",
-    "Sujith",
-  ][i],
-  role: "Past Office Bearer",
-  image: `/team/office_${i + 1}.jpg`,
-  quote:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.",
-}));
+const officeBearers = [
+  { name: "Sowmya", role: "Past President", image: "/team/sowmya.jpeg", quote: "Scribbles gave me a canvas for everything I couldn't say in words. Four years later, the club still feels like my second home." },
+  { name: "Venkatraman", role: "Past President", image: "/team/ven.jpeg", quote: "Leading this club taught me that art is less about talent and more about showing up for each other, every single week." },
+  { name: "Lavanyalakshmi", role: "Past Secretary", image: "/team/lav.jpeg", quote: "From scouting venues to hunting for paint at the last minute, every event was chaos — and I'd do it all over again." },
+  { name: "Ramkumar S", role: "Past Treasurer", image: "/team/ram.JPG", quote: "I joined to draw and stayed for the people. The budget sheets were never pretty, but the friendships always were." },
+  { name: "Mahima S", role: "Past Events Head", image: "/team/mah.jpg", quote: "Planning speed art events taught me how a little music, a lot of enthusiasm, and one shared wall can bring a whole college together." },
+  { name: "Suren M", role: "Past Events Head", image: "/team/sur.jpeg", quote: "Scribbles is where I learned that the best ideas are drawn in chalk, erased, and drawn again — often mid-event." },
+  { name: "Sujith P", role: "Past Design Head", image: "", quote: "Every poster I designed started as an ugly sketch. The club taught me to ship it anyway, then make it beautiful." },
+];
 
-const alumni = Array.from({ length: 7 }).map((_, i) => ({
-  name: [
-    "Aishwarya",
-    "Pranav",
-    "Keerthi",
-    "Harish",
-    "Divya",
-    "Sanjay",
-    "Nithya",
-  ][i],
-  role: "Alumni",
-  image: `/team/alumni_${i + 1}.jpg`,
-  quote:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit tempus porttitor. Integer posuere erat a ante.",
-}));
+const alumni = [
+  { name: "Dharshini E", role: "Alumni, Social Media", image: "/team/dharsE.jpg", quote: "Even after graduation, Scribbles still sends me updates faster than my friends do. Once family, always family." },
+  { name: "Roopa Varshni R", role: "Alumni, Creatives", image: "/team/roop.png", quote: "The late-night poster sessions and the smell of paint thinner — I genuinely miss every bit of it." },
+  { name: "Sadha Shree N", role: "Alumni, Marketing", image: "/team/sad.jpg", quote: "Scribbles taught me that engagement beats reach, and that a hand-painted hoarding beats any banner ad." },
+  { name: "Devika S", role: "Alumni, Marketing", image: "/team/dev.jpg", quote: "Some of my closest friends today are people I first met holding a flattened paintbrush at fresher's ink." },
+  { name: "Rishitha K P", role: "Alumni, Events", image: "/team/image.png", quote: "If you ever see me at a resale paint stall, it's because Scribbles rewired things: I look at art supply prices for fun now." },
+  { name: "Santoshi", role: "Alumni, Coordinator", image: "/team/sant.jpg", quote: "Our coordinator badge was heavier than it looked, but the clap when an event goes right was worth everything." },
+  { name: "Yazhvendhan", role: "Alumni, Coordinator", image: "/team/yaz.jpeg", quote: "I joined for the lettering workshops. I stayed because of the people who have since left — and the ones who never will." },
+];
 
-const webTeam = Array.from({ length: 7 }).map((_, i) => ({
-  name: [
-    "Abirami",
-    "Hashim",
-    "Ramya",
-    "Sathish",
-    "Gurumoorthi",
-    "Subi Pinsha",
-    "Deepak",
-  ][i],
-  role: "Web Development Team",
-  image: `/team/web_${i + 1}.jpg`,
-  linkedin:
-    [
-      "https://linkedin.com/in/abirami",
-      "https://linkedin.com/in/hashim",
-      "https://linkedin.com/in/ramya",
-      "https://linkedin.com/in/sathish",
-      "https://linkedin.com/in/gurumoorthi",
-      "https://linkedin.com/in/subipinsha",
-      "https://linkedin.com/in/deepak",
-    ][i],
-  quote:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus.",
-}));
+const webTeam = [
+  { name: "Abirami", role: "Web Development Team", image: "/team/abi.webp", linkedin: "https://www.linkedin.com/in/abirami-ramanathan-707521285/", quote: "Building this website was like painting with code — every sprint had a design review and a smile in Slack." },
+  { name: "Hashim M", role: "Web Development Team", image: "/team/has.jpeg", linkedin: "https://www.linkedin.com/in/hashim-m-160b96340/", quote: "Shipping the new site felt exactly like finishing a mural: paint inspection by everyone, and then applause." },
+  { name: "Ramya S", role: "Web Development Team", image: "/team/ramy.jpg", linkedin: "https://www.linkedin.com/in/ramyalnkdn/", quote: "The club taught me that a website is art too — and that we get to choose the palette." },
+  { name: "Sathish J", role: "Web Development Team", image: "/team/sath.webp", quote: "Deploy day felt like gallery night: nerve-racking, then beautiful when it finally stuck." },
+  { name: "Gurumoorthi R", role: "Web Development Team", image: "", quote: "I wrote a lot of code and went to more workshops, and I wouldn't have it any other way." },
+  { name: "Subi Pinsha P", role: "Web Development Team", image: "", quote: "Pairing with the design team showed me what a pixel of patience can do for a whole layout." },
+{ name: "Deepak S", role: "Web Development Team", image: "", quote: "The best part of this club isn't the dashboard — it's the people you get to build it for." },
+];
 
 function TestimonialsRow({ title, items, scrollerId }) {
   const [openIndex, setOpenIndex] = useState(null);
@@ -106,7 +77,15 @@ function TestimonialsRow({ title, items, scrollerId }) {
                         flex: "0 0 auto",
                       }}
                     >
-                      <img src={m.image} alt={m.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                      <img
+                        src={m.image || "/logo.png"}
+                        alt={m.name}
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        onError={(e) => {
+                          e.currentTarget.onerror = null;
+                          e.currentTarget.src = "/logo.png";
+                        }}
+                      />
                     </div>
                     <div>
                       <div style={{ fontWeight: 600 }}>{m.name}</div>
@@ -259,7 +238,6 @@ export default function TestimonialsPage() {
           </div>
           <p className="muted" style={{ marginTop: "1rem" }}>
             Short clips where members share favorite Scribbles memories and experiences.
-            This is a placeholder; we’ll swap in the real videos later.
           </p>
         </div>
       </section>
