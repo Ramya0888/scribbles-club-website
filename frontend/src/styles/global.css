@@ -47,7 +47,7 @@ a {
 .page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 32px 20px 64px;
+  padding: 96px 20px 64px;
 }
 
 .section {
@@ -499,7 +499,7 @@ a {
 .newsletter-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px 72px;
+  padding: 96px 20px 72px;
 }
 
 .nl-hero {
@@ -641,6 +641,12 @@ a {
   .nl-hero h1 {
     font-size: 30px;
   }
+
+  .page,
+  .newsletter-page,
+  .gallery-page {
+    padding-top: 112px;
+  }
 }
 
 /* ===== SCROLL ARROWS STYLING ===== */
@@ -738,7 +744,7 @@ a {
 .gallery-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px 72px;
+  padding: 96px 20px 72px;
 }
 
 /* Centered header variant */

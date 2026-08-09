@@ -127,7 +127,7 @@ const Events = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="events-title">
+      <div className="events-title page-title-top">
   <h2 className="curly-title main-title">Events</h2>
 </div>
 <div style={{ position: "relative", zIndex: 2 }}>

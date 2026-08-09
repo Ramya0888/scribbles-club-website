@@ -498,6 +498,9 @@ text-align: center;
 margin-top: 40px;
 margin-bottom: 30px;
 }
+.page-title-top {
+margin-top: 96px;
+}
 /* 🔥 Make cards fill full width (2 per row) */
 /* 🎴 GRID → 2 CARDS PER ROW */
 /* 🎴 GRID → 2 CARDS PER ROW */
@@ -655,6 +658,9 @@ color: #333;
 .rummy-grid {
   grid-template-columns: 1fr;
   padding: 0 20px;
+}
+.page-title-top {
+  margin-top: 112px;
 }
 }
 
