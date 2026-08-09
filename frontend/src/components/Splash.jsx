@@ -13,6 +13,8 @@ export default function Splash() {
 
     document.body.classList.add('splash-live');
 
+    let rafId = null;
+
     const measure = () => {
       const brand = document.querySelector('.navbar-brand span');
       if (!brand) return null;
@@ -51,9 +53,19 @@ export default function Splash() {
       document.body.classList.remove('splash-live');
     }, 4150);
 
-    const tFix = setTimeout(snapToBrand, 4900);
+    const tFix = setTimeout(() => {
+      const start = performance.now();
+      const tick = () => {
+        snapToBrand();
+        if (performance.now() - start < 200) {
+          rafId = requestAnimationFrame(tick);
+        }
+      };
+      rafId = requestAnimationFrame(tick);
+    }, 4850);
 
     const tBrand = setTimeout(() => {
+      cancelAnimationFrame(rafId);
       snapToBrand();
       const text = textRef.current;
       if (text) {
@@ -69,6 +81,7 @@ export default function Splash() {
       clearTimeout(tFix);
       clearTimeout(tBrand);
       clearTimeout(tGone);
+      cancelAnimationFrame(rafId);
       document.body.classList.remove('splash-live');
       document.body.classList.remove('brand-hiding');
     };

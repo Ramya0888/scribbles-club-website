@@ -10,10 +10,6 @@ body.brand-hiding .navbar-brand span {
   opacity: 0;
 }
 
-.navbar-brand span {
-  transition: opacity 0.1s ease;
-}
-
 .navbar {
   transition: opacity 0.4s ease 0.2s;
 }
