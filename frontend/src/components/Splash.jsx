@@ -137,7 +137,7 @@ logo.style.left = r.img.left + r.img.width / 2 + 'px';
         </div>
       </div>
       <div className="splash_logo" ref={logoRef}>
-        <img className="logo-circle" src="/logo.png" alt="Scribbles" />
+        <img className="logo-circle" src="/S.png" alt="Scribbles" />
       </div>
       <div className="splash-text" ref={textRef}>
         <p>Scribbles Art Club</p>
