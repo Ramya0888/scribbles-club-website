@@ -73,11 +73,10 @@ export default function Splash() {
       if (r.img && logo) {
         logo.style.transition =
           'left 0.55s cubic-bezier(0.4, 0, 0.2, 1), top 0.55s cubic-bezier(0.4, 0, 0.2, 1), width 0.55s cubic-bezier(0.4, 0, 0.2, 1), height 0.55s cubic-bezier(0.4, 0, 0.2, 1)';
-        logo.style.left = r.img.left + r.img.width / 2 + 'px';
+logo.style.left = r.img.left + r.img.width / 2 + 'px';
         logo.style.top = r.img.top + r.img.height / 2 + 'px';
-        logo.style.width = '40px';
-        logo.style.height = '40px';
-        logo.classList.add('flying');
+        logo.style.width = '52px';
+        logo.style.height = '52px';
       }
       document.body.classList.add('brand-hiding');
       document.body.classList.remove('splash-live');
@@ -138,7 +137,7 @@ export default function Splash() {
         </div>
       </div>
       <div className="splash_logo" ref={logoRef}>
-        <img src="/logo.png" alt="Scribbles" />
+        <img className="logo-circle" src="/logo.png" alt="Scribbles" />
       </div>
       <div className="splash-text" ref={textRef}>
         <p>Scribbles Art Club</p>

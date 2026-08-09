@@ -86,7 +86,7 @@ export default function Navbar({ onAboutClick }) {
             className="navbar-brand"
             onClick={closeMenu}
           >
-            <img src="/logo.png" alt="Scribbles" />
+            <img className="logo-circle" src="/logo.png" alt="Scribbles" />
             <span>Scribbles Art Club</span>
           </Link>
 
