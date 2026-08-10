@@ -9,7 +9,7 @@ import TestimonialsPage from './pages/Testimonials/Testimonials.jsx';
 import VideoPage from './pages/Video/Video.jsx';
 import Contact from "./pages/Contact/Contact";
 import Events from "./pages/Events/Events";
-
+import Blog from "./pages/Blog/Blog";
 
 import "./styles/pastelRain.css";
 
@@ -38,6 +38,7 @@ function AnimatedRoutes() {
           <Route path="/video" element={<VideoPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/blog" element={<Blog />} />
         </Routes>
       </motion.div>
     </AnimatePresence>
