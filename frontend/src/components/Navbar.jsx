@@ -118,6 +118,7 @@ export default function Navbar({ onAboutClick }) {
             <Link to="/" onClick={closeMenu} className={isActive('/') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Home" /></Link>
             <Link to="/events" onClick={closeMenu} className={isActive('/events') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Events" /></Link>
             <Link to="/gallery" onClick={closeMenu} className={isActive('/gallery') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Gallery" /></Link>
+            <Link to="/blog" onClick={closeMenu} className={isActive('/blog') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Blog" /></Link>
             <Link to="/video" onClick={closeMenu} className={isActive('/video') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Intro Video" /></Link>
             <Link to="/testimonials" onClick={closeMenu} className={isActive('/testimonials') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Testimonials" /></Link>
             <Link to="/newsletter" onClick={closeMenu} className={isActive('/newsletter') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Newsletter" /></Link>
