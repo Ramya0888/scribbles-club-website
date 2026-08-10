@@ -66,7 +66,7 @@ scribbles-club-website/
 ## Getting Started
 
 ### Prerequisites
-
+- flask
 - Node.js v18+
 - npm
 
