@@ -19,16 +19,13 @@ export default function Blog() {
   });
 
   useEffect(() => {
-    fetchPosts(selectedCategory);
-  }, [selectedCategory]);
+    fetchPosts();
+  }, []);
 
-  const fetchPosts = async (category) => {
+  const fetchPosts = async () => {
     setIsLoading(true);
     try {
-      const url = category && category !== 'All' 
-        ? `http://localhost:5000/api/posts?category=${encodeURIComponent(category)}`
-        : 'http://localhost:5000/api/posts';
-      const response = await fetch(url);
+      const response = await fetch('http://localhost:5000/api/posts');
       const data = await response.json();
       if (Array.isArray(data)) setPosts(data);
     } catch (err) {
@@ -77,7 +74,7 @@ export default function Blog() {
       if (response.ok) {
         setIsModalOpen(false);
         setFormData({ title: '', author_name: '', category: 'Painting', content: '', image_url: '' });
-        fetchPosts(selectedCategory);
+        fetchPosts();
       } else {
         alert(`Error: ${data.error || 'Failed to create post'}`);
       }
@@ -85,6 +82,11 @@ export default function Blog() {
       alert(`Network error: ${err.message}`);
     }
   };
+
+  const filteredPosts = posts.filter((post) => {
+    if (selectedCategory === 'All') return true;
+    return post.category?.trim().toLowerCase() === selectedCategory.trim().toLowerCase();
+  });
 
   return (
     <div className="blog-page">
@@ -119,7 +121,7 @@ export default function Blog() {
           </div>
         ) : (
           <div className="blog-grid">
-            {posts.map(post => (
+            {filteredPosts.map(post => (
               <div key={post.id} className="blog-card">
                 {post.image_url && (
                   <img 
