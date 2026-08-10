@@ -20,7 +20,8 @@ Official website for **Scribbles Art Club of CEG**, Anna University — a creati
 ```
 scribbles-club-website/
 |__ backend/
-|   |-- app.py                    # for connecting blog datas(neon) 
+|   |--.env                       # Connect with Neon (cloud db)
+|   |-- app.py                    # Framework for API calls
 ├── frontend/
 │   ├── public/
 │   │   ├── logo.png              # Club logo
@@ -61,7 +62,7 @@ scribbles-club-website/
 | `/newsletter` | Newsletter | Email signup form |
 | `/testimonials` | Testimonials | Member & alumni quotes |
 | `/video` | Intro Video | Club cinematic video embed |
-| `/blogs' | Create posts | Filter the posts  |
+| `/blog' |blog | Create posts | Filter the posts  |
 
 ## Getting Started
 
