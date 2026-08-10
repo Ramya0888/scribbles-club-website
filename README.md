@@ -75,14 +75,18 @@ scribbles-club-website/
 ```bash
 cd frontend
 npm install
+
+cd backend
+pip install flask
 ```
 
 ### Development
 
 ```bash
 npm run dev
-```
-
+``````
+python app.py
+''''''
 Opens at `http://localhost:5173`.
 
 ### Production Build
