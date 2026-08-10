@@ -61,6 +61,7 @@ scribbles-club-website/
 | `/newsletter` | Newsletter | Email signup form |
 | `/testimonials` | Testimonials | Member & alumni quotes |
 | `/video` | Intro Video | Club cinematic video embed |
+| `/blogs' | Create posts | Filter the posts  |
 
 ## Getting Started
 
