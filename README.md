@@ -13,11 +13,14 @@ Official website for **Scribbles Art Club of CEG**, Anna University — a creati
 | Email | EmailJS |
 | Hosting | Vercel |
 | Icons | Lucide React, React Icons |
-
+| Backend |  Flask (python) |
+| Database | Neon(psql) |
 ## Project Structure
 
 ```
 scribbles-club-website/
+|__ backend/
+|   |-- app.py                    # for connecting blog datas(neon) 
 ├── frontend/
 │   ├── public/
 │   │   ├── logo.png              # Club logo
@@ -30,6 +33,7 @@ scribbles-club-website/
 │   │   │   ├── Footer.jsx        # Site footer with tech team credits
 │   │   │   └── EventCard.jsx     # Event card for lists & sliders
 │   │   ├── pages/
+|   |   |   |---Blogs             # create posts what you did in scribbles 
 │   │   │   ├── Home/             # Landing page (hero, about section, team, timeline)
 │   │   │   ├── Gallery/          # Workshop image galleries
 │   │   │   ├── Events/           # Thooriga & Techofes events + workshops
