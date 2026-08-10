@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar';
 import './Blog.css';
 
+const API_BASE_URL = 'https://scribbles-club-website.onrender.com';
 const CATEGORIES = ['All', 'Painting', 'Poetry', 'Digital Art', 'Journaling', 'Tutorials'];
 
 export default function Blog() {
@@ -25,7 +26,7 @@ export default function Blog() {
   const fetchPosts = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/posts');
+      const response = await fetch(`${API_BASE_URL}/api/posts`);
       const data = await response.json();
       if (Array.isArray(data)) setPosts(data);
     } catch (err) {
@@ -65,7 +66,7 @@ export default function Blog() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/posts', {
+      const response = await fetch(`${API_BASE_URL}/api/posts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
