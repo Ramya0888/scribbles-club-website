@@ -1,7 +1,6 @@
 // src/pages/Contact/Contact.jsx
 import React, { useState } from "react";
 import "./Contact.css";
-import "../../styles/ContactPastelRain.css";  
 import emailjs from "@emailjs/browser";
 import Navbar from "../../components/Navbar";
 import { 
@@ -48,25 +47,6 @@ export default function Contact() {
 
   return (
     <div className="contact-page page" style={{ position: "relative", overflow: "hidden"}}>
-      {/* Pastel Rain */}
-      <div className="contact-pastel-rain-layer">
-        {Array.from({ length: dropCount }).map((_, i) => (
-          <span
-            key={i}
-            className="contact-pastel-drop"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDuration: `${9 + Math.random() * 8}s`,
-              animationDelay: `${Math.random() * 5}s`,
-              opacity: 0.3 + Math.random() * 0.5,
-              width: `${4 + Math.random() * 6}px`,
-              height: `${4 + Math.random() * 6}px`,
-              "--hue": Math.floor(180 + Math.random() * 360),
-            }}
-          />
-        ))}
-      </div>
-      {/* All site navigation lives in the shared navbar */}
       <Navbar />
       <div className="contact-title">
   <h2 className="curly-title">Contact Us</h2>

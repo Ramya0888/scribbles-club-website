@@ -4,10 +4,8 @@ import PastEvents from "./PastEvents";
 import UpcomingEvents from "./UpcomingEvents";
 import Navbar from "../../components/Navbar";
 import "./Events.css";
-import "../../styles/ContactPastelRain.css";
 
 const Events = () => {
-  const dropCount = 50;
   const thoorigaEvents = [
     {
       title: "Speed Art Battle",
@@ -104,26 +102,6 @@ const Events = () => {
       className="events-page"
       style={{ position: "relative", overflow: "hidden" }}
     >
-      {/* Pastel Rain Layer */}
-      <div className="contact-pastel-rain-layer">
-        {Array.from({ length: dropCount }).map((_, i) => (
-          <span
-            key={i}
-            className="contact-pastel-drop"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDuration: `${9 + Math.random() * 8}s`,
-              animationDelay: `${Math.random() * 5}s`,
-              opacity: 0.3 + Math.random() * 0.5,
-              width: `${4 + Math.random() * 6}px`,
-              height: `${4 + Math.random() * 6}px`,
-              "--hue": Math.floor(180 + Math.random() * 360),
-            }}
-          />
-        ))}
-      </div>
-
-      {/* All site navigation lives in the shared navbar */}
       <Navbar />
 
       {/* Hero Section */}

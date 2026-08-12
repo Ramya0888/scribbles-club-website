@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
+import { useTheme } from '../../context/ThemeContext';
 
 // Workshop events data with vibrant colors
 const workshopEvents = [
@@ -47,12 +48,18 @@ const workshopEvents = [
 
 // Image Card Component with 3D effect
 const ImageCard = ({ src, alt, index, gradient, color1, color2 }) => {
+  const { theme } = useTheme();
   const [isLoaded, setIsLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [imgError, setImgError] = useState(false);
 
+  const cardBackground = theme === 'dark'
+    ? 'var(--card-dark-image-bg)'
+    : `linear-gradient(135deg, ${color1}20, ${color2}20)`;
+
   return (
     <div
+      className="image-card"
       style={{
         position: "relative",
         flex: "0 0 auto",
@@ -60,7 +67,7 @@ const ImageCard = ({ src, alt, index, gradient, color1, color2 }) => {
         margin: "0 12px",
         borderRadius: "24px",
         overflow: "hidden",
-        background: `linear-gradient(135deg, ${color1}20, ${color2}20)`,
+        background: cardBackground,
         boxShadow: isHovered 
           ? `0 30px 50px -15px rgba(0,0,0,0.3), 0 0 0 3px ${color1}80, 0 0 20px ${color2}` 
           : "0 15px 35px -10px rgba(0,0,0,0.2)",
@@ -150,7 +157,7 @@ const ImageCard = ({ src, alt, index, gradient, color1, color2 }) => {
             }}
           >
             <span style={{ fontSize: "48px", marginBottom: "12px", opacity: 0.5 }}>🎨</span>
-            <span style={{ fontFamily: "system-ui", fontWeight: 500 }}>Image coming soon</span>
+            <span style={{ fontFamily: "'Poppins', system-ui, sans-serif", fontWeight: 500, color: "var(--text-muted)" }}>Image coming soon</span>
           </div>
         )}
         
@@ -275,7 +282,7 @@ const ArtisticGalleryRow = ({ event }) => {
           borderRadius: "50%",
           animation: "spin 1s linear infinite"
         }} />
-        <p style={{ marginTop: "24px", color: "#666", fontFamily: "'Poppins', system-ui" }}>
+        <p style={{ marginTop: "24px", color: "var(--text-muted)", fontFamily: "'Poppins', system-ui" }}>
           Loading {event.title}...
         </p>
       </section>
@@ -338,36 +345,18 @@ const ArtisticGalleryRow = ({ event }) => {
               fontSize: "13px",
               letterSpacing: "4px",
               textTransform: "uppercase",
-              background: event.gradient,
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
+              color: "var(--text-muted)",
               fontWeight: 700,
             }}
           >
             Exclusive Workshop
           </span>
         </div>
-        
-        <h2
-          style={{
-            fontFamily: "'Playfair Display', Georgia, serif",
-            fontSize: "clamp(42px, 6vw, 64px)",
-            fontWeight: 700,
-            margin: "0 0 16px 0",
-            background: event.gradient,
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          {event.title}
-        </h2>
-        
         <p
           style={{
             fontFamily: "'Poppins', system-ui, sans-serif",
             fontSize: "17px",
-            color: "#555",
+            color: "var(--text-muted)",
             maxWidth: "600px",
             margin: "0 auto",
             lineHeight: 1.6,
@@ -508,81 +497,12 @@ export default function GalleryPage() {
       style={{
         position: "relative",
         overflowX: "hidden",
-        background: "linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)",
         minHeight: "100vh",
       }}
+      className="gallery-page"
     >
       {/* Animated floating particles background */}
       <Navbar />
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          pointerEvents: "none",
-          zIndex: 0,
-          overflow: "hidden",
-        }}
-      >
-        {Array.from({ length: 100 }).map((_, i) => (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${2 + Math.random() * 6}px`,
-              height: `${2 + Math.random() * 6}px`,
-              background: `hsla(${200 + Math.random() * 160}, 80%, 65%, ${0.3 + Math.random() * 0.5})`,
-              borderRadius: "50%",
-              animation: `float ${5 + Math.random() * 10}s linear infinite`,
-              animationDelay: `${Math.random() * 10}s`,
-              filter: "blur(1px)",
-            }}
-          />
-        ))}
-        
-        {/* Animated gradient orbs */}
-        <div
-          style={{
-            position: "absolute",
-            top: "10%",
-            left: "-10%",
-            width: "500px",
-            height: "500px",
-            background: "radial-gradient(circle, rgba(102,126,234,0.3) 0%, transparent 70%)",
-            borderRadius: "50%",
-            animation: "pulse 8s ease-in-out infinite",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: "10%",
-            right: "-10%",
-            width: "600px",
-            height: "600px",
-            background: "radial-gradient(circle, rgba(240,147,251,0.3) 0%, transparent 70%)",
-            borderRadius: "50%",
-            animation: "pulse 10s ease-in-out infinite reverse",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            width: "400px",
-            height: "400px",
-            background: "radial-gradient(circle, rgba(79,172,254,0.2) 0%, transparent 70%)",
-            borderRadius: "50%",
-            animation: "pulse 12s ease-in-out infinite",
-          }}
-        />
-      </div>
-
       {/* Page Header */}
       <header
         style={{
@@ -598,7 +518,7 @@ export default function GalleryPage() {
             fontSize: "12px",
             letterSpacing: "6px",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,0.7)",
+            color: "var(--text-muted)",
             marginBottom: "20px",
             fontWeight: 500,
           }}
@@ -608,15 +528,12 @@ export default function GalleryPage() {
         
         <h1
           style={{
-            fontFamily: "'Playfair Display', Georgia, serif",
-            fontSize: "clamp(48px, 10vw, 96px)",
+            fontFamily: "'Pangolin', cursive, system-ui",
+            fontSize: "clamp(42px, 8vw, 72px)",
             fontWeight: 700,
             margin: 0,
-            background: "linear-gradient(135deg, #fff 0%, #a8c0ff 50%, #3f2b96 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
+            color: "var(--text-main)",
             letterSpacing: "-0.02em",
-            textShadow: "0 0 30px rgba(168,192,255,0.3)",
           }}
         >
           Art Gallery
@@ -626,7 +543,7 @@ export default function GalleryPage() {
           style={{
             fontFamily: "'Poppins', system-ui, sans-serif",
             fontSize: "18px",
-            color: "rgba(255,255,255,0.8)",
+            color: "var(--text-muted)",
             marginTop: "16px",
             maxWidth: "500px",
             marginLeft: "auto",
@@ -660,77 +577,6 @@ export default function GalleryPage() {
       </div>
 
       <Footer />
-
-      {/* Global Styles */}
-      <style>{`
-        @keyframes float {
-          0% {
-            transform: translateY(0px) translateX(0px);
-            opacity: 0;
-          }
-          10% {
-            opacity: 0.5;
-          }
-          90% {
-            opacity: 0.5;
-          }
-          100% {
-            transform: translateY(-100vh) translateX(50px);
-            opacity: 0;
-          }
-        }
-        
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-        
-        @keyframes pulse {
-          0%, 100% {
-            transform: scale(1);
-            opacity: 0.3;
-          }
-          50% {
-            transform: scale(1.1);
-            opacity: 0.5;
-          }
-        }
-        
-        @keyframes shimmer {
-          0% {
-            background-position: -1000px 0;
-          }
-          100% {
-            background-position: 1000px 0;
-          }
-        }
-        
-        .gallery-scroll::-webkit-scrollbar {
-          height: 6px;
-        }
-        
-        .gallery-scroll::-webkit-scrollbar-track {
-          background: rgba(255,255,255,0.1);
-          border-radius: 10px;
-        }
-        
-        .gallery-scroll::-webkit-scrollbar-thumb {
-          background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
-          border-radius: 10px;
-        }
-        
-        .gallery-scroll::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(90deg, #764ba2, #f5576c, #00f2fe);
-        }
-        
-        * {
-          box-sizing: border-box;
-        }
-        
-        /* Smooth scroll behavior */
-        html {
-          scroll-behavior: smooth;
-        }
-      `}</style>
     </div>
   );
 }
