@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
+import { useTheme } from "../../context/ThemeContext";
 
 const officeBearers = [
   { name: "Sowmya", role: "Past President", image: "/team/sowmya.jpeg", quote: "Scribbles gave me a canvas for everything I couldn't say in words. Four years later, the club still feels like my second home." },
@@ -34,6 +35,11 @@ const webTeam = [
 
 function TestimonialsRow({ title, items, scrollerId }) {
   const [openIndex, setOpenIndex] = useState(null);
+  const { theme } = useTheme();
+  const openQuoteBg = theme === 'dark' ? 'rgba(255,255,255,0.08)' : '#f9fafb';
+  const arrowBg = theme === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.95)';
+  const arrowBorder = theme === 'dark' ? '1px solid rgba(255,255,255,0.12)' : '2px solid rgba(0,0,0,0.1)';
+  const arrowColor = theme === 'dark' ? '#f3f3f3' : '#333';
 
   return (
     <section className="section" style={{ marginTop: "2rem" }}>
@@ -55,13 +61,12 @@ function TestimonialsRow({ title, items, scrollerId }) {
           {items.map((m, i) => (
             <div key={i} style={{ flex: "0 0 auto" }}>
               <div
-                className="card"
+                className="image-card testimonials-card"
                 onClick={() => setOpenIndex(i === openIndex ? null : i)}
                 style={{
                   width: 300,
                   borderRadius: 16,
                   boxShadow: "var(--card-shadow)",
-                  background: "#fff",
                   cursor: "pointer",
                 }}
               >
@@ -100,7 +105,7 @@ function TestimonialsRow({ title, items, scrollerId }) {
                         marginTop: "0.75rem",
                         fontSize: "0.98rem",
                         lineHeight: 1.7,
-                        background: "#f9fafb",
+                        background: openQuoteBg,
                         borderRadius: 12,
                         padding: "0.75rem 0.9rem",
                       }}
@@ -127,12 +132,12 @@ function TestimonialsRow({ title, items, scrollerId }) {
             width: 48,
             height: 48,
             borderRadius: "50%",
-            border: "2px solid rgba(0,0,0,0.1)",
-            background: "rgba(255,255,255,0.95)",
+            border: arrowBorder,
+            background: arrowBg,
             backdropFilter: "blur(10px)",
             cursor: "pointer",
             fontSize: 26,
-            color: "#333",
+            color: arrowColor,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -156,12 +161,12 @@ function TestimonialsRow({ title, items, scrollerId }) {
             width: 48,
             height: 48,
             borderRadius: "50%",
-            border: "2px solid rgba(0,0,0,0.1)",
-            background: "rgba(255,255,255,0.95)",
+            border: arrowBorder,
+            background: arrowBg,
             backdropFilter: "blur(10px)",
             cursor: "pointer",
             fontSize: 26,
-            color: "#333",
+            color: arrowColor,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -178,24 +183,7 @@ function TestimonialsRow({ title, items, scrollerId }) {
 
 export default function TestimonialsPage() {
   return (
-    <div className="page" style={{ position: "relative", overflow: "hidden" }}>
-      <div className="pastel-rain-layer" style={{ marginTop: "80px" }}>
-        {Array.from({ length: 60 }).map((_, i) => (
-          <span
-            key={i}
-            className="pastel-drop"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDuration: `${9 + Math.random() * 8}s`,
-              animationDelay: `${Math.random() * 5}s`,
-              opacity: 0.3 + Math.random() * 0.5,
-              width: `${4 + Math.random() * 6}px`,
-              height: `${4 + Math.random() * 6}px`,
-              "--hue": Math.floor(180 + Math.random() * 360),
-            }}
-          />
-        ))}
-      </div>
+    <div className="page testimonials-page" style={{ position: "relative", overflow: "hidden" }}>
       <Navbar />
       <header className="section-header center">
         <p className="eyebrow">Member Reflections</p>

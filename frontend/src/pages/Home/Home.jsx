@@ -235,7 +235,7 @@ function FeaturedSlider() {
         </div>
       </div>
       <div className="slider">
-        <div className="slide">
+        <div className="slide image-card">
           <div className="slide-image">
             <img src={current.image} alt={`${current.title} by ${current.artist}`} />
             <div className="badge badge-overlay">{current.tag}</div>
@@ -271,7 +271,7 @@ function AboutSection() {
         </p>
         <div style={{ marginTop: '2rem', display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <button onClick={handleMeetTeam} className="btn primary">Meet Our Team</button>
-          <button onClick={handleStoryClick} className="btn ghost">The Scribbles Story</button>
+          <button onClick={handleStoryClick} className="btn ghost story-btn">The Scribbles Story</button>
         </div>
       </div>
     </section>
@@ -378,36 +378,9 @@ export default function HomePage() {
     }
   }, [location.state]);
 
-  // Apply the home background image to the body while on Home
-  useEffect(() => {
-    document.body.classList.add('home-bg');
-    return () => {
-      document.body.classList.remove('home-bg');
-    };
-  }, []);
-
   return (
   <div className="page" style={{ position: "relative", overflow: "hidden" }}>
     <Navbar onAboutClick={handleAboutClick} />
-    
-    {/* 🎨 Pastel raindrop background */}
-    <div className="pastel-rain-layer" style={{ marginTop: '80px' }}>
-      {Array.from({ length: 60 }).map((_, i) => (
-        <span
-          key={i}
-          className="pastel-drop"
-          style={{
-            left: `${Math.random() * 100}%`,
-            animationDuration: `${9 + Math.random() * 8}s`,
-            animationDelay: `${Math.random() * 5}s`,
-            opacity: 0.3 + Math.random() * 0.5,
-            width: `${4 + Math.random() * 6}px`,
-            height: `${4 + Math.random() * 6}px`,
-            "--hue": Math.floor(180 + Math.random() * 360),
-          }}
-        />
-      ))}
-    </div>
 
     <Hero />
     <FeaturedSlider />

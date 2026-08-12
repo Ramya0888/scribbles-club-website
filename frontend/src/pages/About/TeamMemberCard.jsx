@@ -5,7 +5,7 @@ function TeamMemberCard({ name, role, dept, image, instagram, linkedin, quote, o
   const [loadStatus, setLoadStatus] = useState('pending');
 
   return (
-    <div className="card" style={{ width: 240, minHeight: 420, textAlign: 'center', cursor: 'pointer', padding: '0.85rem', borderRadius: 18 }} onClick={onClick}>
+    <div className="card image-card" style={{ width: 240, minHeight: 420, textAlign: 'center', cursor: 'pointer', padding: '0.85rem', borderRadius: 18 }} onClick={onClick}>
       <div style={{ width: 200, height: 230, margin: '0 auto 0.65rem', borderRadius: 16, overflow: 'hidden', background: 'rgba(255,255,255,0.06)' }}>
         <img
           src={imgPath}
