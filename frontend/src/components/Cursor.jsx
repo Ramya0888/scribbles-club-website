@@ -181,7 +181,7 @@ export default function Cursor() {
       <motion.div className="mix-blend-difference" style={{ position: "fixed", top: 0, left: 0, pointerEvents: "none", zIndex: 10003, mixBlendMode: "difference", x: ringX, y: ringY }} aria-hidden="true">
         <div className="relative flex items-center justify-center" style={{ transform: "translate(-50%, -50%)" }}>
           <motion.div animate={{ scale: projectActive ? 0 : linkActive ? 0.72 : 1, opacity: projectActive ? 0 : 1 }} transition={{ duration: 0.2, ease: "easeOut" }} className="flex items-center justify-center p-0 m-0">
-            <img src="/pointer.svg" alt="" width={30} height={25} style={{ display: "block", transform: "rotate(-15deg) translate(9px, 9px)", filter: linkActive ? "drop-shadow(0 2px 10px rgba(243,158,182,0.95))" : "drop-shadow(0 0 4px rgba(0,0,0,0.3))", transition: "filter 0.16s ease" }} />
+            <img src="/pointer.svg" alt="" width={30} height={25} style={{ display: "block", transform: "rotate(-15deg) translate(9px, 9px)", filter: linkActive ? "invert(1) drop-shadow(0 2px 10px rgba(243,158,182,0.95))" : "invert(1) drop-shadow(0 0 4px rgba(0,0,0,0.3))", transition: "filter 0.16s ease" }} />
           </motion.div>
           <AnimatePresence>
             {projectActive && (
