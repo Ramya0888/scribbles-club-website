@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./Contact.css";
 import emailjs from "@emailjs/browser";
 import Navbar from "../../components/Navbar";
+import PastelRain from "../../components/PastelRain";
 import { 
   FaInstagram, 
   FaPinterestP, 
@@ -14,39 +15,43 @@ import {
 
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "", _hp: "" });
   const [success, setSuccess] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const [error, setError] = useState("");
+  const [sending, setSending] = useState(false);
+  const stripHtml = (v) => v.replace(/<[^>]*>/g, "").replace(/[<>]/g, "").trim();
+  const rateWindow = React.useRef([]);
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    emailjs
-      .send(
-        "service_62gf8rp",
-        "template_yub0yj4",
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-        },
-        "xCTtPWMY6IwK-TvSF"
-      )
-      .then(() => {
-        setSuccess(true);
-        setFormData({ name: "", email: "", message: "" });
-      })
-      .catch((error) => {
-        console.error("Email error:", error);
-      });
+    setError("");
+    const name = stripHtml(formData.name);
+    const email = stripHtml(formData.email);
+    const message = stripHtml(formData.message);
+    if (name.length < 2 || name.length > 100) { setError("Please enter a valid name (2-100 characters)."); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) { setError("Please enter a valid email address."); return; }
+    if (message.length < 10 || message.length > 5000) { setError("Message must be between 10 and 5000 characters."); return; }
+    const now = Date.now();
+    rateWindow.current = rateWindow.current.filter((t) => now - t < 30000);
+    if (rateWindow.current.length >= 3) { setError("Too many submissions. Please wait 30 seconds."); return; }
+    rateWindow.current.push(now);
+    const svc = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const tpl = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const key = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    if (!svc || !tpl || !key) { setError("Email service is not configured. Please email us directly at scribbles.ceg@gmail.com"); return; }
+    setSending(true);
+    emailjs.send(svc, tpl, { from_name: name, from_email: email, message }, key)
+      .then(() => { setSuccess(true); setFormData({ name: "", email: "", message: "" }); setTimeout(() => setSuccess(false), 4000); })
+      .catch(() => setError("Failed to send. Please try again or email us directly."))
+      .finally(() => setSending(false));
   };
-  const dropCount = 50;
-
   return (
     <div className="contact-page page" style={{ position: "relative", overflow: "hidden"}}>
+      <PastelRain count={28} variant="contact" />
       <Navbar />
       <div className="contact-title">
   <h2 className="curly-title">Contact Us</h2>
@@ -54,48 +59,21 @@ export default function Contact() {
 
       <p>Reach out to Scribbles Art Club for collaborations or inquiries.</p>
 
-      {/* Contact Form */}
       <div className="contact-grid">
-        <form className="contact-card" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            value={formData.message}
-            onChange={handleChange}
-            rows="6"
-            required
-          />
-          <button type="submit">Send Message</button>
-          {success && <p className="success-text">Message sent successfully!</p>}
+        <form className="contact-card" onSubmit={handleSubmit} noValidate>
+          <input type="text" name="_hp" value={formData._hp} onChange={handleChange} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0, width: 0 }} />
+          <label htmlFor="c-name" className="tiny muted" style={{ fontWeight: 600 }}>Name</label>
+          <input id="c-name" type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} required autoComplete="name" maxLength={100} />
+          <label htmlFor="c-email" className="tiny muted" style={{ fontWeight: 600 }}>Email</label>
+          <input id="c-email" type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleChange} required autoComplete="email" maxLength={254} />
+          <label htmlFor="c-msg" className="tiny muted" style={{ fontWeight: 600 }}>Message</label>
+          <textarea id="c-msg" name="message" placeholder="Your Message" value={formData.message} onChange={handleChange} rows="6" required maxLength={5000} />
+          <button type="submit" disabled={sending}>{sending ? "Sending…" : "Send Message"}</button>
+          {success && <p className="success-text" role="status">Message sent successfully!</p>}
+          {error && <p className="success-text" role="alert" style={{ color: "#b42318" }}>{error}</p>}
         </form>
-
-        {/* Google Map */}
-        <div className="contact-card">
-          <iframe
-            title="Scribbles Club Location"
-            src="https://www.google.com/maps?q=CEG+Anna+University&output=embed"
-            width="100%"
-            height="300"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-          ></iframe>
+        <div className="contact-card" style={{ padding: 0, overflow: "hidden" }}>
+          <iframe title="Scribbles Club Location — CEG Anna University" src="https://www.google.com/maps?q=CEG+Anna+University&output=embed" width="100%" height="360" style={{ border: 0, display: "block" }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
 
@@ -139,14 +117,7 @@ export default function Contact() {
           >
             <FaYoutube />
           </a>
-          <a
-  href="https://mail.google.com/mail/?view=cm&fs=1&to=scribbles.ceg@gmail.com&su=Hello%20Scribbles&body=Hi%20Team,"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Email"
->
-  <FaEnvelope />
-</a>
+          <a href="mailto:scribbles.ceg@gmail.com?subject=Hello%20Scribbles" aria-label="Email"><FaEnvelope /></a>
 
         </div>
       </div>

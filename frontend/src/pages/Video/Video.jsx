@@ -23,18 +23,14 @@ export default function VideoPage() {
             background: '#000'
           }}>
             <iframe
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%'
-              }}
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
               title="Scribbles Art Club Intro Video"
               frameBorder="0"
+              loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
             ></iframe>
           </div>
           

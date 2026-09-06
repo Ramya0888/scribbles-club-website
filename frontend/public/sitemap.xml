@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>/</loc><priority>1.0</priority></url>
+  <url><loc>/events</loc><priority>0.8</priority></url>
+  <url><loc>/gallery</loc><priority>0.8</priority></url>
+  <url><loc>/contact</loc><priority>0.6</priority></url>
+  <url><loc>/newsletter</loc><priority>0.5</priority></url>
+  <url><loc>/testimonials</loc><priority>0.5</priority></url>
+  <url><loc>/video</loc><priority>0.4</priority></url>
+</urlset>

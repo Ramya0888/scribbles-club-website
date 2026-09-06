@@ -43,38 +43,24 @@ const handleSwipe = () => {
 };
 
   return (
-    
-    <div className="past-slider"
-    onTouchStart={handleTouchStart}
-    onTouchEnd={handleTouchEnd}
-    >
-      {/* 🖼 Image */}
+    <div className="past-slider" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
       <div className="past-image-wrap">
-        <img src={event.image} alt={event.title} />
-        <div className="image-glow" />
+        <img src={event.image} alt={event.title} loading="lazy" />
       </div>
-       
-      {/* 📝 Content */}
       <div className="past-content">
         <h3>{event.title}</h3>
         <p className="past-date">{event.date}</p>
         <p className="past-desc">{event.description}</p>
       </div>
-
-      {/* 🔘 Dots */}
-      <div className="past-dots">
+      <div className="past-dots" role="tablist" aria-label="Past events">
         {events.map((_, i) => (
-          <span
-            key={i}
-            className={i === index ? "dot active" : "dot"}
-            onClick={() => setIndex(i)}
-          />
+          <button key={i} role="tab" aria-selected={i === index} aria-label={`Go to ${events[i].title}`} className={i === index ? "dot active" : "dot"} onClick={() => setIndex(i)} />
         ))}
       </div>
       <div className="slider-controls">
-  <button onClick={prevSlide}>‹</button>
-  <button onClick={nextSlide}>›</button>
-</div>
+        <button onClick={prevSlide} aria-label="Previous event">‹</button>
+        <button onClick={nextSlide} aria-label="Next event">›</button>
+      </div>
     </div>
   );
 };

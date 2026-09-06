@@ -18,7 +18,11 @@
   --radius-lg: 18px;
   --radius-md: 12px;
   --radius-sm: 8px;
+  --nav-h: 68px;
+  --page-pt: calc(var(--nav-h) + 20px);
 }
+html { scroll-padding-top: calc(var(--nav-h) + 12px); scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
@@ -51,7 +55,38 @@ body {
   background: transparent;
   color: var(--text-main);
   min-height: 100vh;
+  cursor: url('/pointer.svg') 4 4, auto;
   transition: background 0.25s ease, color 0.25s ease;
+}
+
+a,
+button,
+select,
+summary,
+input[type='submit'],
+input[type='checkbox'],
+label[for],
+[role='button'] {
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='search'],
+textarea {
+  cursor: text;
+}
+
+.home-bg {
+  background-image: url('/backgrnd-srcribb.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+@supports (background-attachment: fixed) and (not (-webkit-touch-callout: none)) {
+  .home-bg { background-attachment: fixed; }
 }
 
 .theme-background {
@@ -72,7 +107,6 @@ body {
 }
 
 .theme-background__light {
-  /* Use original Home background image with soft pastel radial overlays to match original look */
   background:
     radial-gradient(circle at top left, rgba(255, 250, 245, 0.85), rgba(235, 241, 255, 0.7) 28%, rgba(255, 255, 255, 0.28) 62%, transparent 100%),
     radial-gradient(circle at bottom right, rgba(255, 242, 225, 0.85), rgba(190, 226, 255, 0.42) 40%, transparent 100%),
@@ -146,7 +180,7 @@ a {
 .page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 96px 20px 64px;
+  padding: var(--page-pt) 20px 64px;
 }
 
 .section {
@@ -273,7 +307,7 @@ a {
   border-radius: var(--radius-sm);
   padding: 12px 16px;
   font-weight: 600;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
@@ -329,10 +363,10 @@ a {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 32px;
-  margin: 36px 0;
-  background: linear-gradient(135deg, var(--surface-soft) 0%, var(--light-pink) 70%);
-  padding: 36px 28px;
+  gap: clamp(16px, 3vw, 32px);
+  margin: 24px 0 36px;
+  background: linear-gradient(135deg, var(--soft-cream) 0%, var(--light-pink) 70%);
+  padding: clamp(20px, 3vw, 36px) clamp(16px, 2.5vw, 28px);
   border-radius: 20px;
   box-shadow: var(--card-shadow);
   border: 1px solid var(--border-soft);
@@ -344,8 +378,8 @@ a {
 }
 
 .hero-logo-circle {
-  width: 200px;
-  height: 200px;
+  width: clamp(132px, 18vw, 200px);
+  height: clamp(132px, 18vw, 200px);
   border-radius: 50%;
   background: var(--surface-main);
   display: flex;
@@ -363,8 +397,8 @@ a {
 }
 
 .hero-logo-circle img {
-  width: 170px;
-  height: 170px;
+  width: 85%;
+  height: 85%;
   object-fit: contain;
 }
 
@@ -379,7 +413,8 @@ a {
 
 .hero h1 {
   margin: 8px 0 12px;
-  font-size: 36px;
+  font-size: clamp(26px, 4vw, 36px);
+  line-height: 1.15;
 }
 
 .hero p {
@@ -474,10 +509,12 @@ a {
   height: 10px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.12);
-  cursor: pointer;
+  border: none;
+  padding: 0;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   transition: background 0.2s ease, transform 0.2s ease;
 }
-
+.dot:focus-visible { outline: 2px solid var(--warm-pink); outline-offset: 2px; }
 .dot.active {
   background: var(--warm-pink);
   transform: scale(1.1);
@@ -616,7 +653,7 @@ a {
   border: none;
   background: transparent;
   font-size: 28px;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   color: var(--text-muted);
   transition: color 0.2s ease;
 }
@@ -687,7 +724,7 @@ a {
 .nav-button {
   border: none;
   background: #fff;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   padding: 16px;
   text-align: left;
 }
@@ -749,7 +786,7 @@ a {
 .navbar-link-btn {
   background: none;
   border: none;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   font-size: 1rem;
   font-weight: 500;
   color: var(--text-main);
@@ -846,7 +883,7 @@ a {
   padding: 8px;
   background: none;
   border: none;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
 }
 
 .navbar-toggle span {
@@ -921,11 +958,10 @@ a {
   }
 }
 
-/* ===== NEWSLETTER PAGE STYLES ===== */
 .newsletter-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 96px 20px 72px;
+  padding: var(--page-pt) 20px 72px;
 }
 
 .nl-hero {
@@ -980,7 +1016,7 @@ a {
   border-radius: var(--radius-sm);
   padding: 12px 18px;
   font-weight: 600;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   background: var(--warm-pink);
   color: #fff;
   box-shadow: var(--card-shadow);
@@ -1018,7 +1054,7 @@ a {
   color: var(--text-main);
   text-decoration: none;
   font-weight: 600;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   transition: color 0.2s ease;
 }
 
@@ -1072,8 +1108,10 @@ a {
 
   .page,
   .newsletter-page,
-  .gallery-page {
-    padding-top: 96px;
+  .gallery-page,
+  .events-page,
+  .contact-page {
+    padding-top: var(--page-pt);
   }
 
   .tech-team-popup {
@@ -1089,28 +1127,22 @@ a {
   }
 }
 
-/* ===== SCROLL ARROWS STYLING ===== */
 .scroll-arrow {
   transition: all 0.3s ease;
 }
-
-.scroll-arrow:hover {
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25) !important;
-}
-
-.scroll-arrow:active {
-  transform: translateY(-50%) scale(0.95) !important;
-}
-
-/* Hide scrollbar for team sections */
+.scroll-arrow:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.25) !important; }
+.scroll-arrow:active { transform: translateY(-50%) scale(0.95) !important; }
+.scroll-arrow:disabled { opacity: 0.35; pointer-events: none; }
 .no-scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.15) transparent;
+  -ms-overflow-style: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 12px;
 }
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
+.no-scrollbar::-webkit-scrollbar { height: 6px; }
+.no-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 999px; }
+.no-scrollbar::-webkit-scrollbar-track { background: transparent; }
 
 /* ===== TIMELINE STYLES ===== */
 .timeline {
@@ -1180,41 +1212,45 @@ a {
   50% { opacity: 0.85; }
 }
 
-/* ===== GALLERY STYLES ===== */
 .gallery-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 96px 20px 72px;
+  padding: var(--page-pt) 20px 72px;
 }
 
-/* Centered header variant */
 .section-header.center {
   justify-content: center;
   text-align: center;
   flex-direction: column;
   gap: 8px;
 }
-
-/* Curly underline for titles */
 .curly-title {
   position: relative;
   display: inline-block;
-  padding-bottom: 8px;
+  padding-bottom: 14px;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: #000;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
 }
-
 .curly-title::after {
   content: '';
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: -2px;
-  width: 72%;
+  bottom: -4px;
+  width: min(100%, 320px);
   height: 16px;
   background-repeat: no-repeat;
-  background-size: contain;
-  opacity: 0.9;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20'><path d='M5 10 Q 25 0, 45 10 T 85 10 T 125 10 T 165 10 T 195 10' fill='none' stroke='%23f39eb6' stroke-width='4' stroke-linecap='round'/></svg>");
+  background-size: 100% 100%;
+  background-position: center;
+  opacity: 0.95;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'><path d='M5 10 Q 25 0, 45 10 T 85 10 T 125 10 T 165 10 T 195 10' fill='none' stroke='%23f39eb6' stroke-width='4' stroke-linecap='round'/></svg>");
 }
+.curly-title.main-title { font-size: clamp(2rem, 6vw, 3.6rem); }
+.curly-title.main-title::after { height: 20px; bottom: -6px; }
 
 
 
@@ -1241,7 +1277,6 @@ a {
   padding: 10px 12px;
 }
 
-/* ===== FOOTER ===== */
 .site-footer {
   background: var(--surface-muted);
   color: var(--text-main);
@@ -1250,6 +1285,7 @@ a {
   text-align: center;
   position: relative;
   z-index: 100;
+  overflow: visible;
   border-top: 1px solid var(--border-soft);
 }
 
@@ -1271,7 +1307,7 @@ a {
 
 .tech-team-link {
   color: var(--warm-pink);
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   position: relative;
   transition: color 0.2s ease;
 }
@@ -1287,13 +1323,26 @@ a {
   transform: translateX(-50%);
   background: var(--surface-main);
   border-radius: 16px;
-  padding: 1.5rem;
+  padding: 1.25rem;
   margin-bottom: 1rem;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   z-index: 1000;
   white-space: nowrap;
+  max-width: min(92vw, 520px);
+}
+@media (max-width: 600px) {
+  .tech-team-popup {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    flex-wrap: wrap;
+    justify-content: center;
+    white-space: normal;
+    width: max-content;
+    max-width: 92vw;
+  }
 }
 
 .tech-team-popup::after {
@@ -1371,11 +1420,10 @@ a {
   margin-top: 1rem;
   color: var(--pastel-green);
 }
-/* ===== EVENTS PAGE ===== */
 .events-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px 80px;
+  padding: var(--page-pt) 20px 48px;
 }
 
 /* HERO SECTION */
@@ -1417,7 +1465,7 @@ a {
   border-radius: var(--radius-sm);
   padding: 12px 22px;
   font-weight: 600;
-  cursor: pointer;
+  cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
   background: var(--warm-pink);
   color: #fff;
   box-shadow: var(--card-shadow);

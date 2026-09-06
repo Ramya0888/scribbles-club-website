@@ -10,7 +10,7 @@ const workshopEvents = [
     title: "Key Holder Workshop",
     subtitle: "Craft Your Perfect Key Holder",
     description: "Learn to create beautiful, functional key holders with resin and clay art techniques.",
-    folderPath: "/Key Holder Workshop/Key Holder Workshop",
+    folderPath: "/Key Holder Workshop",
     gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     gradientLight: "linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%)",
     color1: "#667eea",
@@ -23,7 +23,7 @@ const workshopEvents = [
     title: "Resin Keychain Workshop",
     subtitle: "Design Unique Resin Keychains",
     description: "Create stunning, personalized keychains using colorful resin and embedded elements.",
-    folderPath: "/Resin Keychain Workshop/Resin Keychain Workshop",
+    folderPath: "/Resin Keychain Workshop",
     gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
     gradientLight: "linear-gradient(135deg, rgba(240,147,251,0.1) 0%, rgba(245,87,108,0.1) 100%)",
     color1: "#f093fb",
@@ -36,7 +36,7 @@ const workshopEvents = [
     title: "Tote Bag & Resin Art",
     subtitle: "Fashion Meets Art",
     description: "Design your own tote bag and complement it with beautiful resin accessories.",
-    folderPath: "/Tote bag and resin art/Tote bag and resin art",
+    folderPath: "/Tote bag and resin art",
     gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
     gradientLight: "linear-gradient(135deg, rgba(79,172,254,0.1) 0%, rgba(0,242,254,0.1) 100%)",
     color1: "#4facfe",
@@ -73,7 +73,7 @@ const ImageCard = ({ src, alt, index, gradient, color1, color2 }) => {
           : "0 15px 35px -10px rgba(0,0,0,0.2)",
         transform: isHovered ? "translateY(-12px) scale(1.02)" : "translateY(0) scale(1)",
         transition: "all 0.4s cubic-bezier(0.34, 1.2, 0.64, 1)",
-        cursor: "pointer",
+        cursor: "url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer",
         backdropFilter: "blur(10px)",
       }}
       onMouseEnter={() => setIsHovered(true)}
@@ -128,6 +128,8 @@ const ImageCard = ({ src, alt, index, gradient, color1, color2 }) => {
           <img
             src={src}
             alt={alt}
+            loading="lazy"
+            decoding="async"
             style={{
               position: "absolute",
               top: 0,
@@ -135,8 +137,8 @@ const ImageCard = ({ src, alt, index, gradient, color1, color2 }) => {
               width: "100%",
               height: "100%",
               objectFit: "cover",
-              transition: "transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1)",
-              transform: isHovered ? "scale(1.1)" : "scale(1)",
+              transition: "transform 0.5s ease, opacity 0.3s",
+              transform: isHovered ? "scale(1.06)" : "scale(1)",
               opacity: isLoaded ? 1 : 0,
             }}
             onLoad={() => setIsLoaded(true)}
@@ -209,42 +211,41 @@ const ArtisticGalleryRow = ({ event }) => {
   const [showRightArrow, setShowRightArrow] = useState(true);
 
   useEffect(() => {
+    let cancelled = false;
     const loadImages = async () => {
       setLoading(true);
       const loadedImages = [];
       let consecutiveFailures = 0;
       let counter = 1;
-      
-      while (consecutiveFailures < 3 && counter <= 50) {
-        const extensions = ['.jpg', '.jpeg', '.png', '.webp', '.JPG', '.JPEG', '.PNG'];
-        let found = false;
-        
-        for (const ext of extensions) {
-          const imgPath = `${event.folderPath}/image${counter}${ext}`;
-          const imgExists = await new Promise((resolve) => {
-            const img = new Image();
-            img.onload = () => resolve(true);
-            img.onerror = () => resolve(false);
-            img.src = imgPath;
-          });
-          
-          if (imgExists) {
-            loadedImages.push(imgPath);
-            found = true;
-            consecutiveFailures = 0;
-            break;
-          }
-        }
-        
-        if (!found) consecutiveFailures++;
+      while (!cancelled && consecutiveFailures < 2 && counter <= 36) {
+        const imgPath = `${event.folderPath}/image${counter}.jpg`;
+        const ok = await new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve(true);
+          img.onerror = () => {
+            const img2 = new Image();
+            img2.onload = () => resolve(true);
+            img2.onerror = () => resolve(false);
+            img2.src = `${event.folderPath}/image${counter}.JPG`;
+          };
+          img.src = imgPath;
+        });
+        if (cancelled) return;
+        if (ok) {
+          if (imgPath.endsWith(".jpg")) {
+            const test = new Image();
+            test.src = imgPath;
+            const exists = await new Promise((r) => { test.onload = () => r(true); test.onerror = () => r(false); });
+            loadedImages.push(exists ? imgPath : `${event.folderPath}/image${counter}.JPG`);
+          } else loadedImages.push(imgPath);
+          consecutiveFailures = 0;
+        } else consecutiveFailures++;
         counter++;
       }
-      
-      setImages(loadedImages);
-      setLoading(false);
+      if (!cancelled) { setImages(loadedImages); setLoading(false); }
     };
-    
     loadImages();
+    return () => { cancelled = true; };
   }, [event.folderPath]);
 
   const checkScrollPosition = () => {
@@ -257,8 +258,8 @@ const ArtisticGalleryRow = ({ event }) => {
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = direction === "left" ? -380 : 380;
-      scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      const w = scrollRef.current.clientWidth > 700 ? 380 : 300;
+      scrollRef.current.scrollBy({ left: direction === "left" ? -w : w, behavior: "smooth" });
     }
   };
 
@@ -390,39 +391,7 @@ const ArtisticGalleryRow = ({ event }) => {
         }}
       >
         {showLeftArrow && (
-          <button
-            onClick={() => scroll("left")}
-            style={{
-              position: "absolute",
-              left: "0px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              width: "48px",
-              height: "48px",
-              borderRadius: "50%",
-              background: `linear-gradient(135deg, ${event.color1}, ${event.color2})`,
-              border: "none",
-              cursor: "pointer",
-              fontSize: "28px",
-              color: "white",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              zIndex: 20,
-              boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
-              transition: "all 0.3s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-50%) scale(1.1)";
-              e.currentTarget.style.boxShadow = "0 6px 25px rgba(0,0,0,0.3)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(-50%) scale(1)";
-              e.currentTarget.style.boxShadow = "0 4px 15px rgba(0,0,0,0.2)";
-            }}
-          >
-            ‹
-          </button>
+          <button onClick={() => scroll("left")} aria-label="Scroll left" style={{ position: "absolute", left: 8, top: "50%", transform: "translateY(-50%)", width: 44, height: 44, borderRadius: "50%", background: `linear-gradient(135deg, ${event.color1}, ${event.color2})`, border: "none", fontSize: "22px", color: "white", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 20, boxShadow: "0 4px 15px rgba(0,0,0,0.2)" }}>‹</button>
         )}
 
         <div
@@ -450,40 +419,8 @@ const ArtisticGalleryRow = ({ event }) => {
           ))}
         </div>
 
-        {showRightArrow && images.length > 4 && (
-          <button
-            onClick={() => scroll("right")}
-            style={{
-              position: "absolute",
-              right: "0px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              width: "48px",
-              height: "48px",
-              borderRadius: "50%",
-              background: `linear-gradient(135deg, ${event.color1}, ${event.color2})`,
-              border: "none",
-              cursor: "pointer",
-              fontSize: "28px",
-              color: "white",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              zIndex: 20,
-              boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
-              transition: "all 0.3s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-50%) scale(1.1)";
-              e.currentTarget.style.boxShadow = "0 6px 25px rgba(0,0,0,0.3)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(-50%) scale(1)";
-              e.currentTarget.style.boxShadow = "0 4px 15px rgba(0,0,0,0.2)";
-            }}
-          >
-            ›
-          </button>
+        {showRightArrow && (
+          <button onClick={() => scroll("right")} aria-label="Scroll right" style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", width: 44, height: 44, borderRadius: "50%", background: `linear-gradient(135deg, ${event.color1}, ${event.color2})`, border: "none", fontSize: "22px", color: "white", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 20, boxShadow: "0 4px 15px rgba(0,0,0,0.2)" }}>›</button>
         )}
       </div>
     </section>
@@ -492,6 +429,14 @@ const ArtisticGalleryRow = ({ event }) => {
 
 // Main Gallery Page
 export default function GalleryPage() {
+  const bgParticles = React.useMemo(() => Array.from({ length: 24 }).map(() => ({
+    top: Math.random() * 100,
+    left: Math.random() * 100,
+    size: 2 + Math.random() * 4,
+    hue: 320 + Math.random() * 40,
+    dur: 6 + Math.random() * 8,
+    delay: Math.random() * 6,
+  })), []);
   return (
     <div
       style={{
@@ -501,9 +446,73 @@ export default function GalleryPage() {
       }}
       className="gallery-page"
     >
-      {/* Animated floating particles background */}
       <Navbar />
-      {/* Page Header */}
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          pointerEvents: "none",
+          zIndex: 0,
+          overflow: "hidden",
+        }}
+        aria-hidden="true"
+      >
+        {bgParticles.map((p, i) => (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              top: `${p.top}%`,
+              left: `${p.left}%`,
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+              background: `hsla(${p.hue}, 75%, 65%, 0.5)`,
+              borderRadius: "50%",
+              animation: `float ${p.dur}s linear infinite`,
+              animationDelay: `${p.delay}s`,
+            }}
+          />
+        ))}
+        <div
+          style={{
+            position: "absolute",
+            top: "10%",
+            left: "-10%",
+            width: "500px",
+            height: "500px",
+            background: "radial-gradient(circle, rgba(102,126,234,0.3) 0%, transparent 70%)",
+            borderRadius: "50%",
+            animation: "pulse 8s ease-in-out infinite",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            bottom: "10%",
+            right: "-10%",
+            width: "600px",
+            height: "600px",
+            background: "radial-gradient(circle, rgba(240,147,251,0.3) 0%, transparent 70%)",
+            borderRadius: "50%",
+            animation: "pulse 10s ease-in-out infinite reverse",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            width: "400px",
+            height: "400px",
+            background: "radial-gradient(circle, rgba(79,172,254,0.2) 0%, transparent 70%)",
+            borderRadius: "50%",
+            animation: "pulse 12s ease-in-out infinite",
+          }}
+        />
+      </div>
       <header
         style={{
           textAlign: "center",
@@ -525,7 +534,6 @@ export default function GalleryPage() {
         >
           Discover Our Creative Universe
         </p>
-        
         <h1
           style={{
             fontFamily: "'Pangolin', cursive, system-ui",
@@ -538,7 +546,6 @@ export default function GalleryPage() {
         >
           Art Gallery
         </h1>
-        
         <p
           style={{
             fontFamily: "'Poppins', system-ui, sans-serif",

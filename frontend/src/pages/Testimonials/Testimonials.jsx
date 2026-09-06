@@ -30,45 +30,57 @@ const webTeam = [
   { name: "Sathish J", role: "Web Development Team", image: "/team/sath.webp", quote: "Deploy day felt like gallery night: nerve-racking, then beautiful when it finally stuck." },
   { name: "Gurumoorthi R", role: "Web Development Team", image: "", quote: "I wrote a lot of code and went to more workshops, and I wouldn't have it any other way." },
   { name: "Subi Pinsha P", role: "Web Development Team", image: "", quote: "Pairing with the design team showed me what a pixel of patience can do for a whole layout." },
-{ name: "Deepak S", role: "Web Development Team", image: "", quote: "The best part of this club isn't the dashboard — it's the people you get to build it for." },
+  { name: "Deepak S", role: "Web Development Team", image: "", quote: "The best part of this club isn't the dashboard — it's the people you get to build it for." },
 ];
 
 function TestimonialsRow({ title, items, scrollerId }) {
   const [openIndex, setOpenIndex] = useState(null);
+  const scrollerRef = React.useRef(null);
+  const [canLeft, setCanLeft] = React.useState(false);
+  const [canRight, setCanRight] = React.useState(true);
+  const drag = React.useRef({ down: false, moved: false, x: 0, start: 0 });
   const { theme } = useTheme();
   const openQuoteBg = theme === 'dark' ? 'rgba(255,255,255,0.08)' : '#f9fafb';
   const arrowBg = theme === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.95)';
   const arrowBorder = theme === 'dark' ? '1px solid rgba(255,255,255,0.12)' : '2px solid rgba(0,0,0,0.1)';
   const arrowColor = theme === 'dark' ? '#f3f3f3' : '#333';
-
+  const check = React.useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    setCanLeft(el.scrollLeft > 12);
+    setCanRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 12);
+  }, []);
+  React.useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    check();
+    el.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
+    return () => { el.removeEventListener("scroll", check); window.removeEventListener("resize", check); };
+  }, [check]);
+  const onDown = (e) => { drag.current = { down: true, moved: false, x: e.clientX ?? e.touches?.[0]?.clientX ?? 0, start: scrollerRef.current.scrollLeft }; };
+  const onMove = (e) => {
+    if (!drag.current.down) return;
+    const x = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
+    const dx = x - drag.current.x;
+    if (Math.abs(dx) > 6) drag.current.moved = true;
+    scrollerRef.current.scrollLeft = drag.current.start - dx;
+  };
+  const onUp = () => { setTimeout(() => { drag.current.down = false; }, 0); };
   return (
     <section className="section" style={{ marginTop: "2rem" }}>
       <div className="section-header">
-        <h3 style={{ fontSize: "1.8rem" }}>{title}</h3>
+        <h3 style={{ fontSize: "clamp(1.3rem, 3vw, 1.6rem)" }}>{title}</h3>
       </div>
-
       <div style={{ width: "100%", overflow: "hidden", position: "relative" }} id={scrollerId}>
-        <div
-          className="no-scrollbar"
-          style={{
-            display: "flex",
-            gap: "1rem",
-            overflowX: "auto",
-            scrollBehavior: "smooth",
-            paddingBottom: "1rem",
-          }}
-        >
+        <div ref={scrollerRef} className="no-scrollbar" onMouseDown={onDown} onMouseMove={onMove} onMouseUp={onUp} onMouseLeave={onUp} onTouchStart={onDown} onTouchMove={onMove} onTouchEnd={onUp}
+          style={{ display: "flex", gap: "1rem", overflowX: "auto", scrollBehavior: drag.current.moved ? "auto" : "smooth", paddingBottom: "1rem", scrollSnapType: "x mandatory", scrollPaddingInline: 12 }}>
           {items.map((m, i) => (
-            <div key={i} style={{ flex: "0 0 auto" }}>
+            <div key={`${scrollerId}-${i}`} style={{ flex: "0 0 auto", scrollSnapAlign: "start" }}>
               <div
+                role="button" tabIndex={0} aria-expanded={openIndex === i} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpenIndex(i === openIndex ? null : i); } }} onClick={() => { if (drag.current.moved) return; setOpenIndex(i === openIndex ? null : i); }}
                 className="image-card testimonials-card"
-                onClick={() => setOpenIndex(i === openIndex ? null : i)}
-                style={{
-                  width: 300,
-                  borderRadius: 16,
-                  boxShadow: "var(--card-shadow)",
-                  cursor: "pointer",
-                }}
+                style={{ width: 300, borderRadius: 16, boxShadow: "var(--card-shadow)", cursor: "pointer" }}
               >
                 <div style={{ padding: "0.75rem 1rem" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
@@ -118,72 +130,24 @@ function TestimonialsRow({ title, items, scrollerId }) {
             </div>
           ))}
         </div>
-
-        <button
-          className="scroll-arrow"
-          onClick={() =>
-            document.querySelector(`#${scrollerId} .no-scrollbar`)?.scrollBy({ left: -280, behavior: "smooth" })
-          }
-          style={{
-            position: "absolute",
-            left: 0,
-            top: "45%",
-            transform: "translateY(-50%)",
-            width: 48,
-            height: 48,
-            borderRadius: "50%",
-            border: arrowBorder,
-            background: arrowBg,
-            backdropFilter: "blur(10px)",
-            cursor: "pointer",
-            fontSize: 26,
-            color: arrowColor,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 10,
-            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-          }}
-        >
-          ‹
-        </button>
-
-        <button
-          className="scroll-arrow"
-          onClick={() =>
-            document.querySelector(`#${scrollerId} .no-scrollbar`)?.scrollBy({ left: 280, behavior: "smooth" })
-          }
-          style={{
-            position: "absolute",
-            right: 0,
-            top: "45%",
-            transform: "translateY(-50%)",
-            width: 48,
-            height: 48,
-            borderRadius: "50%",
-            border: arrowBorder,
-            background: arrowBg,
-            backdropFilter: "blur(10px)",
-            cursor: "pointer",
-            fontSize: 26,
-            color: arrowColor,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 10,
-            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-          }}
-        >
-          ›
-        </button>
+        <button className="scroll-arrow" aria-label="Scroll left" disabled={!canLeft} onClick={() => scrollerRef.current?.scrollBy({ left: -300, behavior: "smooth" })} style={{ position: "absolute", left: 8, top: "50%", transform: "translateY(-50%)", width: 42, height: 42, borderRadius: "50%", border: arrowBorder, background: arrowBg, backdropFilter: "blur(10px)", fontSize: 22, color: arrowColor, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.15)" }}>‹</button>
+        <button className="scroll-arrow" aria-label="Scroll right" disabled={!canRight} onClick={() => scrollerRef.current?.scrollBy({ left: 300, behavior: "smooth" })} style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", width: 42, height: 42, borderRadius: "50%", border: arrowBorder, background: arrowBg, backdropFilter: "blur(10px)", fontSize: 22, color: arrowColor, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.15)" }}>›</button>
       </div>
     </section>
   );
 }
 
 export default function TestimonialsPage() {
+  const drops = React.useMemo(() => Array.from({ length: 28 }).map(() => ({
+    left: Math.random() * 100, duration: 9 + Math.random() * 8, delay: Math.random() * 5, opacity: 0.3 + Math.random() * 0.4, size: 4 + Math.random() * 6, hue: Math.floor(180 + Math.random() * 180),
+  })), []);
   return (
     <div className="page testimonials-page" style={{ position: "relative", overflow: "hidden" }}>
+      <div className="pastel-rain-layer" aria-hidden="true">
+        {drops.map((d, i) => (
+          <span key={i} className="pastel-drop" style={{ left: `${d.left}%`, animationDuration: `${d.duration}s`, animationDelay: `${d.delay}s`, opacity: d.opacity, width: `${d.size}px`, height: `${d.size}px`, "--hue": d.hue }} />
+        ))}
+      </div>
       <Navbar />
       <header className="section-header center">
         <p className="eyebrow">Member Reflections</p>
@@ -196,7 +160,6 @@ export default function TestimonialsPage() {
           Click a card to read a short note about their journey with Scribbles.
         </p>
       </section>
-      {/* Short Video Snippets */}
       <section className="section">
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <div style={{ marginBottom: "1rem" }}>
@@ -207,7 +170,7 @@ export default function TestimonialsPage() {
             className="video-wrapper"
             style={{
               position: "relative",
-              paddingBottom: "56.25%", // 16:9
+              paddingBottom: "56.25%",
               height: 0,
               overflow: "hidden",
               borderRadius: "var(--radius-lg)",
@@ -217,11 +180,13 @@ export default function TestimonialsPage() {
           >
             <iframe
               style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
               title="Scribbles Testimonials Snippet"
               frameBorder="0"
+              loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
             ></iframe>
           </div>
           <p className="muted" style={{ marginTop: "1rem" }}>

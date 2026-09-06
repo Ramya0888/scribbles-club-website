@@ -302,49 +302,28 @@ margin-bottom: 6px;
 font-family: "Segoe Script", "Comic Sans MS", cursive;
 }
 
-/* Arch-shaped glitter title */
 .thooriga-arch {
-display: flex;
-justify-content: center;
-gap: 6px;
-margin: 20px 0 10px;
-font-size: clamp(2.8rem, 6vw, 5rem);
-font-family: "Comic Sans MS", "Segoe Script", cursive;
-letter-spacing: 3px;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin: 20px 0 10px;
+  font-size: clamp(2rem, 6vw, 4.2rem);
+  font-family: 'Pangolin', cursive;
+  letter-spacing: 1px;
+  flex-wrap: wrap;
 }
-
-/* Avoid blur, make text crisp & dark pink */
 .thooriga-arch span {
-display: inline-block;
-transform: translateY(calc(-18px * sin(var(--i))));
-background: linear-gradient(120deg, #ff6aa2, #ff9ecf, #ffd1e8);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-
-text-shadow:
-  0 0 2px rgba(255, 105, 180, 0.6),
-  0 0 6px rgba(255, 105, 180, 0.5),
-  0 0 10px rgba(255, 170, 200, 0.4);
-
-animation: sparkle 2.5s ease-in-out infinite alternate;
-filter: none;              /* removes blur */
+  display: inline-block;
+  color: var(--warm-pink);
+  text-shadow: 0 2px 10px rgba(243,158,182,0.35);
+  animation: waveFloat 2.8s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.08s);
+}
+@supports (transform: translateY(calc(1px * sin(0)))) {
+  .thooriga-arch span { transform: translateY(calc(-10px * sin(var(--i) * 0.6))); }
 }
 
-/* Slight glow animation */
-@keyframes sparkle {
-0% {
-  text-shadow:
-    0 0 2px rgba(255, 105, 180, 0.6),
-    0 0 6px rgba(255, 105, 180, 0.5),
-    0 0 10px rgba(255, 170, 200, 0.4);
-}
-100% {
-  text-shadow:
-    0 0 4px rgba(255, 105, 180, 0.8),
-    0 0 10px rgba(255, 105, 180, 0.7),
-    0 0 18px rgba(255, 170, 200, 0.6);
-}
-}
+
 
 
 /* Tagline */
@@ -387,27 +366,7 @@ min-height: 100vh;
 
 
 
-.thooriga-arch {
-display: flex;
-justify-content: center;
-gap: 6px;
-margin: 40px 0 20px;
-font-size: 5rem;
-font-weight: 900;
-letter-spacing: 3px;
-}
 
-.thooriga-arch span {
-color: #ff4f8b; /* darker pink */
-text-shadow:
-  0 0 6px rgba(255, 79, 139, 0.6),
-  0 0 12px rgba(255, 174, 200, 0.9),
-  0 0 20px rgba(255, 255, 255, 0.8);
-animation: waveFloat 3s ease-in-out infinite;
-animation-delay: calc(var(--i) * 0.12s);
-display: inline-block;
-transform-origin: center;
-}
 
 
 
@@ -498,160 +457,46 @@ text-align: center;
 margin-top: 40px;
 margin-bottom: 30px;
 }
-.page-title-top {
-  margin-top: 96px;
-}
-/* 🔥 Make cards fill full width (2 per row) */
-/* 🎴 GRID → 2 CARDS PER ROW */
-/* 🎴 GRID → 2 CARDS PER ROW */
-/* 🎴 GRID → 2 CARDS PER ROW */
-/* 🎴 GRID → 2 CARDS PER ROW */
-/* 🎴 GRID → 2 PER ROW */
-/* 🎴 GRID → 2 PER ROW */
+.page-title-top { margin-top: 8px; }
 .rummy-grid {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 40px;
-width: 100%;
-padding: 0 40px;
-box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 3vw, 40px);
+  width: 100%;
+  padding: 0 clamp(12px, 3vw, 40px);
+  box-sizing: border-box;
 }
-
-/* 🃏 CARD BASE */
 .rummy-card {
-width: 100%;
-border-radius: 20px;
-padding: 18px;
-background: linear-gradient(
-  135deg,
-  rgba(255, 255, 255, 0.28),
-  rgba(255, 255, 255, 0.05)
-);
-backdrop-filter: blur(14px);
-border: 1px solid rgba(255, 255, 255, 0.25);
-box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-text-align: center;
-overflow: hidden;
-
-display: flex;
-flex-direction: column;
-
-/* 🔥 hidden initially */
-opacity: 0;
-transform: translateY(60px);
+  width: 100%;
+  border-radius: 20px;
+  padding: 18px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: var(--card-shadow);
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(24px);
 }
-
-/* 🎬 SHOW ANIMATION */
 .rummy-card.show {
-animation: cardReveal 0.6s ease forwards;
-animation-delay: calc(var(--i) * 0.15s);
+  animation: cardReveal 0.6s ease forwards;
+  animation-delay: calc(var(--i) * 0.12s);
 }
-
-/* ✨ ANIMATION */
-@keyframes cardReveal {
-to {
-  opacity: 1;
-  transform: translateY(0);
-}
-}
-
-/* 🖼 IMAGE */
+@keyframes cardReveal { to { opacity: 1; transform: translateY(0); } }
 .rummy-img-wrap {
-width: 100%;
-aspect-ratio: 4 / 3;
-border-radius: 16px;
-overflow: hidden;
-margin-bottom: 12px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: var(--light-pink);
 }
-
-.rummy-img-wrap img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-transition: transform 0.5s ease;
-}
-
-/* ✨ HOVER */
-.rummy-card:hover .rummy-img-wrap img {
-transform: scale(1.08);
-}
-
-.rummy-card:hover {
-transform: translateY(-10px) scale(1.02);
-transition: 0.3s ease;
-}
-
-/* 📝 TEXT */
-/* 🎴 GRID */
-.rummy-grid {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 40px;
-width: 100%;
-padding: 0 40px;
-box-sizing: border-box;
-}
-
-/* 🃏 CARD */
-.rummy-card {
-width: 100%;
-border-radius: 20px;
-padding: 18px;
-background: rgba(255,255,255,0.2);
-backdrop-filter: blur(12px);
-border: 1px solid rgba(255,255,255,0.2);
-box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-
-display: flex;
-flex-direction: column;
-text-align: center;
-
-/* 🔥 IMPORTANT FIX */
-opacity: 1;   /* ← changed from 0 */
-transform: translateY(0);
-}
-
-/* 🎬 ANIMATION ONLY WHEN SHOW */
-.rummy-card.show {
-opacity: 0;
-transform: translateY(60px);
-animation: cardReveal 0.6s ease forwards;
-animation-delay: calc(var(--i) * 0.15s);
-}
-
-/* ✨ KEYFRAMES */
-@keyframes cardReveal {
-to {
-  opacity: 1;
-  transform: translateY(0);
-}
-}
-
-/* 🖼 IMAGE */
-.rummy-img-wrap {
-width: 100%;
-aspect-ratio: 4 / 3;
-border-radius: 16px;
-overflow: hidden;
-margin-bottom: 12px;
-}
-
-.rummy-img-wrap img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-}
-
-/* 📝 TEXT */
-.rummy-card h3 {
-font-size: 1.5rem;
-margin: 10px 0 6px;
-}
-
-.rummy-card p {
-font-size: 1.05rem;
-color: #333;
-}
+.rummy-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.rummy-card:hover .rummy-img-wrap img { transform: scale(1.06); }
+.rummy-card h3 { font-size: clamp(1.1rem, 2.2vw, 1.35rem); margin: 10px 0 6px; line-height: 1.25; }
+.rummy-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
 
 /* 📱 MOBILE */
 @media (max-width: 768px) {
@@ -718,18 +563,7 @@ font-size: 1.5rem;
 font-weight: 600;
 color: #444;
 }
-/* 🔥 Bigger version of curly title for page heading */
-.curly-title.main-title {
-font-size: 3.6rem;   /* bigger than others */
-font-weight: 900;
-letter-spacing: 2px;
-}
 
-/* Bigger underline for main title */
-.curly-title.main-title::after {
-height: 26px;        /* thicker curve */
-bottom: -10px;
-}
 
 /*mobile*/
 .thooriga-arch {
@@ -751,21 +585,7 @@ bottom: -10px;
     transform: none !important; /* 🔥 disable arc on mobile */
   }
 }
-.events-page {
-  padding: 0 12px;
-}
-
+.events-page { padding: var(--page-pt) clamp(12px, 2vw, 20px) 40px; max-width: 1200px; margin: 0 auto; }
 @media (max-width: 600px) {
-  .events-title h2,
-  .curly-title {
-    font-size: 1.8rem;
-  }
-
-  .thooriga-intro-card {
-    padding: 16px;
-    font-size: 0.95rem;
-  }
-}
-body {
-  overflow-x: hidden;
+  .thooriga-intro-card { padding: 16px; font-size: 0.95rem; }
 }

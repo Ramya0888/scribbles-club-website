@@ -1,9 +1,9 @@
 .contact-page {
-padding: 96px 20px;
-    max-width: 1100px;
-    margin: auto;
-    color: var(--text-main);
-  }
+  padding: var(--page-pt) 20px 48px;
+  max-width: 1100px;
+  margin: auto;
+  color: var(--text-main);
+}
   
   .contact-page h1 {
     text-align: center;
@@ -60,7 +60,7 @@ padding: 96px 20px;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
-    cursor: pointer;
+    cursor: url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer;
     transition: transform 0.2s ease;
   }
   
@@ -145,10 +145,8 @@ padding: 96px 20px;
     /* 🌸 MOBILE OPTIMIZATION (FINAL CLEAN FIX) */
 
 @media (max-width: 900px) {
-
-  /* Page spacing */
   .contact-page {
-    padding: 96px 14px;
+    padding: var(--page-pt) 14px 36px;
   }
 
   /* Title */
@@ -213,16 +211,9 @@ padding: 96px 20px;
 }
 
 
-/* 📱 EXTRA SMALL DEVICES */
 @media (max-width: 480px) {
-
-  .curly-title {
-    font-size: 1.7rem;
-  }
-
-  .contact-page {
-    padding: 96px 10px;
-  }
+  .curly-title { font-size: 1.7rem; }
+  .contact-page { padding: var(--page-pt) 10px 32px; }
 
   .contact-card {
     padding: 15px;

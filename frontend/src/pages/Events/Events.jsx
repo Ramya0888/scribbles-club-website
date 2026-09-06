@@ -1,8 +1,8 @@
 import React from "react";
-import CountdownTimer from "./CountdownTimer";
 import PastEvents from "./PastEvents";
 import UpcomingEvents from "./UpcomingEvents";
 import Navbar from "../../components/Navbar";
+import PastelRain from "../../components/PastelRain";
 import "./Events.css";
 
 const Events = () => {
@@ -102,6 +102,7 @@ const Events = () => {
       className="events-page"
       style={{ position: "relative", overflow: "hidden" }}
     >
+      <PastelRain count={28} variant="contact" />
       <Navbar />
 
       {/* Hero Section */}
@@ -141,12 +142,9 @@ const Events = () => {
         
         
         <p className="scribbles-presents">Our Signature Event</p>
-
-        <h1 className="thooriga-arch">
-          {"Thooriga’26".split("").map((ch, i) => (
-            <span key={i} style={{ "--i": i }}>
-              {ch}
-            </span>
+        <h1 className="thooriga-arch" aria-label="Thooriga 26">
+          {"Thooriga'26".split("").map((ch, i) => (
+            <span key={i} style={{ "--i": i }}>{ch}</span>
           ))}
         </h1>
 
