@@ -1,45 +1,33 @@
-/* 🌈 Pastel rain layer */
-.pastel-rain-layer {
+.pastel-rain-layer, .contact-pastel-rain-layer, .pastel-rain-events {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 1;
   overflow: hidden;
 }
+.pastel-rain-layer, .contact-pastel-rain-layer { z-index: 1; }
+.pastel-rain-events { z-index: 0; }
 
-/* Individual pastel drops */
-.pastel-drop {
+.pastel-drop, .contact-pastel-drop, .pastel-drop-events {
   position: absolute;
   top: -12px;
-  width: var(--size);
-  height: var(--size);
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background-color: hsl(var(--hue), 85%, 65%);
-  opacity: var(--opacity);
-  animation-name: pastelFall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   will-change: transform;
   transform: translateZ(0);
 }
+@keyframes pastelFall { from { transform: translateY(0); } to { transform: translateY(110vh); } }
+@keyframes contactPastelFall { from { transform: translateY(0); } to { transform: translateY(110vh); } }
+@keyframes pastelFallEvents { from { transform: translateY(0); } to { transform: translateY(110vh); } }
+.pastel-drop { animation-name: pastelFall; }
+.contact-pastel-drop { animation-name: contactPastelFall; }
+.pastel-drop-events { animation-name: pastelFallEvents; }
 
+.page, .hero, .section, .card, .contact-page, .contact-card { position: relative; z-index: 5; }
+.events-page { position: relative; z-index: 1; }
 
-/* Falling animation */
-@keyframes pastelFall {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(110vh);
-  }
-}
-
-/* Ensure content stays above rain */
-.page,
-.hero,
-.section,
-.card {
-  position: relative;
-  z-index: 5;
+@media (prefers-reduced-motion: reduce) {
+  .pastel-drop, .contact-pastel-drop, .pastel-drop-events { animation: none; display: none; }
 }
