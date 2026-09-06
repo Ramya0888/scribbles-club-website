@@ -12,7 +12,7 @@ export default function NewsletterPage() {
   };
 
   return (
-    <div className="newsletter-page" style={{ maxWidth: 720, margin: "0 auto", padding: "calc(var(--nav-h) + 28px) 20px 64px" }}>
+    <div className="newsletter-page" style={{ maxWidth: 720, margin: "0 auto" }}>
       <Navbar />
       <section className="nl-hero">
         <p className="eyebrow">Scribbles Art Club</p>
