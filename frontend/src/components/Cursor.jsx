@@ -177,8 +177,8 @@ export default function Cursor() {
   if (!enabled || !customVisible) return null;
   return (
     <>
-      <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none z-[10002] mix-blend-difference" style={{ contain: "strict" }} aria-hidden="true" />
-      <motion.div className="fixed top-0 left-0 pointer-events-none z-[10003] mix-blend-difference" style={{ x: ringX, y: ringY }} aria-hidden="true">
+      <canvas ref={canvasRef} className="mix-blend-difference" style={{ position: "fixed", inset: 0, width: "100vw", height: "100vh", pointerEvents: "none", zIndex: 10002, mixBlendMode: "difference", contain: "strict" }} aria-hidden="true" />
+      <motion.div className="mix-blend-difference" style={{ position: "fixed", top: 0, left: 0, pointerEvents: "none", zIndex: 10003, mixBlendMode: "difference", x: ringX, y: ringY }} aria-hidden="true">
         <div className="relative flex items-center justify-center" style={{ transform: "translate(-50%, -50%)" }}>
           <motion.div animate={{ scale: projectActive ? 0 : linkActive ? 0.72 : 1, opacity: projectActive ? 0 : 1 }} transition={{ duration: 0.2, ease: "easeOut" }} className="flex items-center justify-center p-0 m-0">
             <img src="/pointer.svg" alt="" width={30} height={25} style={{ display: "block", transform: "rotate(-15deg) translate(9px, 9px)", filter: linkActive ? "drop-shadow(0 2px 10px rgba(243,158,182,0.95))" : "drop-shadow(0 0 4px rgba(0,0,0,0.3))", transition: "filter 0.16s ease" }} />
