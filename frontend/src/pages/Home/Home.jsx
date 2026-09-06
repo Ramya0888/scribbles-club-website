@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import TeamMemberCard from '../About/TeamMemberCard';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import PastelRain from '../../components/PastelRain';
 import { officeBearers, deputyHeads, milestones } from '../../data/team';
 
 
@@ -186,14 +187,6 @@ function StorySection() {
 
 export default function HomePage() {
   const location = useLocation();
-  const pastelDrops = useMemo(() => Array.from({ length: 32 }).map(() => ({
-    left: Math.random() * 100,
-    duration: 9 + Math.random() * 8,
-    delay: Math.random() * 5,
-    opacity: 0.3 + Math.random() * 0.4,
-    size: 4 + Math.random() * 6,
-    hue: Math.floor(180 + Math.random() * 180),
-  })), []);
   const handleAboutClick = () => {
     document.getElementById('about-section')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -210,11 +203,7 @@ export default function HomePage() {
   return (
   <div className="page" style={{ position: "relative", overflow: "hidden" }}>
     <Navbar onAboutClick={handleAboutClick} />
-    <div className="pastel-rain-layer" aria-hidden="true">
-      {pastelDrops.map((d, i) => (
-        <span key={i} className="pastel-drop" style={{ left: `${d.left}%`, animationDuration: `${d.duration}s`, animationDelay: `${d.delay}s`, opacity: d.opacity, width: `${d.size}px`, height: `${d.size}px`, "--hue": d.hue }} />
-      ))}
-    </div>
+    <PastelRain count={32} />
 
     <Hero />
     <FeaturedSlider />

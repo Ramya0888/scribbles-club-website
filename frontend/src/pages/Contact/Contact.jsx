@@ -1,9 +1,9 @@
 // src/pages/Contact/Contact.jsx
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import "./Contact.css";
-import "../../styles/ContactPastelRain.css";  
 import emailjs from "@emailjs/browser";
 import Navbar from "../../components/Navbar";
+import PastelRain from "../../components/PastelRain";
 import { 
   FaInstagram, 
   FaPinterestP, 
@@ -24,14 +24,6 @@ export default function Contact() {
 
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
-  const drops = useMemo(() => Array.from({ length: 28 }).map(() => ({
-    left: Math.random() * 100,
-    duration: 9 + Math.random() * 8,
-    delay: Math.random() * 5,
-    opacity: 0.3 + Math.random() * 0.4,
-    size: 4 + Math.random() * 6,
-    hue: Math.floor(180 + Math.random() * 180),
-  })), []);
   const stripHtml = (v) => v.replace(/<[^>]*>/g, "").replace(/[<>]/g, "").trim();
   const rateWindow = React.useRef([]);
   const handleSubmit = (e) => {
@@ -59,11 +51,7 @@ export default function Contact() {
   };
   return (
     <div className="contact-page page" style={{ position: "relative", overflow: "hidden"}}>
-      <div className="contact-pastel-rain-layer" aria-hidden="true">
-        {drops.map((d, i) => (
-          <span key={i} className="contact-pastel-drop" style={{ left: `${d.left}%`, animationDuration: `${d.duration}s`, animationDelay: `${d.delay}s`, opacity: d.opacity, width: `${d.size}px`, height: `${d.size}px`, "--hue": d.hue }} />
-        ))}
-      </div>
+      <PastelRain count={28} variant="contact" />
       {/* All site navigation lives in the shared navbar */}
       <Navbar />
       <div className="contact-title">
