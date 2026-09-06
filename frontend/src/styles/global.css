@@ -12,6 +12,7 @@
   --radius-md: 12px;
   --radius-sm: 8px;
   --nav-h: 68px;
+  --page-pt: calc(var(--nav-h) + 20px);
 }
 html { scroll-padding-top: calc(var(--nav-h) + 12px); scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -72,7 +73,7 @@ a {
 .page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: calc(var(--nav-h) + 28px) 20px 64px;
+  padding: var(--page-pt) 20px 64px;
 }
 
 .section {
@@ -723,11 +724,10 @@ a {
   }
 }
 
-/* ===== NEWSLETTER PAGE STYLES ===== */
 .newsletter-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 96px 20px 72px;
+  padding: var(--page-pt) 20px 72px;
 }
 
 .nl-hero {
