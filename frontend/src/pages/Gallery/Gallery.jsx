@@ -527,59 +527,17 @@ export default function GalleryPage() {
         />
       </div>
 
-      {/* Page Header */}
       <header
         style={{
           textAlign: "center",
-          padding: "120px 20px 60px",
+          padding: "calc(var(--nav-h) + 36px) 20px 40px",
           position: "relative",
           zIndex: 2,
         }}
       >
-        <p
-          style={{
-            fontFamily: "'Poppins', system-ui, sans-serif",
-            fontSize: "12px",
-            letterSpacing: "6px",
-            textTransform: "uppercase",
-            color: "rgba(255,255,255,0.7)",
-            marginBottom: "20px",
-            fontWeight: 500,
-          }}
-        >
-          Discover Our Creative Universe
-        </p>
-        
-        <h1
-          style={{
-            fontFamily: "'Playfair Display', Georgia, serif",
-            fontSize: "clamp(48px, 10vw, 96px)",
-            fontWeight: 700,
-            margin: 0,
-            background: "linear-gradient(135deg, #fff 0%, #a8c0ff 50%, #3f2b96 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            letterSpacing: "-0.02em",
-            textShadow: "0 0 30px rgba(168,192,255,0.3)",
-          }}
-        >
-          Art Gallery
-        </h1>
-        
-        <p
-          style={{
-            fontFamily: "'Poppins', system-ui, sans-serif",
-            fontSize: "18px",
-            color: "rgba(255,255,255,0.8)",
-            marginTop: "16px",
-            maxWidth: "500px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            lineHeight: 1.6,
-          }}
-        >
-          A journey through creativity, craftsmanship, and artistic expression
-        </p>
+        <p style={{ fontFamily: "'Poppins', system-ui, sans-serif", fontSize: "11px", letterSpacing: "5px", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "12px", fontWeight: 600 }}>Discover Our Creative Universe</p>
+        <h1 style={{ fontFamily: "'Pangolin', cursive", fontSize: "clamp(36px, 8vw, 64px)", fontWeight: 800, margin: 0, color: "var(--text-main)", letterSpacing: "-0.02em" }}>Art Gallery</h1>
+        <p style={{ fontFamily: "'Poppins', system-ui, sans-serif", fontSize: "16px", color: "var(--text-muted)", marginTop: "10px", maxWidth: "520px", marginLeft: "auto", marginRight: "auto", lineHeight: 1.6 }}>A journey through creativity, craftsmanship, and artistic expression</p>
         
         {/* Decorative divider */}
         <div

@@ -1,5 +1,5 @@
 // src/pages/Contact/Contact.jsx
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import "./Contact.css";
 import "../../styles/ContactPastelRain.css";  
 import emailjs from "@emailjs/browser";
@@ -22,48 +22,32 @@ export default function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const [error, setError] = useState("");
+  const [sending, setSending] = useState(false);
+  const drops = useMemo(() => Array.from({ length: 28 }).map(() => ({
+    left: Math.random() * 100,
+    duration: 9 + Math.random() * 8,
+    delay: Math.random() * 5,
+    opacity: 0.3 + Math.random() * 0.4,
+    size: 4 + Math.random() * 6,
+    hue: Math.floor(180 + Math.random() * 180),
+  })), []);
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    emailjs
-      .send(
-        "service_62gf8rp",
-        "template_yub0yj4",
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-        },
-        "xCTtPWMY6IwK-TvSF"
-      )
-      .then(() => {
-        setSuccess(true);
-        setFormData({ name: "", email: "", message: "" });
-      })
-      .catch((error) => {
-        console.error("Email error:", error);
-      });
+    setSending(true); setError("");
+    const svc = import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_62gf8rp";
+    const tpl = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_yub0yj4";
+    const key = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "xCTtPWMY6IwK-TvSF";
+    emailjs.send(svc, tpl, { from_name: formData.name, from_email: formData.email, message: formData.message }, key)
+      .then(() => { setSuccess(true); setFormData({ name: "", email: "", message: "" }); setTimeout(() => setSuccess(false), 4000); })
+      .catch(() => setError("Failed to send. Please try again or email us directly."))
+      .finally(() => setSending(false));
   };
-  const dropCount = 50;
-
   return (
     <div className="contact-page page" style={{ position: "relative", overflow: "hidden"}}>
-      {/* Pastel Rain */}
-      <div className="contact-pastel-rain-layer">
-        {Array.from({ length: dropCount }).map((_, i) => (
-          <span
-            key={i}
-            className="contact-pastel-drop"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDuration: `${9 + Math.random() * 8}s`,
-              animationDelay: `${Math.random() * 5}s`,
-              opacity: 0.3 + Math.random() * 0.5,
-              width: `${4 + Math.random() * 6}px`,
-              height: `${4 + Math.random() * 6}px`,
-              "--hue": Math.floor(180 + Math.random() * 360),
-            }}
-          />
+      <div className="contact-pastel-rain-layer" aria-hidden="true">
+        {drops.map((d, i) => (
+          <span key={i} className="contact-pastel-drop" style={{ left: `${d.left}%`, animationDuration: `${d.duration}s`, animationDelay: `${d.delay}s`, opacity: d.opacity, width: `${d.size}px`, height: `${d.size}px`, "--hue": d.hue }} />
         ))}
       </div>
       {/* All site navigation lives in the shared navbar */}
