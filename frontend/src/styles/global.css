@@ -73,7 +73,7 @@ a {
 .page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--page-pt) 20px 64px;
+  padding: 20px 20px 64px;
 }
 
 .section {
@@ -727,7 +727,7 @@ a {
 .newsletter-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--page-pt) 20px 72px;
+  padding: 20px 20px 72px;
 }
 
 .nl-hero {
@@ -875,7 +875,7 @@ a {
   .gallery-page,
   .events-page,
   .contact-page {
-    padding-top: var(--page-pt);
+    padding-top: 20px;
   }
 
   .tech-team-popup {
@@ -979,7 +979,7 @@ a {
 .gallery-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--page-pt) 20px 72px;
+  padding: 20px 20px 72px;
 }
 
 .section-header.center {
@@ -1183,7 +1183,7 @@ a {
 .events-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--page-pt) 20px 48px;
+  padding: 20px 20px 48px;
 }
 
 /* HERO SECTION */

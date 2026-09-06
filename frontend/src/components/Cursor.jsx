@@ -179,11 +179,9 @@ export default function Cursor() {
     <>
       <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none z-[10002] mix-blend-difference" style={{ contain: "strict" }} aria-hidden="true" />
       <motion.div className="fixed top-0 left-0 pointer-events-none z-[10003] mix-blend-difference" style={{ x: ringX, y: ringY }} aria-hidden="true">
-        <div className="relative flex items-center justify-center" style={{ transform: "translate(-4px, -4px)" }}>
-          <motion.div animate={{ scale: projectActive ? 0 : linkActive ? 1.32 : 1 }} transition={{ duration: 0.16, ease: "easeOut" }} className="flex items-center justify-center">
-            <svg viewBox="0 0 122.88 102.66" width={linkActive ? 34 : 28} height={linkActive ? 28 : 23} style={{ display: "block", transform: "rotate(-14deg)", filter: linkActive ? "drop-shadow(0 2px 10px rgba(243,158,182,0.95))" : "none", transition: "filter 0.16s ease" }} aria-hidden="true">
-              <path fill="white" d="M0,0c10.38,7.43,27.02-0.55,33.56,12.4c1.74,3.43,2.11,8.13,0.55,11.86c-0.63,1.5-1.56,2.84-2.82,3.86 c-0.56,0.45-1.18,0.85-1.87,1.19c-8.54,4.24-17.44-1.69-22.16-8.85C2.91,13.87,1.02,5.64,0,0L0,0z M52.65,56.81 c5.78-4.62,10.27-9.93,13.32-16.02l53.72,50.94c2.81,2.66,4.4,4.91,2.04,8.99c-1.17,1.2-2.41,1.84-3.71,1.93 c-1.3,0.09-2.66-0.38-4.09-1.41L52.65,56.81L52.65,56.81z M33.03,34.05c2.5-1.35,5.94-4.66,6.75-8.27l23.29,12.78 c-3.36,6.69-7.64,12.42-13.51,16.48C43.44,46.82,40,41.86,33.03,34.05L33.03,34.05z" />
-            </svg>
+        <div className="relative flex items-center justify-center" style={{ transform: "translate(-50%, -50%)" }}>
+          <motion.div animate={{ scale: projectActive ? 0 : linkActive ? 0.72 : 1, opacity: projectActive ? 0 : 1 }} transition={{ duration: 0.2, ease: "easeOut" }} className="flex items-center justify-center p-0 m-0">
+            <img src="/pointer.svg" alt="" width={30} height={25} style={{ display: "block", transform: "rotate(-15deg) translate(9px, 9px)", filter: linkActive ? "drop-shadow(0 2px 10px rgba(243,158,182,0.95))" : "drop-shadow(0 0 4px rgba(0,0,0,0.3))", transition: "filter 0.16s ease" }} />
           </motion.div>
           <AnimatePresence>
             {projectActive && (
