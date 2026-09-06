@@ -527,14 +527,8 @@ export default function GalleryPage() {
         />
       </div>
 
-      <header
-        style={{
-          textAlign: "center",
-          padding: "calc(var(--nav-h) + 36px) 20px 40px",
-          position: "relative",
-          zIndex: 2,
-        }}
-      >
+      <header style={{ textAlign: "center", padding: "12px 20px 32px", position: "relative", zIndex: 2 }}>
+
         <p style={{ fontFamily: "'Poppins', system-ui, sans-serif", fontSize: "11px", letterSpacing: "5px", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "12px", fontWeight: 600 }}>Discover Our Creative Universe</p>
         <h1 style={{ fontFamily: "'Pangolin', cursive", fontSize: "clamp(36px, 8vw, 64px)", fontWeight: 800, margin: 0, color: "var(--text-main)", letterSpacing: "-0.02em" }}>Art Gallery</h1>
         <p style={{ fontFamily: "'Poppins', system-ui, sans-serif", fontSize: "16px", color: "var(--text-muted)", marginTop: "10px", maxWidth: "520px", marginLeft: "auto", marginRight: "auto", lineHeight: 1.6 }}>A journey through creativity, craftsmanship, and artistic expression</p>

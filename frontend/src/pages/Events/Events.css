@@ -457,7 +457,7 @@ text-align: center;
 margin-top: 40px;
 margin-bottom: 30px;
 }
-.page-title-top { margin-top: calc(var(--nav-h) + 28px); }
+.page-title-top { margin-top: 8px; }
 .rummy-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -585,7 +585,7 @@ color: #444;
     transform: none !important; /* 🔥 disable arc on mobile */
   }
 }
-.events-page { padding: 0 clamp(12px, 2vw, 20px) 40px; max-width: 1200px; margin: 0 auto; }
+.events-page { padding: var(--page-pt) clamp(12px, 2vw, 20px) 40px; max-width: 1200px; margin: 0 auto; }
 @media (max-width: 600px) {
   .thooriga-intro-card { padding: 16px; font-size: 0.95rem; }
 }

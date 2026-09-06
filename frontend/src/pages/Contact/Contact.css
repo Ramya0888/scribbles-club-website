@@ -205,16 +205,9 @@
 }
 
 
-/* 📱 EXTRA SMALL DEVICES */
 @media (max-width: 480px) {
-
-  .curly-title {
-    font-size: 1.7rem;
-  }
-
-  .contact-page {
-    padding: 96px 10px;
-  }
+  .curly-title { font-size: 1.7rem; }
+  .contact-page { padding: var(--page-pt) 10px 32px; }
 
   .contact-card {
     padding: 15px;
