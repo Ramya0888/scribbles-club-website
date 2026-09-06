@@ -121,6 +121,8 @@ const ImageCard = ({ src, alt, index, gradient, color1, color2 }) => {
           <img
             src={src}
             alt={alt}
+            loading="lazy"
+            decoding="async"
             style={{
               position: "absolute",
               top: 0,
@@ -128,8 +130,8 @@ const ImageCard = ({ src, alt, index, gradient, color1, color2 }) => {
               width: "100%",
               height: "100%",
               objectFit: "cover",
-              transition: "transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1)",
-              transform: isHovered ? "scale(1.1)" : "scale(1)",
+              transition: "transform 0.5s ease, opacity 0.3s",
+              transform: isHovered ? "scale(1.06)" : "scale(1)",
               opacity: isLoaded ? 1 : 0,
             }}
             onLoad={() => setIsLoaded(true)}
@@ -202,42 +204,41 @@ const ArtisticGalleryRow = ({ event }) => {
   const [showRightArrow, setShowRightArrow] = useState(true);
 
   useEffect(() => {
+    let cancelled = false;
     const loadImages = async () => {
       setLoading(true);
       const loadedImages = [];
       let consecutiveFailures = 0;
       let counter = 1;
-      
-      while (consecutiveFailures < 3 && counter <= 50) {
-        const extensions = ['.jpg', '.jpeg', '.png', '.webp', '.JPG', '.JPEG', '.PNG'];
-        let found = false;
-        
-        for (const ext of extensions) {
-          const imgPath = `${event.folderPath}/image${counter}${ext}`;
-          const imgExists = await new Promise((resolve) => {
-            const img = new Image();
-            img.onload = () => resolve(true);
-            img.onerror = () => resolve(false);
-            img.src = imgPath;
-          });
-          
-          if (imgExists) {
-            loadedImages.push(imgPath);
-            found = true;
-            consecutiveFailures = 0;
-            break;
-          }
-        }
-        
-        if (!found) consecutiveFailures++;
+      while (!cancelled && consecutiveFailures < 2 && counter <= 36) {
+        const imgPath = `${event.folderPath}/image${counter}.jpg`;
+        const ok = await new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve(true);
+          img.onerror = () => {
+            const img2 = new Image();
+            img2.onload = () => resolve(true);
+            img2.onerror = () => resolve(false);
+            img2.src = `${event.folderPath}/image${counter}.JPG`;
+          };
+          img.src = imgPath;
+        });
+        if (cancelled) return;
+        if (ok) {
+          if (imgPath.endsWith(".jpg")) {
+            const test = new Image();
+            test.src = imgPath;
+            const exists = await new Promise((r) => { test.onload = () => r(true); test.onerror = () => r(false); });
+            loadedImages.push(exists ? imgPath : `${event.folderPath}/image${counter}.JPG`);
+          } else loadedImages.push(imgPath);
+          consecutiveFailures = 0;
+        } else consecutiveFailures++;
         counter++;
       }
-      
-      setImages(loadedImages);
-      setLoading(false);
+      if (!cancelled) { setImages(loadedImages); setLoading(false); }
     };
-    
     loadImages();
+    return () => { cancelled = true; };
   }, [event.folderPath]);
 
   const checkScrollPosition = () => {
@@ -250,8 +251,8 @@ const ArtisticGalleryRow = ({ event }) => {
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = direction === "left" ? -380 : 380;
-      scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      const w = scrollRef.current.clientWidth > 700 ? 380 : 300;
+      scrollRef.current.scrollBy({ left: direction === "left" ? -w : w, behavior: "smooth" });
     }
   };
 
@@ -401,39 +402,7 @@ const ArtisticGalleryRow = ({ event }) => {
         }}
       >
         {showLeftArrow && (
-          <button
-            onClick={() => scroll("left")}
-            style={{
-              position: "absolute",
-              left: "0px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              width: "48px",
-              height: "48px",
-              borderRadius: "50%",
-              background: `linear-gradient(135deg, ${event.color1}, ${event.color2})`,
-              border: "none",
-              cursor: "url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer",
-              fontSize: "28px",
-              color: "white",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              zIndex: 20,
-              boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
-              transition: "all 0.3s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-50%) scale(1.1)";
-              e.currentTarget.style.boxShadow = "0 6px 25px rgba(0,0,0,0.3)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(-50%) scale(1)";
-              e.currentTarget.style.boxShadow = "0 4px 15px rgba(0,0,0,0.2)";
-            }}
-          >
-            ‹
-          </button>
+          <button onClick={() => scroll("left")} aria-label="Scroll left" style={{ position: "absolute", left: 8, top: "50%", transform: "translateY(-50%)", width: 44, height: 44, borderRadius: "50%", background: `linear-gradient(135deg, ${event.color1}, ${event.color2})`, border: "none", fontSize: "22px", color: "white", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 20, boxShadow: "0 4px 15px rgba(0,0,0,0.2)" }}>‹</button>
         )}
 
         <div
@@ -461,40 +430,8 @@ const ArtisticGalleryRow = ({ event }) => {
           ))}
         </div>
 
-        {showRightArrow && images.length > 4 && (
-          <button
-            onClick={() => scroll("right")}
-            style={{
-              position: "absolute",
-              right: "0px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              width: "48px",
-              height: "48px",
-              borderRadius: "50%",
-              background: `linear-gradient(135deg, ${event.color1}, ${event.color2})`,
-              border: "none",
-              cursor: "url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer",
-              fontSize: "28px",
-              color: "white",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              zIndex: 20,
-              boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
-              transition: "all 0.3s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-50%) scale(1.1)";
-              e.currentTarget.style.boxShadow = "0 6px 25px rgba(0,0,0,0.3)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(-50%) scale(1)";
-              e.currentTarget.style.boxShadow = "0 4px 15px rgba(0,0,0,0.2)";
-            }}
-          >
-            ›
-          </button>
+        {showRightArrow && (
+          <button onClick={() => scroll("right")} aria-label="Scroll right" style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", width: 44, height: 44, borderRadius: "50%", background: `linear-gradient(135deg, ${event.color1}, ${event.color2})`, border: "none", fontSize: "22px", color: "white", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 20, boxShadow: "0 4px 15px rgba(0,0,0,0.2)" }}>›</button>
         )}
       </div>
     </section>
@@ -503,16 +440,23 @@ const ArtisticGalleryRow = ({ event }) => {
 
 // Main Gallery Page
 export default function GalleryPage() {
+  const bgParticles = React.useMemo(() => Array.from({ length: 24 }).map(() => ({
+    top: Math.random() * 100,
+    left: Math.random() * 100,
+    size: 2 + Math.random() * 4,
+    hue: 320 + Math.random() * 40,
+    dur: 6 + Math.random() * 8,
+    delay: Math.random() * 6,
+  })), []);
   return (
     <div
       style={{
         position: "relative",
         overflowX: "hidden",
-        background: "linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)",
+        background: "var(--soft-cream)",
         minHeight: "100vh",
       }}
     >
-      {/* Animated floating particles background */}
       <Navbar />
       <div
         style={{
@@ -525,21 +469,21 @@ export default function GalleryPage() {
           zIndex: 0,
           overflow: "hidden",
         }}
+        aria-hidden="true"
       >
-        {Array.from({ length: 100 }).map((_, i) => (
+        {bgParticles.map((p, i) => (
           <div
             key={i}
             style={{
               position: "absolute",
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${2 + Math.random() * 6}px`,
-              height: `${2 + Math.random() * 6}px`,
-              background: `hsla(${200 + Math.random() * 160}, 80%, 65%, ${0.3 + Math.random() * 0.5})`,
+              top: `${p.top}%`,
+              left: `${p.left}%`,
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+              background: `hsla(${p.hue}, 75%, 65%, 0.5)`,
               borderRadius: "50%",
-              animation: `float ${5 + Math.random() * 10}s linear infinite`,
-              animationDelay: `${Math.random() * 10}s`,
-              filter: "blur(1px)",
+              animation: `float ${p.dur}s linear infinite`,
+              animationDelay: `${p.delay}s`,
             }}
           />
         ))}
