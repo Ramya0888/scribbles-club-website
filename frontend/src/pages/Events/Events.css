@@ -302,32 +302,25 @@ margin-bottom: 6px;
 font-family: "Segoe Script", "Comic Sans MS", cursive;
 }
 
-/* Arch-shaped glitter title */
 .thooriga-arch {
-display: flex;
-justify-content: center;
-gap: 6px;
-margin: 20px 0 10px;
-font-size: clamp(2.8rem, 6vw, 5rem);
-font-family: "Comic Sans MS", "Segoe Script", cursive;
-letter-spacing: 3px;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin: 20px 0 10px;
+  font-size: clamp(2rem, 6vw, 4.2rem);
+  font-family: 'Pangolin', cursive;
+  letter-spacing: 1px;
+  flex-wrap: wrap;
 }
-
-/* Avoid blur, make text crisp & dark pink */
 .thooriga-arch span {
-display: inline-block;
-transform: translateY(calc(-18px * sin(var(--i))));
-background: linear-gradient(120deg, #ff6aa2, #ff9ecf, #ffd1e8);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-
-text-shadow:
-  0 0 2px rgba(255, 105, 180, 0.6),
-  0 0 6px rgba(255, 105, 180, 0.5),
-  0 0 10px rgba(255, 170, 200, 0.4);
-
-animation: sparkle 2.5s ease-in-out infinite alternate;
-filter: none;              /* removes blur */
+  display: inline-block;
+  color: var(--warm-pink);
+  text-shadow: 0 2px 10px rgba(243,158,182,0.35);
+  animation: waveFloat 2.8s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.08s);
+}
+@supports (transform: translateY(calc(1px * sin(0)))) {
+  .thooriga-arch span { transform: translateY(calc(-10px * sin(var(--i) * 0.6))); }
 }
 
 /* Slight glow animation */
@@ -387,27 +380,7 @@ min-height: 100vh;
 
 
 
-.thooriga-arch {
-display: flex;
-justify-content: center;
-gap: 6px;
-margin: 40px 0 20px;
-font-size: 5rem;
-font-weight: 900;
-letter-spacing: 3px;
-}
 
-.thooriga-arch span {
-color: #ff4f8b; /* darker pink */
-text-shadow:
-  0 0 6px rgba(255, 79, 139, 0.6),
-  0 0 12px rgba(255, 174, 200, 0.9),
-  0 0 20px rgba(255, 255, 255, 0.8);
-animation: waveFloat 3s ease-in-out infinite;
-animation-delay: calc(var(--i) * 0.12s);
-display: inline-block;
-transform-origin: center;
-}
 
 
 

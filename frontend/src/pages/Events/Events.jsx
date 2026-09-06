@@ -156,12 +156,9 @@ const Events = () => {
         
         
         <p className="scribbles-presents">Our Signature Event</p>
-
-        <h1 className="thooriga-arch">
-          {"Thooriga’26".split("").map((ch, i) => (
-            <span key={i} style={{ "--i": i }}>
-              {ch}
-            </span>
+        <h1 className="thooriga-arch" aria-label="Thooriga 26">
+          {"Thooriga'26".split("").map((ch, i) => (
+            <span key={i} style={{ "--i": i }}>{ch}</span>
           ))}
         </h1>
 
