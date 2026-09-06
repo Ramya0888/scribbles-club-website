@@ -52,7 +52,6 @@ export default function Contact() {
   return (
     <div className="contact-page page" style={{ position: "relative", overflow: "hidden"}}>
       <PastelRain count={28} variant="contact" />
-      {/* All site navigation lives in the shared navbar */}
       <Navbar />
       <div className="contact-title">
   <h2 className="curly-title">Contact Us</h2>

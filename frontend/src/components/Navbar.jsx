@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 
 function FlipText({ text }) {
   return (
@@ -60,6 +61,7 @@ export default function Navbar({ onAboutClick }) {
   const navRef = useRef(null);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   const isActive = (path) => pathname === path;
 
@@ -118,12 +120,22 @@ export default function Navbar({ onAboutClick }) {
             <Link to="/" onClick={closeMenu} className={isActive('/') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Home" /></Link>
             <Link to="/events" onClick={closeMenu} className={isActive('/events') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Events" /></Link>
             <Link to="/gallery" onClick={closeMenu} className={isActive('/gallery') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Gallery" /></Link>
+            <Link to="/blog" onClick={closeMenu} className={isActive('/blog') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Blog" /></Link>
             <Link to="/video" onClick={closeMenu} className={isActive('/video') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Intro Video" /></Link>
             <Link to="/testimonials" onClick={closeMenu} className={isActive('/testimonials') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Testimonials" /></Link>
             <Link to="/newsletter" onClick={closeMenu} className={isActive('/newsletter') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Newsletter" /></Link>
             <Link to="/contact" onClick={closeMenu} className={isActive('/contact') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Contact Us" /></Link>
             <button className="navbar-link-btn" onClick={handleAbout}><FlipText text="About Us" /></button>
             <button className="navbar-link-btn navbar-join" onClick={handleJoin}><FlipText text="Join" /></button>
+            <button
+              className="theme-toggle"
+              onClick={toggleTheme}
+              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+              title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+            >
+              <span>{theme === 'light' ? '🌙' : '☀️'}</span>
+              <span>{theme === 'light' ? 'Dark' : 'Light'}</span>
+            </button>
           </div>
         </div>
       </nav>

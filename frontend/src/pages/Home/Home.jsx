@@ -120,7 +120,7 @@ function FeaturedSlider() {
         </div>
       </div>
       <div className="slider">
-        <div className="slide">
+        <div className="slide image-card">
           <div className="slide-image">
             <img src={current.image} alt={`${current.title} by ${current.artist}`} loading="lazy" />
             <div className="badge badge-overlay">{current.tag}</div>
@@ -155,7 +155,7 @@ function AboutSection() {
         </p>
         <div style={{ marginTop: '2rem', display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <button onClick={handleMeetTeam} className="btn primary">Meet Our Team</button>
-          <button onClick={handleStoryClick} className="btn ghost">The Scribbles Story</button>
+          <button onClick={handleStoryClick} className="btn ghost story-btn">The Scribbles Story</button>
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@
   position: fixed;
   inset: 0;
   pointer-events: none;
+  z-index: 0;
   overflow: hidden;
 }
 .pastel-rain-layer, .contact-pastel-rain-layer { z-index: 1; }

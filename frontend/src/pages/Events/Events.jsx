@@ -103,8 +103,6 @@ const Events = () => {
       style={{ position: "relative", overflow: "hidden" }}
     >
       <PastelRain count={28} variant="contact" />
-
-      {/* All site navigation lives in the shared navbar */}
       <Navbar />
 
       {/* Hero Section */}

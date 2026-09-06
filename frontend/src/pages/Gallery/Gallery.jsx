@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
+import { useTheme } from '../../context/ThemeContext';
 
 // Workshop events data with vibrant colors
 const workshopEvents = [
@@ -47,12 +48,18 @@ const workshopEvents = [
 
 // Image Card Component with 3D effect
 const ImageCard = ({ src, alt, index, gradient, color1, color2 }) => {
+  const { theme } = useTheme();
   const [isLoaded, setIsLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [imgError, setImgError] = useState(false);
 
+  const cardBackground = theme === 'dark'
+    ? 'var(--card-dark-image-bg)'
+    : `linear-gradient(135deg, ${color1}20, ${color2}20)`;
+
   return (
     <div
+      className="image-card"
       style={{
         position: "relative",
         flex: "0 0 auto",
@@ -60,7 +67,7 @@ const ImageCard = ({ src, alt, index, gradient, color1, color2 }) => {
         margin: "0 12px",
         borderRadius: "24px",
         overflow: "hidden",
-        background: `linear-gradient(135deg, ${color1}20, ${color2}20)`,
+        background: cardBackground,
         boxShadow: isHovered 
           ? `0 30px 50px -15px rgba(0,0,0,0.3), 0 0 0 3px ${color1}80, 0 0 20px ${color2}` 
           : "0 15px 35px -10px rgba(0,0,0,0.2)",
@@ -152,7 +159,7 @@ const ImageCard = ({ src, alt, index, gradient, color1, color2 }) => {
             }}
           >
             <span style={{ fontSize: "48px", marginBottom: "12px", opacity: 0.5 }}>🎨</span>
-            <span style={{ fontFamily: "system-ui", fontWeight: 500 }}>Image coming soon</span>
+            <span style={{ fontFamily: "'Poppins', system-ui, sans-serif", fontWeight: 500, color: "var(--text-muted)" }}>Image coming soon</span>
           </div>
         )}
         
@@ -276,7 +283,7 @@ const ArtisticGalleryRow = ({ event }) => {
           borderRadius: "50%",
           animation: "spin 1s linear infinite"
         }} />
-        <p style={{ marginTop: "24px", color: "#666", fontFamily: "'Poppins', system-ui" }}>
+        <p style={{ marginTop: "24px", color: "var(--text-muted)", fontFamily: "'Poppins', system-ui" }}>
           Loading {event.title}...
         </p>
       </section>
@@ -339,36 +346,18 @@ const ArtisticGalleryRow = ({ event }) => {
               fontSize: "13px",
               letterSpacing: "4px",
               textTransform: "uppercase",
-              background: event.gradient,
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
+              color: "var(--text-muted)",
               fontWeight: 700,
             }}
           >
             Exclusive Workshop
           </span>
         </div>
-        
-        <h2
-          style={{
-            fontFamily: "'Playfair Display', Georgia, serif",
-            fontSize: "clamp(42px, 6vw, 64px)",
-            fontWeight: 700,
-            margin: "0 0 16px 0",
-            background: event.gradient,
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          {event.title}
-        </h2>
-        
         <p
           style={{
             fontFamily: "'Poppins', system-ui, sans-serif",
             fontSize: "17px",
-            color: "#555",
+            color: "var(--text-muted)",
             maxWidth: "600px",
             margin: "0 auto",
             lineHeight: 1.6,
@@ -453,9 +442,9 @@ export default function GalleryPage() {
       style={{
         position: "relative",
         overflowX: "hidden",
-        background: "var(--soft-cream)",
         minHeight: "100vh",
       }}
+      className="gallery-page"
     >
       <Navbar />
       <div
@@ -487,8 +476,6 @@ export default function GalleryPage() {
             }}
           />
         ))}
-        
-        {/* Animated gradient orbs */}
         <div
           style={{
             position: "absolute",
@@ -526,12 +513,53 @@ export default function GalleryPage() {
           }}
         />
       </div>
-
-      <header style={{ textAlign: "center", padding: "12px 20px 32px", position: "relative", zIndex: 2 }}>
-
-        <p style={{ fontFamily: "'Poppins', system-ui, sans-serif", fontSize: "11px", letterSpacing: "5px", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "12px", fontWeight: 600 }}>Discover Our Creative Universe</p>
-        <h1 style={{ fontFamily: "'Pangolin', cursive", fontSize: "clamp(36px, 8vw, 64px)", fontWeight: 800, margin: 0, color: "var(--text-main)", letterSpacing: "-0.02em" }}>Art Gallery</h1>
-        <p style={{ fontFamily: "'Poppins', system-ui, sans-serif", fontSize: "16px", color: "var(--text-muted)", marginTop: "10px", maxWidth: "520px", marginLeft: "auto", marginRight: "auto", lineHeight: 1.6 }}>A journey through creativity, craftsmanship, and artistic expression</p>
+      <header
+        style={{
+          textAlign: "center",
+          padding: "120px 20px 60px",
+          position: "relative",
+          zIndex: 2,
+        }}
+      >
+        <p
+          style={{
+            fontFamily: "'Poppins', system-ui, sans-serif",
+            fontSize: "12px",
+            letterSpacing: "6px",
+            textTransform: "uppercase",
+            color: "var(--text-muted)",
+            marginBottom: "20px",
+            fontWeight: 500,
+          }}
+        >
+          Discover Our Creative Universe
+        </p>
+        <h1
+          style={{
+            fontFamily: "'Pangolin', cursive, system-ui",
+            fontSize: "clamp(42px, 8vw, 72px)",
+            fontWeight: 700,
+            margin: 0,
+            color: "var(--text-main)",
+            letterSpacing: "-0.02em",
+          }}
+        >
+          Art Gallery
+        </h1>
+        <p
+          style={{
+            fontFamily: "'Poppins', system-ui, sans-serif",
+            fontSize: "18px",
+            color: "var(--text-muted)",
+            marginTop: "16px",
+            maxWidth: "500px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            lineHeight: 1.6,
+          }}
+        >
+          A journey through creativity, craftsmanship, and artistic expression
+        </p>
         
         {/* Decorative divider */}
         <div
@@ -556,77 +584,6 @@ export default function GalleryPage() {
       </div>
 
       <Footer />
-
-      {/* Global Styles */}
-      <style>{`
-        @keyframes float {
-          0% {
-            transform: translateY(0px) translateX(0px);
-            opacity: 0;
-          }
-          10% {
-            opacity: 0.5;
-          }
-          90% {
-            opacity: 0.5;
-          }
-          100% {
-            transform: translateY(-100vh) translateX(50px);
-            opacity: 0;
-          }
-        }
-        
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-        
-        @keyframes pulse {
-          0%, 100% {
-            transform: scale(1);
-            opacity: 0.3;
-          }
-          50% {
-            transform: scale(1.1);
-            opacity: 0.5;
-          }
-        }
-        
-        @keyframes shimmer {
-          0% {
-            background-position: -1000px 0;
-          }
-          100% {
-            background-position: 1000px 0;
-          }
-        }
-        
-        .gallery-scroll::-webkit-scrollbar {
-          height: 6px;
-        }
-        
-        .gallery-scroll::-webkit-scrollbar-track {
-          background: rgba(255,255,255,0.1);
-          border-radius: 10px;
-        }
-        
-        .gallery-scroll::-webkit-scrollbar-thumb {
-          background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
-          border-radius: 10px;
-        }
-        
-        .gallery-scroll::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(90deg, #764ba2, #f5576c, #00f2fe);
-        }
-        
-        * {
-          box-sizing: border-box;
-        }
-        
-        /* Smooth scroll behavior */
-        html {
-          scroll-behavior: smooth;
-        }
-      `}</style>
     </div>
   );
 }

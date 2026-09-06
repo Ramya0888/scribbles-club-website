@@ -2,6 +2,7 @@
   padding: var(--page-pt) 20px 48px;
   max-width: 1100px;
   margin: auto;
+  color: var(--text-main);
 }
   
   .contact-page h1 {
@@ -13,7 +14,7 @@
   .contact-page p {
     text-align: center;
     margin-bottom: 40px;
-    color: #555;
+    color: var(--text-muted);
   }
   
   /* Grid layout */
@@ -24,10 +25,11 @@
   }
   
   .contact-card {
-    background: #fff;
+    background: var(--surface-main);
+    border: 1px solid var(--border-soft);
     padding: 30px;
     border-radius: 14px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--card-shadow);
   }
   
   /* Form */
@@ -37,20 +39,24 @@
     padding: 12px 14px;
     margin-bottom: 16px;
     border-radius: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-soft);
+    background: var(--surface-soft);
+    color: var(--text-main);
     font-size: 1rem;
   }
   
   .contact-card input:focus,
   .contact-card textarea:focus {
     outline: none;
-    border-color: #a78bfa;
+    border-color: var(--warm-pink);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--warm-pink) 20%, transparent);
   }
   
   .contact-card button {
     width: 100%;
     padding: 12px;
-    background: linear-gradient(135deg, #c4b5fd, #fbcfe8);
+    background: linear-gradient(135deg, var(--warm-pink), var(--pastel-green));
+    color: #fff;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
@@ -64,7 +70,7 @@
   
   .success-text {
     margin-top: 10px;
-    color: green;
+    color: var(--pastel-green);
     text-align: center;
   }
   
@@ -118,7 +124,7 @@
       padding-bottom: 14px;
       font-size: 2.8rem;          /* Bigger title */
       font-weight: 800;          /* Bold & premium */
-      color: #000;               /* Black title text */
+      color: var(--text-main);
       letter-spacing: 1px;
     }
     

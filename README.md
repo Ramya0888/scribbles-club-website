@@ -13,11 +13,15 @@ Official website for **Scribbles Art Club of CEG**, Anna University — a creati
 | Email | EmailJS |
 | Hosting | Vercel |
 | Icons | Lucide React, React Icons |
-
+| Backend |  Flask (python) |
+| Database | Neon(psql) |
 ## Project Structure
 
 ```
 scribbles-club-website/
+|__ backend/
+|   |--.env                       # Connect with Neon (cloud db)
+|   |-- app.py                    # Framework for API calls
 ├── frontend/
 │   ├── public/
 │   │   ├── logo.png              # Club logo
@@ -30,6 +34,7 @@ scribbles-club-website/
 │   │   │   ├── Footer.jsx        # Site footer with tech team credits
 │   │   │   └── EventCard.jsx     # Event card for lists & sliders
 │   │   ├── pages/
+|   |   |   |---Blogs             # create posts what you did in scribbles 
 │   │   │   ├── Home/             # Landing page (hero, about section, team, timeline)
 │   │   │   ├── Gallery/          # Workshop image galleries
 │   │   │   ├── Events/           # Thooriga & Techofes events + workshops
@@ -57,11 +62,12 @@ scribbles-club-website/
 | `/newsletter` | Newsletter | Email signup form |
 | `/testimonials` | Testimonials | Member & alumni quotes |
 | `/video` | Intro Video | Club cinematic video embed |
+| `/blog' |blog | Create posts | Filter the posts  |
 
 ## Getting Started
 
 ### Prerequisites
-
+- flask
 - Node.js v18+
 - npm
 
@@ -70,14 +76,18 @@ scribbles-club-website/
 ```bash
 cd frontend
 npm install
+
+cd backend
+pip install flask
 ```
 
 ### Development
 
 ```bash
 npm run dev
-```
-
+``````
+python app.py
+''''''
 Opens at `http://localhost:5173`.
 
 ### Production Build

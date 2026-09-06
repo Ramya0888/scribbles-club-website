@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar';
 
 export default function VideoPage() {
   return (
-    <div className="page">
+    <div className="video-page">
       <Navbar />
       <header className="section-header center">
         <p className="eyebrow">Club Vision & Vibe</p>

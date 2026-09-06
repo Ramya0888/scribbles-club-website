@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
+import { useTheme } from "../../context/ThemeContext";
 
 const officeBearers = [
   { name: "Sowmya", role: "Past President", image: "/team/sowmya.jpeg", quote: "Scribbles gave me a canvas for everything I couldn't say in words. Four years later, the club still feels like my second home." },
@@ -29,7 +30,7 @@ const webTeam = [
   { name: "Sathish J", role: "Web Development Team", image: "/team/sath.webp", quote: "Deploy day felt like gallery night: nerve-racking, then beautiful when it finally stuck." },
   { name: "Gurumoorthi R", role: "Web Development Team", image: "", quote: "I wrote a lot of code and went to more workshops, and I wouldn't have it any other way." },
   { name: "Subi Pinsha P", role: "Web Development Team", image: "", quote: "Pairing with the design team showed me what a pixel of patience can do for a whole layout." },
-{ name: "Deepak S", role: "Web Development Team", image: "", quote: "The best part of this club isn't the dashboard — it's the people you get to build it for." },
+  { name: "Deepak S", role: "Web Development Team", image: "", quote: "The best part of this club isn't the dashboard — it's the people you get to build it for." },
 ];
 
 function TestimonialsRow({ title, items, scrollerId }) {
@@ -38,6 +39,11 @@ function TestimonialsRow({ title, items, scrollerId }) {
   const [canLeft, setCanLeft] = React.useState(false);
   const [canRight, setCanRight] = React.useState(true);
   const drag = React.useRef({ down: false, moved: false, x: 0, start: 0 });
+  const { theme } = useTheme();
+  const openQuoteBg = theme === 'dark' ? 'rgba(255,255,255,0.08)' : '#f9fafb';
+  const arrowBg = theme === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.95)';
+  const arrowBorder = theme === 'dark' ? '1px solid rgba(255,255,255,0.12)' : '2px solid rgba(0,0,0,0.1)';
+  const arrowColor = theme === 'dark' ? '#f3f3f3' : '#333';
   const check = React.useCallback(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -71,8 +77,11 @@ function TestimonialsRow({ title, items, scrollerId }) {
           style={{ display: "flex", gap: "1rem", overflowX: "auto", scrollBehavior: drag.current.moved ? "auto" : "smooth", paddingBottom: "1rem", scrollSnapType: "x mandatory", scrollPaddingInline: 12 }}>
           {items.map((m, i) => (
             <div key={`${scrollerId}-${i}`} style={{ flex: "0 0 auto", scrollSnapAlign: "start" }}>
-              <div role="button" tabIndex={0} aria-expanded={openIndex === i} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpenIndex(i === openIndex ? null : i); } }} onClick={() => { if (drag.current.moved) return; setOpenIndex(i === openIndex ? null : i); }}
-                className="card" style={{ width: 280, borderRadius: 16, boxShadow: "var(--card-shadow)", background: "#fff" }}>
+              <div
+                role="button" tabIndex={0} aria-expanded={openIndex === i} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpenIndex(i === openIndex ? null : i); } }} onClick={() => { if (drag.current.moved) return; setOpenIndex(i === openIndex ? null : i); }}
+                className="image-card testimonials-card"
+                style={{ width: 300, borderRadius: 16, boxShadow: "var(--card-shadow)", cursor: "pointer" }}
+              >
                 <div style={{ padding: "0.75rem 1rem" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                     <div
@@ -101,16 +110,28 @@ function TestimonialsRow({ title, items, scrollerId }) {
                     </div>
                   </div>
 
-                    {openIndex === i && (
-                    <div className="muted" style={{ marginTop: "0.75rem", fontSize: "0.95rem", lineHeight: 1.65, background: "#f9fafb", borderRadius: 12, padding: "0.75rem 0.9rem" }}>{m.quote}</div>
+                  {openIndex === i && (
+                    <div
+                      className="muted"
+                      style={{
+                        marginTop: "0.75rem",
+                        fontSize: "0.98rem",
+                        lineHeight: 1.7,
+                        background: openQuoteBg,
+                        borderRadius: 12,
+                        padding: "0.75rem 0.9rem",
+                      }}
+                    >
+                      {m.quote}
+                    </div>
                   )}
                 </div>
               </div>
             </div>
           ))}
         </div>
-        <button className="scroll-arrow" aria-label="Scroll left" disabled={!canLeft} onClick={() => scrollerRef.current?.scrollBy({ left: -300, behavior: "smooth" })} style={{ position: "absolute", left: 8, top: "50%", transform: "translateY(-50%)", width: 42, height: 42, borderRadius: "50%", border: "2px solid rgba(0,0,0,0.1)", background: "rgba(255,255,255,0.95)", backdropFilter: "blur(10px)", fontSize: 22, color: "#333", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.15)" }}>‹</button>
-        <button className="scroll-arrow" aria-label="Scroll right" disabled={!canRight} onClick={() => scrollerRef.current?.scrollBy({ left: 300, behavior: "smooth" })} style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", width: 42, height: 42, borderRadius: "50%", border: "2px solid rgba(0,0,0,0.1)", background: "rgba(255,255,255,0.95)", backdropFilter: "blur(10px)", fontSize: 22, color: "#333", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.15)" }}>›</button>
+        <button className="scroll-arrow" aria-label="Scroll left" disabled={!canLeft} onClick={() => scrollerRef.current?.scrollBy({ left: -300, behavior: "smooth" })} style={{ position: "absolute", left: 8, top: "50%", transform: "translateY(-50%)", width: 42, height: 42, borderRadius: "50%", border: arrowBorder, background: arrowBg, backdropFilter: "blur(10px)", fontSize: 22, color: arrowColor, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.15)" }}>‹</button>
+        <button className="scroll-arrow" aria-label="Scroll right" disabled={!canRight} onClick={() => scrollerRef.current?.scrollBy({ left: 300, behavior: "smooth" })} style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", width: 42, height: 42, borderRadius: "50%", border: arrowBorder, background: arrowBg, backdropFilter: "blur(10px)", fontSize: 22, color: arrowColor, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.15)" }}>›</button>
       </div>
     </section>
   );
@@ -121,7 +142,7 @@ export default function TestimonialsPage() {
     left: Math.random() * 100, duration: 9 + Math.random() * 8, delay: Math.random() * 5, opacity: 0.3 + Math.random() * 0.4, size: 4 + Math.random() * 6, hue: Math.floor(180 + Math.random() * 180),
   })), []);
   return (
-    <div className="page" style={{ position: "relative", overflow: "hidden" }}>
+    <div className="page testimonials-page" style={{ position: "relative", overflow: "hidden" }}>
       <div className="pastel-rain-layer" aria-hidden="true">
         {drops.map((d, i) => (
           <span key={i} className="pastel-drop" style={{ left: `${d.left}%`, animationDuration: `${d.duration}s`, animationDelay: `${d.delay}s`, opacity: d.opacity, width: `${d.size}px`, height: `${d.size}px`, "--hue": d.hue }} />
@@ -139,7 +160,6 @@ export default function TestimonialsPage() {
           Click a card to read a short note about their journey with Scribbles.
         </p>
       </section>
-      {/* Short Video Snippets */}
       <section className="section">
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <div style={{ marginBottom: "1rem" }}>
@@ -150,7 +170,7 @@ export default function TestimonialsPage() {
             className="video-wrapper"
             style={{
               position: "relative",
-              paddingBottom: "56.25%", // 16:9
+              paddingBottom: "56.25%",
               height: 0,
               overflow: "hidden",
               borderRadius: "var(--radius-lg)",

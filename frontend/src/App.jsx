@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import Splash from './components/Splash';
 import Cursor from './components/Cursor';
 import ErrorBoundary from './components/ErrorBoundary';
+import ThemeBackground from './components/ThemeBackground';
 import "./styles/pastelRain.css";
 
 const HomePage = lazy(() => import('./pages/Home/Home.jsx'));
@@ -13,6 +14,7 @@ const TestimonialsPage = lazy(() => import('./pages/Testimonials/Testimonials.js
 const VideoPage = lazy(() => import('./pages/Video/Video.jsx'));
 const Contact = lazy(() => import("./pages/Contact/Contact"));
 const Events = lazy(() => import("./pages/Events/Events"));
+const Blog = lazy(() => import("./pages/Blog/Blog"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function PageLoader() {
@@ -45,6 +47,7 @@ function AnimatedRoutes() {
             <Route path="/video" element={<VideoPage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/blog" element={<Blog />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
@@ -57,6 +60,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ErrorBoundary>
+        <ThemeBackground />
         <Cursor />
         <Splash />
         <AnimatedRoutes />
