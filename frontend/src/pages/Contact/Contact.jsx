@@ -58,48 +58,20 @@ export default function Contact() {
 
       <p>Reach out to Scribbles Art Club for collaborations or inquiries.</p>
 
-      {/* Contact Form */}
       <div className="contact-grid">
-        <form className="contact-card" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            value={formData.message}
-            onChange={handleChange}
-            rows="6"
-            required
-          />
-          <button type="submit">Send Message</button>
-          {success && <p className="success-text">Message sent successfully!</p>}
+        <form className="contact-card" onSubmit={handleSubmit} noValidate>
+          <label htmlFor="c-name" className="tiny muted" style={{ fontWeight: 600 }}>Name</label>
+          <input id="c-name" type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} required autoComplete="name" />
+          <label htmlFor="c-email" className="tiny muted" style={{ fontWeight: 600 }}>Email</label>
+          <input id="c-email" type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleChange} required autoComplete="email" />
+          <label htmlFor="c-msg" className="tiny muted" style={{ fontWeight: 600 }}>Message</label>
+          <textarea id="c-msg" name="message" placeholder="Your Message" value={formData.message} onChange={handleChange} rows="6" required />
+          <button type="submit" disabled={sending}>{sending ? "Sending…" : "Send Message"}</button>
+          {success && <p className="success-text" role="status">Message sent successfully!</p>}
+          {error && <p className="success-text" role="alert" style={{ color: "#b42318" }}>{error}</p>}
         </form>
-
-        {/* Google Map */}
-        <div className="contact-card">
-          <iframe
-            title="Scribbles Club Location"
-            src="https://www.google.com/maps?q=CEG+Anna+University&output=embed"
-            width="100%"
-            height="300"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-          ></iframe>
+        <div className="contact-card" style={{ padding: 0, overflow: "hidden" }}>
+          <iframe title="Scribbles Club Location — CEG Anna University" src="https://www.google.com/maps?q=CEG+Anna+University&output=embed" width="100%" height="360" style={{ border: 0, display: "block" }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
 
@@ -143,14 +115,7 @@ export default function Contact() {
           >
             <FaYoutube />
           </a>
-          <a
-  href="https://mail.google.com/mail/?view=cm&fs=1&to=scribbles.ceg@gmail.com&su=Hello%20Scribbles&body=Hi%20Team,"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Email"
->
-  <FaEnvelope />
-</a>
+          <a href="mailto:scribbles.ceg@gmail.com?subject=Hello%20Scribbles" aria-label="Email"><FaEnvelope /></a>
 
         </div>
       </div>

@@ -1,5 +1,4 @@
-import React from "react";
-import CountdownTimer from "./CountdownTimer";
+import React, { useMemo } from "react";
 import PastEvents from "./PastEvents";
 import UpcomingEvents from "./UpcomingEvents";
 import Navbar from "../../components/Navbar";
@@ -7,7 +6,14 @@ import "./Events.css";
 import "../../styles/ContactPastelRain.css";
 
 const Events = () => {
-  const dropCount = 50;
+  const drops = useMemo(() => Array.from({ length: 28 }).map(() => ({
+    left: Math.random() * 100,
+    duration: 9 + Math.random() * 8,
+    delay: Math.random() * 5,
+    opacity: 0.3 + Math.random() * 0.4,
+    size: 4 + Math.random() * 6,
+    hue: Math.floor(180 + Math.random() * 180),
+  })), []);
   const thoorigaEvents = [
     {
       title: "Speed Art Battle",
@@ -104,22 +110,9 @@ const Events = () => {
       className="events-page"
       style={{ position: "relative", overflow: "hidden" }}
     >
-      {/* Pastel Rain Layer */}
-      <div className="contact-pastel-rain-layer">
-        {Array.from({ length: dropCount }).map((_, i) => (
-          <span
-            key={i}
-            className="contact-pastel-drop"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDuration: `${9 + Math.random() * 8}s`,
-              animationDelay: `${Math.random() * 5}s`,
-              opacity: 0.3 + Math.random() * 0.5,
-              width: `${4 + Math.random() * 6}px`,
-              height: `${4 + Math.random() * 6}px`,
-              "--hue": Math.floor(180 + Math.random() * 360),
-            }}
-          />
+      <div className="contact-pastel-rain-layer" aria-hidden="true">
+        {drops.map((d, i) => (
+          <span key={i} className="contact-pastel-drop" style={{ left: `${d.left}%`, animationDuration: `${d.duration}s`, animationDelay: `${d.delay}s`, opacity: d.opacity, width: `${d.size}px`, height: `${d.size}px`, "--hue": d.hue }} />
         ))}
       </div>
 
