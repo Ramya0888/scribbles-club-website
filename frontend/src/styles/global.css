@@ -11,7 +11,10 @@
   --radius-lg: 18px;
   --radius-md: 12px;
   --radius-sm: 8px;
+  --nav-h: 68px;
 }
+html { scroll-padding-top: calc(var(--nav-h) + 12px); scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 * {
   box-sizing: border-box;
@@ -45,13 +48,15 @@ textarea {
   cursor: text;
 }
 
-/* Home background override (set by component) */
 .home-bg {
   background-image: url('/backgrnd-srcribb.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll;
+}
+@supports (background-attachment: fixed) and (not (-webkit-touch-callout: none)) {
+  .home-bg { background-attachment: fixed; }
 }
 
 h1, h2, h3, .display-font, .hero h1, .section-title {
