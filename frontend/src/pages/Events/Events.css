@@ -323,21 +323,7 @@ font-family: "Segoe Script", "Comic Sans MS", cursive;
   .thooriga-arch span { transform: translateY(calc(-10px * sin(var(--i) * 0.6))); }
 }
 
-/* Slight glow animation */
-@keyframes sparkle {
-0% {
-  text-shadow:
-    0 0 2px rgba(255, 105, 180, 0.6),
-    0 0 6px rgba(255, 105, 180, 0.5),
-    0 0 10px rgba(255, 170, 200, 0.4);
-}
-100% {
-  text-shadow:
-    0 0 4px rgba(255, 105, 180, 0.8),
-    0 0 10px rgba(255, 105, 180, 0.7),
-    0 0 18px rgba(255, 170, 200, 0.6);
-}
-}
+
 
 
 /* Tagline */
