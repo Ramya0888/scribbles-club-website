@@ -5,55 +5,7 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { officeBearers, deputyHeads, milestones } from '../../data/team';
 
-const _officeBearers = [
-  { name: 'Sowmya', role: 'President', dept: 'IT', image: '/team/sowmya.jpeg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Venkatraman', role: 'President', dept: 'Manufacturing', image: '/team/ven.jpeg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Lavanyalakshmi', role: 'Secretary', dept: 'IT', image: '/team/lav.jpeg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Ramkumar S', role: 'Treasurer', dept: 'Manufacturing', image: '/team/ram.JPG', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Mahima S', role: 'Events Team', dept: 'IT', image: '/team/mah.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Suren M', role: 'Events Team', dept: 'Mechanical', image: '/team/sur.jpeg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Sujith P', role: 'Design Team', dept: 'Manufacturing', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Shevaniga S', role: 'Design Team', dept: 'IT', image: '/team/she.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Naziya Kouser H', role: 'Marketing Team', dept: 'IT', image: '/team/naz.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Sandhiya S', role: 'Marketing Team', dept: 'ECE', image: '/team/san.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Reema', role: 'Social Media & Content', dept: 'Civil', image: '/team/ree.jpeg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Kanal Illamathi A S', role: 'Social Media & Content', dept: 'ECE', image: '/team/kan.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Veenasri', role: 'Social Media & Content', dept: 'ECE', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Barath V', role: 'Public & External Relations', dept: 'ECE', image: '/team/bar.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Preethi B', role: 'Logistics & Operations', dept: 'IT', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Dhevadharshini A', role: 'Logistics & Operations', dept: 'ECE', image: '/team/dhe.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Gurumoorthi R', role: 'Web & Tech Team', dept: 'CSE', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Subi Pinsha P', role: 'Web & Tech Team', dept: 'IT', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Sarashivasri S', role: 'Web & Tech Team', dept: 'CSE', image: '/team/sara.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Deepak S', role: 'Web & Tech Team', dept: 'CSE', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Shanmugapriya B', role: 'Creatives', dept: 'Material Science', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' }
-];
 
-const deputyHeads = [
-  { name: 'Sharan Saminathan', role: 'Creatives', dept: 'CSE', image: '/team/shar.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Roopa Varshni R', role: 'Creatives', dept: 'CSE', image: '/team/roop.png', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Abdullah S', role: 'PR & ER', dept: 'IT', image: '/team/abd.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Madhu Vidhyaa R', role: 'PR & ER', dept: 'Biomedical', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Sakthi Balaji M', role: 'Logistics', dept: '', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Lohitt Aswin V', role: 'Logistics', dept: '', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Dharshini E', role: 'Social Media', dept: '', image: '/team/dharsE.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Varshini Narayanan', role: 'Social Media', dept: '', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Sheeba Jacklin A', role: 'Social Media', dept: '', image: '', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Abirami', role: 'Web & Tech', dept: 'CSE', image: '/team/abi.webp', instagram: '', linkedin: 'https://www.linkedin.com/in/abirami-ramanathan-707521285/', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Hashim M', role: 'Web & Tech', dept: 'CSE', image: '/team/has.jpeg', instagram: '', linkedin: 'https://www.linkedin.com/in/hashim-m-160b96340/', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Ramya S', role: 'Web & Tech', dept: 'CSE', image: '/team/ramy.jpg', instagram: '', linkedin: 'https://www.linkedin.com/in/ramyalnkdn/', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Sathish J', role: 'Web & Tech', dept: 'IT', image: '/team/sath.webp', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Sadha Shree N', role: 'Marketing', dept: '', image: '/team/sad.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Devika S', role: 'Marketing', dept: '', image: '/team/dev.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Sandhiya', role: 'Design', dept: 'Media Science', image: '/team/sann.png', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Aadhisesha D', role: 'Design', dept: 'CSE', image: '/team/aad.png', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Madhumitha S', role: 'Design', dept: 'CSE', image: '/team/mad.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Sivapriya S', role: 'Events', dept: 'CSE', image: '/team/siv.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Poojana S', role: 'Events', dept: 'CSE', image: '/team/poo.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Rishitha K P', role: 'Events', dept: 'Geoinformatics', image: '/team/image.png', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Santoshi', role: 'Coordinator', dept: 'CSE', image: '/team/sant.jpg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { name: 'Yazhvendhan', role: 'Coordinator', dept: 'CSE', image: '/team/yaz.jpeg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' }
-];
 
 function TeamSection({ title, members, scrollerId }) {
   const scrollerRef = React.useRef(null);
@@ -209,69 +161,7 @@ function AboutSection() {
   );
 }
 
-// ===== THE SCRIBBLES STORY TIMELINE =====
-const milestones = [
-  { 
-    date: '14 OCT 2025', 
-    text: 'PENCIL SKETCH TUTORIALS - Learn the fundamentals of pencil sketching with professional artists.' 
-  },
-  { 
-    date: '20 OCT 2025', 
-    text: 'ART WITHOUT LIMITS - A creative workshop exploring art beyond traditional boundaries.' 
-  },
-  { 
-    date: '23 DEC 2025', 
-    text: 'ART UNPLUGGED - Disconnect from technology and reconnect with traditional art forms.' 
-  },
-  { 
-    date: '23-24 JAN 2026', 
-    text: 'FACE PAINTING - Two-day workshop on creative face painting techniques and designs.' 
-  },
-  { 
-    date: '23 JAN 2026', 
-    text: 'CHAOTIC CANVASS - Embrace the chaos and create spontaneous, expressive artworks.' 
-  },
-  { 
-    date: '12 FEB 2026', 
-    text: 'PENCIL SKETCH TUTORIAL - Advanced pencil sketching techniques for all skill levels.' 
-  },
-  { 
-    date: '20 FEB 2026', 
-    text: 'THOORIGA PRE EVENTS: Doodle Arts – Collective Canvass, Blindfold Guide Drawing Challenge, Colour Recall Challenge, Musical Sketch Challenge, No Hands Painting Challenge, Sketch and Guess Challenge.' 
-  },
-  { 
-    date: '21 FEB 2026', 
-    text: 'THOORIGA WORKSHOPS: Resin Keychain Workshop, Tote Bag Painting Workshop.' 
-  },
-  { 
-    date: '21 FEB 2026', 
-    text: 'THOORIGA EVENTS: Art Without Hands, Pass the Canvass, Mandala / Zentangle, Run and Draw, Mystery Box Craft, Sell the Scribble.' 
-  },
-  { 
-    date: '21 FEB 2026', 
-    text: 'THOORIGA SIGNATURE EVENTS: Paintball, Speed Art Battle - The ultimate creative competitions.' 
-  },
-  { 
-    date: '27 FEB 2026', 
-    text: 'TECHOFESS EVENTS: Brush Drop Beat Drop - Where art meets music and rhythm.' 
-  },
-  { 
-    date: '28 FEB 2026', 
-    text: 'TECHOFESS EVENTS: Art Mayhem - High-energy collaborative art challenges.' 
-  },
-  { 
-    date: '13 MAR 2026', 
-    text: 'TECHOFESS EVENTS: Acrylic Painting Workshop - Master acrylic painting techniques.' 
-  },
-  { 
-    date: '14 MAR 2026', 
-    text: 'TECHOFESS EVENTS: Resin Keychain Workshop - Create stunning resin accessories.' 
-  },
-  { 
-    date: '15 MAR 2026', 
-    text: 'TECHOFESS EVENTS: Clay Article Keyholder Workshop - Handcraft unique clay keyholders.' 
-  },
-];;
+
 
 function StorySection() {
   return (
