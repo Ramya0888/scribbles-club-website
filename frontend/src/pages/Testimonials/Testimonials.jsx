@@ -34,37 +34,45 @@ const webTeam = [
 
 function TestimonialsRow({ title, items, scrollerId }) {
   const [openIndex, setOpenIndex] = useState(null);
-
+  const scrollerRef = React.useRef(null);
+  const [canLeft, setCanLeft] = React.useState(false);
+  const [canRight, setCanRight] = React.useState(true);
+  const drag = React.useRef({ down: false, moved: false, x: 0, start: 0 });
+  const check = React.useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    setCanLeft(el.scrollLeft > 12);
+    setCanRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 12);
+  }, []);
+  React.useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    check();
+    el.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
+    return () => { el.removeEventListener("scroll", check); window.removeEventListener("resize", check); };
+  }, [check]);
+  const onDown = (e) => { drag.current = { down: true, moved: false, x: e.clientX ?? e.touches?.[0]?.clientX ?? 0, start: scrollerRef.current.scrollLeft }; };
+  const onMove = (e) => {
+    if (!drag.current.down) return;
+    const x = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
+    const dx = x - drag.current.x;
+    if (Math.abs(dx) > 6) drag.current.moved = true;
+    scrollerRef.current.scrollLeft = drag.current.start - dx;
+  };
+  const onUp = () => { setTimeout(() => { drag.current.down = false; }, 0); };
   return (
     <section className="section" style={{ marginTop: "2rem" }}>
       <div className="section-header">
-        <h3 style={{ fontSize: "1.8rem" }}>{title}</h3>
+        <h3 style={{ fontSize: "clamp(1.3rem, 3vw, 1.6rem)" }}>{title}</h3>
       </div>
-
       <div style={{ width: "100%", overflow: "hidden", position: "relative" }} id={scrollerId}>
-        <div
-          className="no-scrollbar"
-          style={{
-            display: "flex",
-            gap: "1rem",
-            overflowX: "auto",
-            scrollBehavior: "smooth",
-            paddingBottom: "1rem",
-          }}
-        >
+        <div ref={scrollerRef} className="no-scrollbar" onMouseDown={onDown} onMouseMove={onMove} onMouseUp={onUp} onMouseLeave={onUp} onTouchStart={onDown} onTouchMove={onMove} onTouchEnd={onUp}
+          style={{ display: "flex", gap: "1rem", overflowX: "auto", scrollBehavior: drag.current.moved ? "auto" : "smooth", paddingBottom: "1rem", scrollSnapType: "x mandatory", scrollPaddingInline: 12 }}>
           {items.map((m, i) => (
-            <div key={i} style={{ flex: "0 0 auto" }}>
-              <div
-                className="card"
-                onClick={() => setOpenIndex(i === openIndex ? null : i)}
-                style={{
-                  width: 300,
-                  borderRadius: 16,
-                  boxShadow: "var(--card-shadow)",
-                  background: "#fff",
-                  cursor: "url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer",
-                }}
-              >
+            <div key={`${scrollerId}-${i}`} style={{ flex: "0 0 auto", scrollSnapAlign: "start" }}>
+              <div role="button" tabIndex={0} aria-expanded={openIndex === i} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpenIndex(i === openIndex ? null : i); } }} onClick={() => { if (drag.current.moved) return; setOpenIndex(i === openIndex ? null : i); }}
+                className="card" style={{ width: 280, borderRadius: 16, boxShadow: "var(--card-shadow)", background: "#fff" }}>
                 <div style={{ padding: "0.75rem 1rem" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                     <div
@@ -93,107 +101,30 @@ function TestimonialsRow({ title, items, scrollerId }) {
                     </div>
                   </div>
 
-                  {openIndex === i && (
-                    <div
-                      className="muted"
-                      style={{
-                        marginTop: "0.75rem",
-                        fontSize: "0.98rem",
-                        lineHeight: 1.7,
-                        background: "#f9fafb",
-                        borderRadius: 12,
-                        padding: "0.75rem 0.9rem",
-                      }}
-                    >
-                      {m.quote}
-                    </div>
+                    {openIndex === i && (
+                    <div className="muted" style={{ marginTop: "0.75rem", fontSize: "0.95rem", lineHeight: 1.65, background: "#f9fafb", borderRadius: 12, padding: "0.75rem 0.9rem" }}>{m.quote}</div>
                   )}
                 </div>
               </div>
             </div>
           ))}
         </div>
-
-        <button
-          className="scroll-arrow"
-          onClick={() =>
-            document.querySelector(`#${scrollerId} .no-scrollbar`)?.scrollBy({ left: -280, behavior: "smooth" })
-          }
-          style={{
-            position: "absolute",
-            left: 0,
-            top: "45%",
-            transform: "translateY(-50%)",
-            width: 48,
-            height: 48,
-            borderRadius: "50%",
-            border: "2px solid rgba(0,0,0,0.1)",
-            background: "rgba(255,255,255,0.95)",
-            backdropFilter: "blur(10px)",
-            cursor: "url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer",
-            fontSize: 26,
-            color: "#333",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 10,
-            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-          }}
-        >
-          ‹
-        </button>
-
-        <button
-          className="scroll-arrow"
-          onClick={() =>
-            document.querySelector(`#${scrollerId} .no-scrollbar`)?.scrollBy({ left: 280, behavior: "smooth" })
-          }
-          style={{
-            position: "absolute",
-            right: 0,
-            top: "45%",
-            transform: "translateY(-50%)",
-            width: 48,
-            height: 48,
-            borderRadius: "50%",
-            border: "2px solid rgba(0,0,0,0.1)",
-            background: "rgba(255,255,255,0.95)",
-            backdropFilter: "blur(10px)",
-            cursor: "url('/cur-swatch.png') 17 21, url('/cur-swatch-128.png') 68 85, pointer",
-            fontSize: 26,
-            color: "#333",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 10,
-            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-          }}
-        >
-          ›
-        </button>
+        <button className="scroll-arrow" aria-label="Scroll left" disabled={!canLeft} onClick={() => scrollerRef.current?.scrollBy({ left: -300, behavior: "smooth" })} style={{ position: "absolute", left: 8, top: "50%", transform: "translateY(-50%)", width: 42, height: 42, borderRadius: "50%", border: "2px solid rgba(0,0,0,0.1)", background: "rgba(255,255,255,0.95)", backdropFilter: "blur(10px)", fontSize: 22, color: "#333", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.15)" }}>‹</button>
+        <button className="scroll-arrow" aria-label="Scroll right" disabled={!canRight} onClick={() => scrollerRef.current?.scrollBy({ left: 300, behavior: "smooth" })} style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", width: 42, height: 42, borderRadius: "50%", border: "2px solid rgba(0,0,0,0.1)", background: "rgba(255,255,255,0.95)", backdropFilter: "blur(10px)", fontSize: 22, color: "#333", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.15)" }}>›</button>
       </div>
     </section>
   );
 }
 
 export default function TestimonialsPage() {
+  const drops = React.useMemo(() => Array.from({ length: 28 }).map(() => ({
+    left: Math.random() * 100, duration: 9 + Math.random() * 8, delay: Math.random() * 5, opacity: 0.3 + Math.random() * 0.4, size: 4 + Math.random() * 6, hue: Math.floor(180 + Math.random() * 180),
+  })), []);
   return (
     <div className="page" style={{ position: "relative", overflow: "hidden" }}>
-      <div className="pastel-rain-layer" style={{ marginTop: "80px" }}>
-        {Array.from({ length: 60 }).map((_, i) => (
-          <span
-            key={i}
-            className="pastel-drop"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDuration: `${9 + Math.random() * 8}s`,
-              animationDelay: `${Math.random() * 5}s`,
-              opacity: 0.3 + Math.random() * 0.5,
-              width: `${4 + Math.random() * 6}px`,
-              height: `${4 + Math.random() * 6}px`,
-              "--hue": Math.floor(180 + Math.random() * 360),
-            }}
-          />
+      <div className="pastel-rain-layer" aria-hidden="true">
+        {drops.map((d, i) => (
+          <span key={i} className="pastel-drop" style={{ left: `${d.left}%`, animationDuration: `${d.duration}s`, animationDelay: `${d.delay}s`, opacity: d.opacity, width: `${d.size}px`, height: `${d.size}px`, "--hue": d.hue }} />
         ))}
       </div>
       <Navbar />
