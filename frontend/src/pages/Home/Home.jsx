@@ -146,23 +146,12 @@ function Hero() {
 
 function FeaturedSlider() {
   const [index, setIndex] = useState(0);
-  const [sparkle, setSparkle] = useState(false);
   const count = featuredArtworks.length;
-
   useEffect(() => {
-    const id = setInterval(() => {
-      setIndex((prev) => (prev + 1) % count);
-    }, 5200);
+    const id = setInterval(() => setIndex((prev) => (prev + 1) % count), 5200);
     return () => clearInterval(id);
   }, [count]);
-
   const current = useMemo(() => featuredArtworks[index], [index]);
-
-  const handleAppreciate = () => {
-    setSparkle(true);
-    setTimeout(() => setSparkle(false), 900);
-  };
-
   return (
     <section id="featured" className="card section">
       <div className="section-header">
@@ -170,21 +159,16 @@ function FeaturedSlider() {
           <p className="eyebrow">Weekly Featured</p>
           <h2>Artworks Slider</h2>
         </div>
-        <div className="dots" aria-label="slider dots">
+        <div className="dots" role="tablist" aria-label="Featured artworks">
           {featuredArtworks.map((_, i) => (
-            <span
-              key={i}
-              className={`dot ${i === index ? 'active' : ''}`}
-              onClick={() => setIndex(i)}
-              aria-label={`Go to slide ${i + 1}`}
-            />
+            <button key={i} role="tab" aria-selected={i === index} aria-label={`Go to slide ${i + 1}`} className={`dot ${i === index ? 'active' : ''}`} onClick={() => setIndex(i)} />
           ))}
         </div>
       </div>
       <div className="slider">
         <div className="slide">
           <div className="slide-image">
-            <img src={current.image} alt={`${current.title} by ${current.artist}`} />
+            <img src={current.image} alt={`${current.title} by ${current.artist}`} loading="lazy" />
             <div className="badge badge-overlay">{current.tag}</div>
           </div>
           <div className="slide-body">
@@ -192,7 +176,6 @@ function FeaturedSlider() {
             <p className="muted">by {current.artist}</p>
             <p className="blurb">{current.blurb}</p>
           </div>
-          <div className={`sparkle ${sparkle ? 'show' : ''}`}>✨</div>
         </div>
       </div>
     </section>
@@ -312,47 +295,33 @@ function StorySection() {
 
 export default function HomePage() {
   const location = useLocation();
-
+  const pastelDrops = useMemo(() => Array.from({ length: 32 }).map(() => ({
+    left: Math.random() * 100,
+    duration: 9 + Math.random() * 8,
+    delay: Math.random() * 5,
+    opacity: 0.3 + Math.random() * 0.4,
+    size: 4 + Math.random() * 6,
+    hue: Math.floor(180 + Math.random() * 180),
+  })), []);
   const handleAboutClick = () => {
     document.getElementById('about-section')?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  // Scroll to a section when arriving from another page (e.g. navbar "About Us")
   useEffect(() => {
     if (location.state?.scrollTo) {
       document.getElementById(location.state.scrollTo)?.scrollIntoView({ behavior: 'smooth' });
       window.history.replaceState({}, '');
     }
   }, [location.state]);
-
-  // Apply the home background image to the body while on Home
   useEffect(() => {
     document.body.classList.add('home-bg');
-    return () => {
-      document.body.classList.remove('home-bg');
-    };
+    return () => { document.body.classList.remove('home-bg'); };
   }, []);
-
   return (
   <div className="page" style={{ position: "relative", overflow: "hidden" }}>
     <Navbar onAboutClick={handleAboutClick} />
-    
-    {/* 🎨 Pastel raindrop background */}
-    <div className="pastel-rain-layer" style={{ marginTop: '80px' }}>
-      {Array.from({ length: 60 }).map((_, i) => (
-        <span
-          key={i}
-          className="pastel-drop"
-          style={{
-            left: `${Math.random() * 100}%`,
-            animationDuration: `${9 + Math.random() * 8}s`,
-            animationDelay: `${Math.random() * 5}s`,
-            opacity: 0.3 + Math.random() * 0.5,
-            width: `${4 + Math.random() * 6}px`,
-            height: `${4 + Math.random() * 6}px`,
-            "--hue": Math.floor(180 + Math.random() * 360),
-          }}
-        />
+    <div className="pastel-rain-layer" aria-hidden="true">
+      {pastelDrops.map((d, i) => (
+        <span key={i} className="pastel-drop" style={{ left: `${d.left}%`, animationDuration: `${d.duration}s`, animationDelay: `${d.delay}s`, opacity: d.opacity, width: `${d.size}px`, height: `${d.size}px`, "--hue": d.hue }} />
       ))}
     </div>
 
@@ -361,14 +330,12 @@ export default function HomePage() {
     <AboutSection />
     <StorySection />
     
-    {/* ===== TEAM SECTIONS ===== */}
     <section className="section" id="team-section" style={{ paddingTop: '4rem' }}>
-      <h2 style={{ fontSize: '2.2rem', marginBottom: '2rem', textAlign: 'center' }}>Office Bearers</h2>
+      <h2 style={{ fontSize: 'clamp(1.6rem, 4vw, 2.2rem)', marginBottom: '1.5rem', textAlign: 'center' }}>Office Bearers</h2>
       <TeamSection title="" members={officeBearers} scrollerId="office-bearers-scroll" />
     </section>
-
     <section className="section">
-      <h2 style={{ fontSize: '2.2rem', marginBottom: '2rem', textAlign: 'center' }}>Deputy Heads</h2>
+      <h2 style={{ fontSize: 'clamp(1.6rem, 4vw, 2.2rem)', marginBottom: '1.5rem', textAlign: 'center' }}>Deputy Heads</h2>
       <TeamSection title="" members={deputyHeads} scrollerId="deputy-heads-scroll" />
     </section>
 
