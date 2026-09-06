@@ -872,8 +872,10 @@ a {
 
   .page,
   .newsletter-page,
-  .gallery-page {
-    padding-top: 96px;
+  .gallery-page,
+  .events-page,
+  .contact-page {
+    padding-top: var(--page-pt);
   }
 
   .tech-team-popup {
@@ -974,11 +976,10 @@ a {
   50% { opacity: 0.85; }
 }
 
-/* ===== GALLERY STYLES ===== */
 .gallery-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 96px 20px 72px;
+  padding: var(--page-pt) 20px 72px;
 }
 
 .section-header.center {
@@ -1179,11 +1180,10 @@ a {
   margin-top: 1rem;
   color: #6b9b37;
 }
-/* ===== EVENTS PAGE ===== */
 .events-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px 80px;
+  padding: var(--page-pt) 20px 48px;
 }
 
 /* HERO SECTION */
