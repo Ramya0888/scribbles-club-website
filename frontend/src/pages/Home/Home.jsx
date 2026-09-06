@@ -3,8 +3,9 @@ import { useLocation } from 'react-router-dom';
 import TeamMemberCard from '../About/TeamMemberCard';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import { officeBearers, deputyHeads, milestones } from '../../data/team';
 
-const officeBearers = [
+const _officeBearers = [
   { name: 'Sowmya', role: 'President', dept: 'IT', image: '/team/sowmya.jpeg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
   { name: 'Venkatraman', role: 'President', dept: 'Manufacturing', image: '/team/ven.jpeg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
   { name: 'Lavanyalakshmi', role: 'Secretary', dept: 'IT', image: '/team/lav.jpeg', instagram: '', linkedin: '', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
