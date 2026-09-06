@@ -177,8 +177,8 @@ export default function Cursor() {
   if (!enabled || !customVisible) return null;
   return (
     <>
-      <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none z-[9998] mix-blend-difference" style={{ contain: "strict" }} aria-hidden="true" />
-      <motion.div className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference" style={{ x: ringX, y: ringY }} aria-hidden="true">
+      <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none z-[10002] mix-blend-difference" style={{ contain: "strict" }} aria-hidden="true" />
+      <motion.div className="fixed top-0 left-0 pointer-events-none z-[10003] mix-blend-difference" style={{ x: ringX, y: ringY }} aria-hidden="true">
         <div className="relative flex items-center justify-center" style={{ transform: "translate(-4px, -4px)" }}>
           <motion.div animate={{ scale: projectActive ? 0 : linkActive ? 1.32 : 1 }} transition={{ duration: 0.16, ease: "easeOut" }} className="flex items-center justify-center">
             <svg viewBox="0 0 122.88 102.66" width={linkActive ? 34 : 28} height={linkActive ? 28 : 23} style={{ display: "block", transform: "rotate(-14deg)", filter: linkActive ? "drop-shadow(0 2px 10px rgba(243,158,182,0.95))" : "none", transition: "filter 0.16s ease" }} aria-hidden="true">
