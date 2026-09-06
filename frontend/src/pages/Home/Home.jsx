@@ -55,11 +55,30 @@ const deputyHeads = [
 ];
 
 function TeamSection({ title, members, scrollerId }) {
+  const scrollerRef = React.useRef(null);
+  const [canLeft, setCanLeft] = React.useState(false);
+  const [canRight, setCanRight] = React.useState(true);
+  const CARD_STEP = 268;
+  const check = React.useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    setCanLeft(el.scrollLeft > 12);
+    setCanRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 12);
+  }, []);
+  React.useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    check();
+    el.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
+    return () => { el.removeEventListener("scroll", check); window.removeEventListener("resize", check); };
+  }, [check]);
   return (
     <div style={{ marginBottom: '3rem' }}>
       {title && <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>{title}</h3>}
       <div style={{ width: '100%', overflow: 'hidden', position: 'relative' }} id={scrollerId}>
         <div
+          ref={scrollerRef}
           className="no-scrollbar"
           style={{
             display: 'flex',
@@ -67,90 +86,18 @@ function TeamSection({ title, members, scrollerId }) {
             overflowX: 'auto',
             scrollBehavior: 'smooth',
             paddingBottom: '1rem',
+            scrollSnapType: 'x mandatory',
+            scrollPaddingInline: '12px',
           }}
         >
           {members.map((m, i) => (
-            <div key={i} style={{ flex: '0 0 auto' }}>
+            <div key={`${scrollerId}-${i}`} style={{ flex: '0 0 auto', scrollSnapAlign: 'start' }}>
               <TeamMemberCard {...m} />
             </div>
           ))}
         </div>
-
-        <button
-          className="scroll-arrow"
-          onClick={() =>
-            document.querySelector(`#${scrollerId} .no-scrollbar`)?.scrollBy({ left: -280, behavior: 'smooth' })
-          }
-          style={{
-            position: 'absolute',
-            left: 0,
-            top: '45%',
-            transform: 'translateY(-50%)',
-            width: 50,
-            height: 50,
-            borderRadius: '50%',
-            border: '2px solid rgba(0,0,0,0.1)',
-            background: 'rgba(255,255,255,0.95)',
-            backdropFilter: 'blur(10px)',
-            cursor: 'url("/cur-swatch.png") 17 21, url("/cur-swatch-128.png") 68 85, pointer',
-            fontSize: '28px',
-            color: '#333',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 10,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-            transition: 'all 0.3s ease',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(255,255,255,1)';
-            e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(255,255,255,0.95)';
-            e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-          }}
-        >
-          ‹
-        </button>
-
-        <button
-          className="scroll-arrow"
-          onClick={() =>
-            document.querySelector(`#${scrollerId} .no-scrollbar`)?.scrollBy({ left: 280, behavior: 'smooth' })
-          }
-          style={{
-            position: 'absolute',
-            right: 0,
-            top: '45%',
-            transform: 'translateY(-50%)',
-            width: 50,
-            height: 50,
-            borderRadius: '50%',
-            border: '2px solid rgba(0,0,0,0.1)',
-            background: 'rgba(255,255,255,0.95)',
-            backdropFilter: 'blur(10px)',
-            cursor: 'url("/cur-swatch.png") 17 21, url("/cur-swatch-128.png") 68 85, pointer',
-            fontSize: '28px',
-            color: '#333',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 10,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-            transition: 'all 0.3s ease',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(255,255,255,1)';
-            e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(255,255,255,0.95)';
-            e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-          }}
-        >
-          ›
-        </button>
+        <button className="scroll-arrow" aria-label="Scroll left" disabled={!canLeft} onClick={() => scrollerRef.current?.scrollBy({ left: -CARD_STEP, behavior: 'smooth' })} style={{ position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)', width: 44, height: 44, borderRadius: '50%', border: '2px solid rgba(0,0,0,0.1)', background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(10px)', fontSize: '24px', color: '#333', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10, boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}>‹</button>
+        <button className="scroll-arrow" aria-label="Scroll right" disabled={!canRight} onClick={() => scrollerRef.current?.scrollBy({ left: CARD_STEP, behavior: 'smooth' })} style={{ position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)', width: 44, height: 44, borderRadius: '50%', border: '2px solid rgba(0,0,0,0.1)', background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(10px)', fontSize: '24px', color: '#333', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10, boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}>›</button>
       </div>
     </div>
   );
