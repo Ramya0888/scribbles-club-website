@@ -160,11 +160,13 @@ export default function TestimonialsPage() {
           >
             <iframe
               style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
               title="Scribbles Testimonials Snippet"
               frameBorder="0"
+              loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
             ></iframe>
           </div>
           <p className="muted" style={{ marginTop: "1rem" }}>
