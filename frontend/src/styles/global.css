@@ -72,7 +72,7 @@ a {
 .page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 96px 20px 64px;
+  padding: calc(var(--nav-h) + 28px) 20px 64px;
 }
 
 .section {
@@ -159,10 +159,10 @@ a {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 32px;
-  margin: 36px 0;
+  gap: clamp(16px, 3vw, 32px);
+  margin: 24px 0 36px;
   background: linear-gradient(135deg, var(--soft-cream) 0%, var(--light-pink) 70%);
-  padding: 36px 28px;
+  padding: clamp(20px, 3vw, 36px) clamp(16px, 2.5vw, 28px);
   border-radius: 20px;
   box-shadow: var(--card-shadow);
 }
@@ -173,8 +173,8 @@ a {
 }
 
 .hero-logo-circle {
-  width: 200px;
-  height: 200px;
+  width: clamp(132px, 18vw, 200px);
+  height: clamp(132px, 18vw, 200px);
   border-radius: 50%;
   background: #fff;
   display: flex;
@@ -192,8 +192,8 @@ a {
 }
 
 .hero-logo-circle img {
-  width: 170px;
-  height: 170px;
+  width: 85%;
+  height: 85%;
   object-fit: contain;
 }
 
