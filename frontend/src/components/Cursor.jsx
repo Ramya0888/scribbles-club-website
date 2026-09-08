@@ -151,7 +151,7 @@ export default function Cursor() {
         ctx.stroke();
       }
       if (moving) rafId.current = requestAnimationFrame(draw);
-      else { running.current = false; ctx.clearRect(0, 0, window.innerWidth, window.innerHeight); }
+      else { running.current = false; }
     };
     const start = () => {
       if (running.current) return;
