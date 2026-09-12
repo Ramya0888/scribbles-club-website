@@ -104,19 +104,20 @@ export const ThemeToggleButton2 = ({
     <button
       type="button"
       style={{
-        width: "42px",
-        height: "42px",
-        minWidth: "42px",
-        minHeight: "42px",
+        width: "32px",
+        height: "32px",
+        minWidth: "32px",
+        minHeight: "32px",
         borderRadius: "0",
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
         border: "none",
         background: "transparent",
-        color: isDark ? "var(--text-main)" : "var(--text-main)",
+        color: "var(--text-main)",
         boxShadow: "none",
         flexShrink: 0,
+        padding: "4px",
       }}
       className={cn(
         "transition-all duration-300 active:scale-95 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--warm-pink)] focus-visible:ring-offset-2",
@@ -131,6 +132,7 @@ export const ThemeToggleButton2 = ({
         fill="currentColor"
         strokeLinecap="round"
         viewBox="0 0 32 32"
+        style={{ width: "20px", height: "20px" }}
       >
         <clipPath id={clipId}>
           <motion.path
