@@ -776,6 +776,13 @@ a {
   background: var(--surface-main);
 }
 
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+  order: 2;
+}
 .navbar-links {
   display: flex;
   gap: 1.5rem;

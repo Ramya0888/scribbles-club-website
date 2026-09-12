@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import { ThemeToggleButton2 } from '@/components/ui/theme-toggle-buttons';
 
 function FlipText({ text }) {
   return (
@@ -105,16 +106,19 @@ export default function Navbar({ onAboutClick }) {
             <span>Scribbles Art Club</span>
           </Link>
 
-          <button
-            className={`navbar-toggle ${menuOpen ? 'open' : ''}`}
-            aria-label="Toggle navigation menu"
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
+          <div className="navbar-actions">
+            <ThemeToggleButton2 className="size-10 p-2" />
+            <button
+              className={`navbar-toggle ${menuOpen ? 'open' : ''}`}
+              aria-label="Toggle navigation menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
 
           <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
             <Link to="/" onClick={closeMenu} className={isActive('/') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Home" /></Link>
@@ -127,20 +131,6 @@ export default function Navbar({ onAboutClick }) {
             <Link to="/contact" onClick={closeMenu} className={isActive('/contact') ? 'active' : ''} style={{ textDecoration: 'none' }}><FlipText text="Contact Us" /></Link>
             <button className="navbar-link-btn" onClick={handleAbout}><FlipText text="About Us" /></button>
             <button className="navbar-link-btn navbar-join" onClick={handleJoin}><FlipText text="Join" /></button>
-            <button
-              className="theme-switch"
-              role="switch"
-              aria-checked={theme === 'dark'}
-              onClick={toggleTheme}
-              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-              title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-            >
-              <span className="theme-switch-track" aria-hidden="true">
-                <span className="theme-switch-knob">
-                  <span className="theme-switch-icon">{theme === 'light' ? '☀️' : '🌙'}</span>
-                </span>
-              </span>
-            </button>
           </div>
         </div>
       </nav>
