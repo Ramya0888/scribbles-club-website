@@ -128,13 +128,18 @@ export default function Navbar({ onAboutClick }) {
             <button className="navbar-link-btn" onClick={handleAbout}><FlipText text="About Us" /></button>
             <button className="navbar-link-btn navbar-join" onClick={handleJoin}><FlipText text="Join" /></button>
             <button
-              className="theme-toggle"
+              className="theme-switch"
+              role="switch"
+              aria-checked={theme === 'dark'}
               onClick={toggleTheme}
               aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
               title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
             >
-              <span>{theme === 'light' ? '🌙' : '☀️'}</span>
-              <span>{theme === 'light' ? 'Dark' : 'Light'}</span>
+              <span className="theme-switch-track" aria-hidden="true">
+                <span className="theme-switch-knob">
+                  <span className="theme-switch-icon">{theme === 'light' ? '☀️' : '🌙'}</span>
+                </span>
+              </span>
             </button>
           </div>
         </div>
