@@ -805,8 +805,25 @@ a {
   perspective: 700px;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 .flip-text {
   display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+  letter-spacing: 0;
+  white-space: nowrap;
+  font-kerning: none;
+  font-variant-ligatures: none;
 }
 
 .flip-letter {
@@ -814,6 +831,8 @@ a {
   display: inline-block;
   white-space: pre;
   transform-style: preserve-3d;
+  letter-spacing: 0;
+  font-kerning: none;
 }
 
 .flip-face {

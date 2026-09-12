@@ -6,12 +6,15 @@ import { ThemeToggleButton2 } from '@/components/ui/theme-toggle-buttons';
 function FlipText({ text }) {
   return (
     <span className="flip-text">
-      {Array.from(text).map((ch, i) => (
-        <span className="flip-letter" key={i} style={{ '--i': i }}>
-          <span className="flip-face flip-front">{ch === ' ' ? '\u00A0' : ch}</span>
-          <span className="flip-face flip-back">{ch === ' ' ? '\u00A0' : ch}</span>
-        </span>
-      ))}
+      <span aria-hidden="true" style={{ display: "inline-flex" }}>
+        {Array.from(text).map((ch, i) => (
+          <span className="flip-letter" key={i} style={{ "--i": i }}>
+            <span className="flip-face flip-front">{ch === ' ' ? '\u00A0' : ch}</span>
+            <span className="flip-face flip-back">{ch === ' ' ? '\u00A0' : ch}</span>
+          </span>
+        ))}
+      </span>
+      <span className="sr-only">{text}</span>
     </span>
   );
 }
