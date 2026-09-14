@@ -8,12 +8,12 @@ const technicalTeam = [
   },
   {
     name: 'Hashim',
-    image: '/team/has.jpeg',
+    image: '/team/has.webp',
     linkedin: 'https://www.linkedin.com/in/hashim-m-160b96340/'
   },
   {
     name: 'Ramya',
-    image: '/team/ramy.jpg',
+    image: '/team/ramy.webp',
     linkedin: 'https://www.linkedin.com/in/ramyalnkdn/'
   },
   {
