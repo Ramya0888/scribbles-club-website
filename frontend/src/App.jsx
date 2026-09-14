@@ -22,12 +22,17 @@ function PageLoader() {
   return <div style={{ minHeight: "50vh", display: "grid", placeItems: "center", color: "var(--text-muted)" }} role="status" aria-label="Loading page"><div style={{ width: 28, height: 28, borderRadius: "50%", border: "2px solid rgba(0,0,0,0.08)", borderTopColor: "var(--warm-pink)", animation: "spin 0.7s linear infinite" }} /></div>;
 }
 
+const TITLES = { '/': 'Scribbles Art Club — Home', '/events': 'Events — Scribbles', '/gallery': 'Gallery — Scribbles', '/blog': 'Blog — Scribbles', '/contact': 'Contact — Scribbles', '/newsletter': 'Newsletter — Scribbles', '/testimonials': 'Testimonials — Scribbles', '/video': 'Intro Video — Scribbles' };
 function AnimatedRoutes() {
   const location = useLocation();
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.title = TITLES[location.pathname] || 'Scribbles Art Club - CEG Anna University';
   }, [location.pathname]);
 
   return (
