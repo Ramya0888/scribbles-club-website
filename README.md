@@ -7,47 +7,45 @@ Official website for **Scribbles Art Club of CEG**, Anna University — a creati
 | Layer | Technology |
 |-------|-----------|
 | Framework | React 18 |
-| Build | Vite 5 |
+| Build | Vite 6 |
 | Routing | react-router-dom v7 |
 | Styling | Tailwind CSS 3 + custom CSS |
 | Email | EmailJS |
-| Hosting | Vercel |
+| Hosting | Vercel (frontend) + Render (backend) |
 | Icons | Lucide React, React Icons |
-| Backend |  Flask (python) |
-| Database | Neon(psql) |
+| Backend | Flask + Neon Postgres |
+
 ## Project Structure
 
 ```
 scribbles-club-website/
-|__ backend/
-|   |--.env                       # Connect with Neon (cloud db)
-|   |-- app.py                    # Framework for API calls
+├── backend/
+│   ├── app.py                    # Flask API (validated, rate-limited)
+│   ├── requirements.txt
+│   └── .env.example
 ├── frontend/
 │   ├── public/
-│   │   ├── logo.png              # Club logo
-│   │   ├── backgrnd-srcribb.jpg  # Home page background
-│   │   └── team/                 # Team member avatars (30 members)
+│   │   ├── logo.png
+│   │   ├── backgrnd-srcribb.jpg
+│   │   └── team/                 # Team avatars
 │   ├── src/
-│   │   ├── main.jsx              # Entry point
-│   │   ├── App.jsx               # Router (7 routes)
+│   │   ├── main.jsx
+│   │   ├── App.jsx               # Lazy routes + AnimatePresence
 │   │   ├── components/
-│   │   │   ├── Footer.jsx        # Site footer with tech team credits
-│   │   │   └── EventCard.jsx     # Event card for lists & sliders
 │   │   ├── pages/
-|   |   |   |---Blogs             # create posts what you did in scribbles 
-│   │   │   ├── Home/             # Landing page (hero, about section, team, timeline)
-│   │   │   ├── Gallery/          # Workshop image galleries
-│   │   │   ├── Events/           # Thooriga & Techofes events + workshops
-│   │   │   ├── Contact/          # Contact form (EmailJS) + social links + map
-│   │   │   ├── Newsletter/       # Newsletter signup
-│   │   │   ├── Testimonials/     # Member reflections
-│   │   │   ├── Video/            # Club intro video
-│   │   │   └── About/            # Shared team member & about components
-│   │   └── styles/               # Global & page-specific CSS
+│   │   │   ├── Home/
+│   │   │   ├── Gallery/
+│   │   │   ├── Events/
+│   │   │   ├── Contact/
+│   │   │   ├── Newsletter/
+│   │   │   ├── Testimonials/
+│   │   │   ├── Video/
+│   │   │   ├── Blog/             # Create + filter posts
+│   │   │   └── About/
+│   │   └── styles/
 │   ├── tailwind.config.js
 │   ├── vite.config.js
-│   └── vercel.json               # SPA rewrite rules for Vercel
-├── .gitignore
+│   └── vercel.json
 └── README.md
 ```
 
@@ -55,21 +53,20 @@ scribbles-club-website/
 
 | Route | Page | Description |
 |-------|------|-------------|
-| `/` | Home | Hero, about section, featured slider, team scrollers, timeline, pastel rain background |
-| `/events` | Events | Thooriga'26 signature events, past events slider, workshop cards |
-| `/gallery` | Art Gallery | Workshop image galleries with 3D cards |
-| `/contact` | Contact | EmailJS form, Google Maps (CEG), social media links |
-| `/newsletter` | Newsletter | Email signup form |
-| `/testimonials` | Testimonials | Member & alumni quotes |
-| `/video` | Intro Video | Club cinematic video embed |
-| `/blog' |blog | Create posts | Filter the posts  |
+| `/` | Home | Hero, featured slider, team scrollers, timeline |
+| `/events` | Events | Thooriga'26 + Techofes events + workshops |
+| `/gallery` | Gallery | Workshop galleries |
+| `/contact` | Contact | EmailJS + honeypot + map |
+| `/newsletter` | Newsletter | Signup (client-side) |
+| `/testimonials` | Testimonials | Member quotes |
+| `/video` | Intro Video | Embed |
+| `/blog` | Blog | Create posts, filter by category |
 
 ## Getting Started
 
 ### Prerequisites
-- flask
 - Node.js v18+
-- npm
+- Python 3.10+
 
 ### Setup
 
@@ -77,37 +74,47 @@ scribbles-club-website/
 cd frontend
 npm install
 
-cd backend
-pip install flask
+cd ../backend
+pip install -r requirements.txt
+cp .env.example .env   # fill DATABASE_URL + ALLOWED_ORIGINS
 ```
 
 ### Development
 
 ```bash
+# frontend (http://localhost:5173)
+cd frontend
 npm run dev
-``````
+
+# backend (http://localhost:5000)
+cd backend
 python app.py
-''''''
-Opens at `http://localhost:5173`.
+```
 
 ### Production Build
 
 ```bash
+cd frontend
 npm run build
-npm run preview   # Preview production build locally
+npm run preview
 ```
 
 ## Environment Variables
 
-Create a `.env` file in the `frontend/` directory with your EmailJS credentials:
-
+**`frontend/.env`**
 ```env
 VITE_EMAILJS_SERVICE_ID=your_service_id
 VITE_EMAILJS_TEMPLATE_ID=your_template_id
 VITE_EMAILJS_PUBLIC_KEY=your_public_key
+VITE_API_URL=https://scribbles-club-website.onrender.com
 ```
 
-Get these from your [EmailJS Dashboard](https://dashboard.emailjs.com/).
+**`backend/.env`**
+```env
+DATABASE_URL=postgresql://user:pass@host/db
+ALLOWED_ORIGINS=http://localhost:5173,https://your-app.vercel.app
+PORT=5000
+```
 
 ## Color Palette
 
@@ -120,35 +127,16 @@ Get these from your [EmailJS Dashboard](https://dashboard.emailjs.com/).
 
 ## Deployment
 
-Deployed on Vercel. The `vercel.json` handles SPA routing with rewrite rules.
-
-```json
-{
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
-}
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+Vercel handles SPA rewrites via `vercel.json`. Backend on Render with `gunicorn app:app`.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT
 
 ## Contact
 
-**Scribbles Art Club** - College of Engineering, Guindy (CEG), Anna University
-
+**Scribbles Art Club** - CEG, Anna University
 - Instagram: [@scribbles_ceg](https://instagram.com/scribbles_ceg)
 - Email: scribbles.ceg@annauniv.edu
 
----
-
-© 2025–26 Scribbles, the official Arts Club of CEG
+© 2025–26 Scribbles, CEG
