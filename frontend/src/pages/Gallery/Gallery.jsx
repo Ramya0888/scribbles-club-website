@@ -212,34 +212,31 @@ const ArtisticGalleryRow = ({ event }) => {
 
   useEffect(() => {
     let cancelled = false;
+    const probeUrl = (url) => new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = url;
+    });
     const loadImages = async () => {
       setLoading(true);
       const loadedImages = [];
       let consecutiveFailures = 0;
       let counter = 1;
       while (!cancelled && consecutiveFailures < 2 && counter <= 36) {
-        const imgPath = `${event.folderPath}/image${counter}.jpg`;
-        const ok = await new Promise((resolve) => {
-          const img = new Image();
-          img.onload = () => resolve(true);
-          img.onerror = () => {
-            const img2 = new Image();
-            img2.onload = () => resolve(true);
-            img2.onerror = () => resolve(false);
-            img2.src = `${event.folderPath}/image${counter}.JPG`;
-          };
-          img.src = imgPath;
-        });
+        const base = encodeURI(event.folderPath);
+        const jpg = `${base}/image${counter}.jpg`;
+        const JPG = `${base}/image${counter}.JPG`;
+        let found = null;
+        if (await probeUrl(jpg)) found = jpg;
+        else if (await probeUrl(JPG)) found = JPG;
         if (cancelled) return;
-        if (ok) {
-          if (imgPath.endsWith(".jpg")) {
-            const test = new Image();
-            test.src = imgPath;
-            const exists = await new Promise((r) => { test.onload = () => r(true); test.onerror = () => r(false); });
-            loadedImages.push(exists ? imgPath : `${event.folderPath}/image${counter}.JPG`);
-          } else loadedImages.push(imgPath);
+        if (found) {
+          loadedImages.push(found);
           consecutiveFailures = 0;
-        } else consecutiveFailures++;
+        } else {
+          consecutiveFailures++;
+        }
         counter++;
       }
       if (!cancelled) { setImages(loadedImages); setLoading(false); }
