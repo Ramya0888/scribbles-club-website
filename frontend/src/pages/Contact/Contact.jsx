@@ -29,6 +29,7 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
+    if (formData._hp && formData._hp.trim() !== "") return;
     const name = stripHtml(formData.name);
     const email = stripHtml(formData.email);
     const message = stripHtml(formData.message);
@@ -45,7 +46,7 @@ export default function Contact() {
     if (!svc || !tpl || !key) { setError("Email service is not configured. Please email us directly at scribbles.ceg@gmail.com"); return; }
     setSending(true);
     emailjs.send(svc, tpl, { from_name: name, from_email: email, message }, key)
-      .then(() => { setSuccess(true); setFormData({ name: "", email: "", message: "" }); setTimeout(() => setSuccess(false), 4000); })
+      .then(() => { setSuccess(true); setFormData({ name: "", email: "", message: "", _hp: "" }); setTimeout(() => setSuccess(false), 4000); })
       .catch(() => setError("Failed to send. Please try again or email us directly."))
       .finally(() => setSending(false));
   };
@@ -68,8 +69,8 @@ export default function Contact() {
           <input id="c-email" type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleChange} required autoComplete="email" maxLength={254} />
           <label htmlFor="c-msg" className="tiny muted" style={{ fontWeight: 600 }}>Message</label>
           <textarea id="c-msg" name="message" placeholder="Your Message" value={formData.message} onChange={handleChange} rows="6" required maxLength={5000} />
-          <button type="submit" disabled={sending}>{sending ? "Sending…" : "Send Message"}</button>
-          {success && <p className="success-text" role="status">Message sent successfully!</p>}
+          <button type="submit" disabled={sending} aria-busy={sending}>{sending ? "Sending…" : "Send Message"}</button>
+          {success && <p className="success-text" role="status" aria-live="polite">Message sent successfully!</p>}
           {error && <p className="success-text" role="alert" style={{ color: "#b42318" }}>{error}</p>}
         </form>
         <div className="contact-card" style={{ padding: 0, overflow: "hidden" }}>

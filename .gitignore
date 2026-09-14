@@ -1,6 +1,9 @@
 # dependencies
 node_modules/
 frontend/node_modules/
+backend/.venv/
+backend/__pycache__/
+backend/*.pyc
 
 # build output
 dist/
@@ -10,6 +13,8 @@ frontend/dist/
 .env
 .env.local
 .env.*.local
+backend/.env
+frontend/.env
 
 # vite
 .vite/
@@ -25,3 +30,4 @@ Thumbs.db
 
 # IDE
 .vscode/
+.idea/

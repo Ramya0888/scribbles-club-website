@@ -111,32 +111,6 @@ const Events = () => {
 </div>
 <div style={{ position: "relative", zIndex: 2 }}>
 
-
-
-{/* 🔥 Upcoming Event Title */}
-{/*<div className="upcoming-main-title">
-  <h2 className="curly-title">Upcoming Event</h2>
-</div>*/}
-
-{/* ⏳ Countdown */}
-{/*<CountdownTimer targetDate="2026-02-19T09:00:00" />*/}
-
-{/* 🌟 Featured Event Card 
-<div className="featured-event-card">
-  <img
-    src="https://res.cloudinary.com/djcyst7fi/image/upload/v1766840314/Screenshot_2025-12-27_182504_mlr1lj.png"
-    alt="Featured Event"
-  />
-
-  <div className="featured-content">
-    <h3>Thooriga ’26</h3>
-    <p>
-      Experience a vibrant celebration of creativity with interactive art,
-      games, workshops, and colorful expressions all in one place.
-    </p>
-  </div>
-</div>*/}
-
 {/* 🔽 Existing grid */}
 <section className="thooriga-hero" style={{ position: "relative", zIndex: 2 }}>
         

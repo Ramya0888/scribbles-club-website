@@ -212,37 +212,40 @@ const ArtisticGalleryRow = ({ event }) => {
 
   useEffect(() => {
     let cancelled = false;
+    const probeUrl = (url) => new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = url;
+    });
+    const CHUNK = 6;
     const loadImages = async () => {
       setLoading(true);
-      const loadedImages = [];
+      const base = encodeURI(event.folderPath);
+      const results = [];
       let consecutiveFailures = 0;
-      let counter = 1;
-      while (!cancelled && consecutiveFailures < 2 && counter <= 36) {
-        const imgPath = `${event.folderPath}/image${counter}.jpg`;
-        const ok = await new Promise((resolve) => {
-          const img = new Image();
-          img.onload = () => resolve(true);
-          img.onerror = () => {
-            const img2 = new Image();
-            img2.onload = () => resolve(true);
-            img2.onerror = () => resolve(false);
-            img2.src = `${event.folderPath}/image${counter}.JPG`;
-          };
-          img.src = imgPath;
-        });
+      for (let start = 1; start <= 36 && consecutiveFailures < 2 && !cancelled; start += CHUNK) {
+        const batch = [];
+        for (let i = start; i < start + CHUNK && i <= 36; i++) batch.push(i);
+        const settled = await Promise.all(batch.map(async (n) => {
+          const jpg = `${base}/image${n}.jpg`;
+          const JPG = `${base}/image${n}.JPG`;
+          if (await probeUrl(jpg)) return { n, url: jpg };
+          if (await probeUrl(JPG)) return { n, url: JPG };
+          return { n, url: null };
+        }));
         if (cancelled) return;
-        if (ok) {
-          if (imgPath.endsWith(".jpg")) {
-            const test = new Image();
-            test.src = imgPath;
-            const exists = await new Promise((r) => { test.onload = () => r(true); test.onerror = () => r(false); });
-            loadedImages.push(exists ? imgPath : `${event.folderPath}/image${counter}.JPG`);
-          } else loadedImages.push(imgPath);
-          consecutiveFailures = 0;
-        } else consecutiveFailures++;
-        counter++;
+        for (const r of settled) {
+          if (r.url) { results.push(r); consecutiveFailures = 0; }
+          else consecutiveFailures++;
+          if (consecutiveFailures >= 2) break;
+        }
       }
-      if (!cancelled) { setImages(loadedImages); setLoading(false); }
+      if (!cancelled) {
+        results.sort((a, b) => a.n - b.n);
+        setImages(results.map(r => r.url));
+        setLoading(false);
+      }
     };
     loadImages();
     return () => { cancelled = true; };

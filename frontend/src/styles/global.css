@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Poppins:wght@300;400;500;600;700&display=swap');
+
 
 :root {
   color-scheme: light;
@@ -225,27 +225,7 @@ a {
   padding: 20px;
 }
 
-/* Dark theme card background override using an Events-like style */
-:root[data-theme='dark'] {
-  color-scheme: dark;
-  --pastel-green: #7da24d;
-  --soft-cream: #18151c;
-  --light-pink: #2b1f2c;
-  --warm-pink: #ff7cb5;
-  --text-main: #f7eef4;
-  --text-muted: #c8b6c6;
-  --surface-main: #221b25;
-  --surface-soft: #2c2330;
-  --surface-muted: #171118;
-  --surface-strong: #3a2737;
-  --border-soft: rgba(255, 255, 255, 0.12);
-  --shadow-color: rgba(0, 0, 0, 0.35);
-  --card-shadow: 0 18px 45px rgba(0, 0, 0, 0.32);
-  --card-dark-bg: rgba(255, 255, 255, 0.05);
-  --card-dark-image-bg: rgba(255, 255, 255, 0.08);
-  --card-dark-border: rgba(255, 255, 255, 0.12);
-  --button-dark-bg: linear-gradient(135deg, #764ba2 0%, #4facfe 100%);
-}
+
 
 :root[data-theme='dark'] .card {
   background: rgba(20, 10, 25, 0.65);
