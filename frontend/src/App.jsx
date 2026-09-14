@@ -1,11 +1,12 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import Splash from './components/Splash';
-import Cursor from './components/Cursor';
 import ErrorBoundary from './components/ErrorBoundary';
 import ThemeBackground from './components/ThemeBackground';
 import "./styles/pastelRain.css";
+
+const Cursor = lazy(() => import('./components/Cursor'));
+const Splash = lazy(() => import('./components/Splash'));
 
 const HomePage = lazy(() => import('./pages/Home/Home.jsx'));
 const NewsletterPage = lazy(() => import('./pages/Newsletter/Newsletter.jsx'));
@@ -61,8 +62,10 @@ export default function App() {
     <BrowserRouter>
       <ErrorBoundary>
         <ThemeBackground />
-        <Cursor />
-        <Splash />
+        <Suspense fallback={null}>
+          <Cursor />
+          <Splash />
+        </Suspense>
         <AnimatedRoutes />
       </ErrorBoundary>
     </BrowserRouter>
