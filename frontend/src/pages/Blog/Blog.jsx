@@ -22,20 +22,25 @@ export default function Blog() {
     image_url: ''
   });
 
+  const [visibleCount, setVisibleCount] = useState(9);
   const fetchPosts = useCallback(async (category) => {
     setIsLoading(true);
     setError('');
     try {
       const url = category && category !== 'All'
-        ? `${API_BASE_URL}/api/posts?category=${encodeURIComponent(category)}`
-        : `${API_BASE_URL}/api/posts`;
-      const response = await fetch(url);
+        ? `${API_BASE_URL}/api/posts?category=${encodeURIComponent(category)}&limit=50`
+        : `${API_BASE_URL}/api/posts?limit=50`;
+      const controller = new AbortController();
+      const t = setTimeout(() => controller.abort(), 8000);
+      const response = await fetch(url, { signal: controller.signal });
+      clearTimeout(t);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
       if (Array.isArray(data)) setPosts(data);
       else setPosts([]);
+      setVisibleCount(9);
     } catch (err) {
-      setError('Failed to load posts. Please try again.');
+      setError(err.name === 'AbortError' ? 'Request timed out. Please retry.' : 'Failed to load posts. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -198,30 +203,37 @@ export default function Blog() {
             <p>No posts yet in {selectedCategory}. Be the first to create one!</p>
           </div>
         ) : (
-          <div className="blog-grid">
-            {posts.map(post => (
-              <article key={post.id} className="blog-card">
-                {post.image_url && (
-                  <img
-                    src={post.image_url}
-                    alt={post.title}
-                    className="blog-card-image"
-                    onClick={() => setSelectedImage(post.image_url)}
-                    style={{ cursor: 'pointer' }}
-                    loading="lazy"
-                    decoding="async"
-                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                  />
-                )}
-                <div className="blog-card-body">
-                  <span className="blog-card-tag">{post.category}</span>
-                  <h3 className="blog-card-title">{post.title}</h3>
-                  <p className="blog-card-author">By {post.author_name}</p>
-                  <p className="blog-card-content">{post.content}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+          <>
+            <div className="blog-grid">
+              {posts.slice(0, visibleCount).map(post => (
+                <article key={post.id} className="blog-card">
+                  {post.image_url && (
+                    <img
+                      src={post.image_url}
+                      alt={post.title}
+                      className="blog-card-image"
+                      onClick={() => setSelectedImage(post.image_url)}
+                      style={{ cursor: 'pointer' }}
+                      loading="lazy"
+                      decoding="async"
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                    />
+                  )}
+                  <div className="blog-card-body">
+                    <span className="blog-card-tag">{post.category}</span>
+                    <h3 className="blog-card-title">{post.title}</h3>
+                    <p className="blog-card-author">By {post.author_name}</p>
+                    <p className="blog-card-content">{post.content}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            {visibleCount < posts.length && (
+              <div style={{ textAlign: 'center', marginTop: 32 }}>
+                <button className="btn primary" onClick={() => setVisibleCount(v => v + 9)}>Load more ({posts.length - visibleCount} remaining)</button>
+              </div>
+            )}
+          </>
         )}
       </div>
 
