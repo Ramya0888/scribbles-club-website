@@ -218,28 +218,34 @@ const ArtisticGalleryRow = ({ event }) => {
       img.onerror = () => resolve(false);
       img.src = url;
     });
+    const CHUNK = 6;
     const loadImages = async () => {
       setLoading(true);
-      const loadedImages = [];
+      const base = encodeURI(event.folderPath);
+      const results = [];
       let consecutiveFailures = 0;
-      let counter = 1;
-      while (!cancelled && consecutiveFailures < 2 && counter <= 36) {
-        const base = encodeURI(event.folderPath);
-        const jpg = `${base}/image${counter}.jpg`;
-        const JPG = `${base}/image${counter}.JPG`;
-        let found = null;
-        if (await probeUrl(jpg)) found = jpg;
-        else if (await probeUrl(JPG)) found = JPG;
+      for (let start = 1; start <= 36 && consecutiveFailures < 2 && !cancelled; start += CHUNK) {
+        const batch = [];
+        for (let i = start; i < start + CHUNK && i <= 36; i++) batch.push(i);
+        const settled = await Promise.all(batch.map(async (n) => {
+          const jpg = `${base}/image${n}.jpg`;
+          const JPG = `${base}/image${n}.JPG`;
+          if (await probeUrl(jpg)) return { n, url: jpg };
+          if (await probeUrl(JPG)) return { n, url: JPG };
+          return { n, url: null };
+        }));
         if (cancelled) return;
-        if (found) {
-          loadedImages.push(found);
-          consecutiveFailures = 0;
-        } else {
-          consecutiveFailures++;
+        for (const r of settled) {
+          if (r.url) { results.push(r); consecutiveFailures = 0; }
+          else consecutiveFailures++;
+          if (consecutiveFailures >= 2) break;
         }
-        counter++;
       }
-      if (!cancelled) { setImages(loadedImages); setLoading(false); }
+      if (!cancelled) {
+        results.sort((a, b) => a.n - b.n);
+        setImages(results.map(r => r.url));
+        setLoading(false);
+      }
     };
     loadImages();
     return () => { cancelled = true; };
