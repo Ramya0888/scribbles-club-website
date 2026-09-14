@@ -1,25 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../styles/splash.css';
 
-const SEEN_KEY = 'scribbles_splash_seen';
-
 export default function Splash() {
-  const [gone, setGone] = useState(() => {
-    if (typeof window !== 'undefined' && sessionStorage.getItem(SEEN_KEY)) return true;
-    return false;
-  });
+  const [gone, setGone] = useState(false);
   const textRef = useRef(null);
   const logoRef = useRef(null);
 
   useEffect(() => {
-    if (gone) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setGone(true);
-      sessionStorage.setItem(SEEN_KEY, '1');
       return;
     }
 
     document.body.classList.add('splash-live');
+
     let rafId = null;
 
     const measure = () => {
@@ -57,8 +51,10 @@ export default function Splash() {
         const lTop = parseFloat(logo.style.top);
         if (Number.isFinite(lLeft) && Number.isFinite(lTop)) {
           logo.style.transition = 'none';
-          logo.style.left = lLeft + (nr.left + nr.width / 2 - (lr.left + lr.width / 2)) + 'px';
-          logo.style.top = lTop + (nr.top + nr.height / 2 - (lr.top + lr.height / 2)) + 'px';
+          logo.style.left =
+            lLeft + (nr.left + nr.width / 2 - (lr.left + lr.width / 2)) + 'px';
+          logo.style.top =
+            lTop + (nr.top + nr.height / 2 - (lr.top + lr.height / 2)) + 'px';
         }
       }
     };
@@ -68,21 +64,23 @@ export default function Splash() {
       const logo = logoRef.current;
       const r = measure();
       if (!r.span || !text) return;
-      text.style.transition = 'left 0.55s cubic-bezier(0.4, 0, 0.2, 1), top 0.55s cubic-bezier(0.4, 0, 0.2, 1), transform 0.55s cubic-bezier(0.4, 0, 0.2, 1), font-size 0.55s cubic-bezier(0.4, 0, 0.2, 1)';
+      text.style.transition =
+        'left 0.55s cubic-bezier(0.4, 0, 0.2, 1), top 0.55s cubic-bezier(0.4, 0, 0.2, 1), transform 0.55s cubic-bezier(0.4, 0, 0.2, 1), font-size 0.55s cubic-bezier(0.4, 0, 0.2, 1)';
       text.style.left = r.span.left + 'px';
       text.style.top = r.span.top + r.span.height / 2 + 'px';
       text.style.transform = 'translate(0, -50%)';
       text.style.fontSize = '1.2rem';
       if (r.img && logo) {
-        logo.style.transition = 'left 0.55s cubic-bezier(0.4, 0, 0.2, 1), top 0.55s cubic-bezier(0.4, 0, 0.2, 1), width 0.55s cubic-bezier(0.4, 0, 0.2, 1), height 0.55s cubic-bezier(0.4, 0, 0.2, 1)';
-        logo.style.left = r.img.left + r.img.width / 2 + 'px';
+        logo.style.transition =
+          'left 0.55s cubic-bezier(0.4, 0, 0.2, 1), top 0.55s cubic-bezier(0.4, 0, 0.2, 1), width 0.55s cubic-bezier(0.4, 0, 0.2, 1), height 0.55s cubic-bezier(0.4, 0, 0.2, 1)';
+logo.style.left = r.img.left + r.img.width / 2 + 'px';
         logo.style.top = r.img.top + r.img.height / 2 + 'px';
         logo.style.width = '52px';
         logo.style.height = '52px';
       }
       document.body.classList.add('brand-hiding');
       document.body.classList.remove('splash-live');
-    }, 1400);
+    }, 3900);
 
     const tFix = setTimeout(() => {
       const start = performance.now();
@@ -93,7 +91,7 @@ export default function Splash() {
         }
       };
       rafId = requestAnimationFrame(tick);
-    }, 2100);
+    }, 4600);
 
     const tSwap = setTimeout(() => {
       cancelAnimationFrame(rafId);
@@ -108,42 +106,42 @@ export default function Splash() {
       kill(textRef.current);
       kill(logoRef.current);
       document.body.classList.remove('brand-hiding');
-    }, 2150);
+    }, 4650);
 
-    const tGone = setTimeout(() => {
-      setGone(true);
-      sessionStorage.setItem(SEEN_KEY, '1');
-    }, 2500);
-
-    const onKey = (e) => {
-      if (e.key === 'Escape') {
-        clearTimeout(tFly); clearTimeout(tFix); clearTimeout(tSwap); clearTimeout(tGone);
-        cancelAnimationFrame(rafId);
-        setGone(true);
-        sessionStorage.setItem(SEEN_KEY, '1');
-        document.body.classList.remove('splash-live', 'brand-hiding');
-      }
-    };
-    window.addEventListener('keydown', onKey);
+    const tGone = setTimeout(() => setGone(true), 5000);
     return () => {
-      clearTimeout(tFly); clearTimeout(tFix); clearTimeout(tSwap); clearTimeout(tGone);
+      clearTimeout(tFly);
+      clearTimeout(tFix);
+      clearTimeout(tSwap);
+      clearTimeout(tGone);
       cancelAnimationFrame(rafId);
-      window.removeEventListener('keydown', onKey);
       document.body.classList.remove('splash-live');
       document.body.classList.remove('brand-hiding');
     };
-  }, [gone]);
+  }, []);
 
   if (gone) return null;
 
   return (
-    <div className="splash-root" aria-hidden="true" onClick={() => { setGone(true); sessionStorage.setItem(SEEN_KEY, '1'); }}>
+    <div className="splash-root" aria-hidden="true">
       <div className="splash-geo">
-        <div className="splash_svg"><svg width="100%" height="100%"><rect width="100%" height="100%" /></svg></div>
-        <div className="splash_minimize"><svg width="100%" height="100%"><rect width="100%" height="100%" /></svg></div>
+        <div className="splash_svg">
+          <svg width="100%" height="100%">
+            <rect width="100%" height="100%"></rect>
+          </svg>
+        </div>
+        <div className="splash_minimize">
+          <svg width="100%" height="100%">
+            <rect width="100%" height="100%"></rect>
+          </svg>
+        </div>
       </div>
-      <div className="splash_logo" ref={logoRef}><img className="logo-circle" src="/S.png" alt="" /></div>
-      <div className="splash-text" ref={textRef}><p>Scribbles Art Club</p></div>
+      <div className="splash_logo" ref={logoRef}>
+        <img className="logo-circle" src="/S.png" alt="Scribbles" />
+      </div>
+      <div className="splash-text" ref={textRef}>
+        <p>Scribbles Art Club</p>
+      </div>
     </div>
   );
 }
