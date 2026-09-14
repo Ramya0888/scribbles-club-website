@@ -1,18 +1,11 @@
+import { useState } from 'react';
+
 function TeamMemberCard({ name, role, dept, image, instagram, linkedin, quote, onClick }) {
   const raw = image ? (image.startsWith('/') ? image : `/${image}`) : '/logo.png';
-  const webp = raw.replace(/\.(jpe?g|JPG|png)$/, '.webp');
-  const hasWebp = webp !== raw;
   return (
     <div className="card image-card" style={{ width: 240, minHeight: 420, textAlign: 'center', cursor: 'pointer', padding: '0.85rem', borderRadius: 18, display: 'flex', flexDirection: 'column' }} onClick={onClick}>
       <div style={{ width: 200, height: 230, margin: '0 auto 0.65rem', borderRadius: 16, overflow: 'hidden', background: 'rgba(255,255,255,0.06)' }}>
-        {hasWebp ? (
-          <picture>
-            <source srcSet={webp} type="image/webp" />
-            <img src={raw} alt={name} loading="lazy" decoding="async" width={200} height={230} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/logo.png'; }} />
-          </picture>
-        ) : (
-          <img src={raw} alt={name} loading="lazy" decoding="async" width={200} height={230} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/logo.png'; }} />
-        )}
+        <img src={raw} alt={name} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/logo.png'; }} />
       </div>
       <h4 style={{ margin: '0.5rem 0 0.2rem', fontSize: '1.05rem', lineHeight: 1.2 }}>{name}</h4>
       <div style={{ fontSize: 12, opacity: .8 }}>{role}</div>

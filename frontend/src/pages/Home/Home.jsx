@@ -63,21 +63,21 @@ const featuredArtworks = [
     artist: 'Riya Malhotra',
     blurb: 'Pastel strokes capturing early morning light and quiet city corners.',
     tag: 'Watercolor',
-    image: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=640&q=75',
+    image: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'Liminal Bloom',
     artist: 'Aarav Sen',
     blurb: 'Acrylic textures exploring growth, patience, and the rhythm of sketching.',
     tag: 'Acrylic',
-    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=640&q=75',
+    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'Midnight Scribbles',
     artist: 'Zara Kapoor',
     blurb: 'Ink illustrations of neon nights, quiet cafés, and rain on glass.',
     tag: 'Ink',
-    image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=640&q=75',
+    image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80',
   },
 ];
 
@@ -122,7 +122,7 @@ function FeaturedSlider() {
       <div className="slider">
         <div className="slide image-card">
           <div className="slide-image">
-            <img src={current.image} srcSet={`${current.image} 640w, ${current.image.replace('w=640','w=1200')} 1200w`} sizes="(max-width:768px) 100vw, 600px" alt={`${current.title} by ${current.artist}`} loading="lazy" decoding="async" fetchPriority="high" />
+            <img src={current.image} alt={`${current.title} by ${current.artist}`} loading="lazy" />
             <div className="badge badge-overlay">{current.tag}</div>
           </div>
           <div className="slide-body">
