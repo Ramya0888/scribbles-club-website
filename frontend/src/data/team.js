@@ -2,7 +2,7 @@ export const officeBearers = [
   { name: 'Sowmya', role: 'President', dept: 'IT', image: '/team/sowmya.jpeg', instagram: '', linkedin: '' },
   { name: 'Venkatraman', role: 'President', dept: 'Manufacturing', image: '/team/ven.jpeg', instagram: '', linkedin: '' },
   { name: 'Lavanyalakshmi', role: 'Secretary', dept: 'IT', image: '/team/lav.jpeg', instagram: '', linkedin: '' },
-  { name: 'Ramkumar S', role: 'Treasurer', dept: 'Manufacturing', image: '/team/ram.JPG', instagram: '', linkedin: '' },
+  { name: 'Ramkumar S', role: 'Treasurer', dept: 'Manufacturing', image: '/team/ram.jpg', instagram: '', linkedin: '' },
   { name: 'Mahima S', role: 'Events Team', dept: 'IT', image: '/team/mah.jpg', instagram: '', linkedin: '' },
   { name: 'Suren M', role: 'Events Team', dept: 'Mechanical', image: '/team/sur.jpeg', instagram: '', linkedin: '' },
   { name: 'Sujith P', role: 'Design Team', dept: 'Manufacturing', image: '', instagram: '', linkedin: '' },
