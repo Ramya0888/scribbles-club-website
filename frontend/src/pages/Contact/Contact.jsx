@@ -29,6 +29,7 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
+    if (formData._hp && formData._hp.trim() !== "") return;
     const name = stripHtml(formData.name);
     const email = stripHtml(formData.email);
     const message = stripHtml(formData.message);
@@ -45,7 +46,7 @@ export default function Contact() {
     if (!svc || !tpl || !key) { setError("Email service is not configured. Please email us directly at scribbles.ceg@gmail.com"); return; }
     setSending(true);
     emailjs.send(svc, tpl, { from_name: name, from_email: email, message }, key)
-      .then(() => { setSuccess(true); setFormData({ name: "", email: "", message: "" }); setTimeout(() => setSuccess(false), 4000); })
+      .then(() => { setSuccess(true); setFormData({ name: "", email: "", message: "", _hp: "" }); setTimeout(() => setSuccess(false), 4000); })
       .catch(() => setError("Failed to send. Please try again or email us directly."))
       .finally(() => setSending(false));
   };
