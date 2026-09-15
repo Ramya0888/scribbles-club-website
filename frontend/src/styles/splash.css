@@ -20,12 +20,37 @@ body.brand-hiding .navbar-brand span {
   inset: 0;
   z-index: 9999;
   background: transparent;
+  --splash-geo-color: #191919;
+  --splash-logo-background: #fff;
+  --splash-text-color: #1f1f1f;
+  --splash-overlay-color: #000;
+  --splash-expand-one: #b9e8c8;
+  --splash-expand-two: #ffe4ef;
+  --splash-expand-three: #ffd9b3;
+  --splash-expand-four: #fff0b4;
+  --splash-expand-five: #b9f2ea;
+  --splash-expand-six: #bfe0ff;
+  --splash-expand-seven: #e3d4ff;
+}
+
+:root[data-theme='dark'] .splash-root {
+  --splash-geo-color: var(--surface-muted);
+  --splash-logo-background: var(--surface-main);
+  --splash-text-color: #d8c7d4;
+  --splash-overlay-color: #241d27;
+  --splash-expand-one: #526d59;
+  --splash-expand-two: #67445d;
+  --splash-expand-three: #705742;
+  --splash-expand-four: #766b43;
+  --splash-expand-five: #3f6863;
+  --splash-expand-six: #455f78;
+  --splash-expand-seven: #625178;
 }
 
 .splash-geo {
   position: absolute;
   inset: 0;
-  background: #191919;
+  background: var(--splash-geo-color);
   overflow: hidden;
   animation: curtainUp 0.75s ease-out 3.9s forwards;
 }
@@ -48,7 +73,7 @@ body.brand-hiding .navbar-brand span {
   border-radius: 50%;
   object-fit: contain;
   padding: 2px;
-  background: #fff;
+  background: var(--splash-logo-background);
 }
 
 .splash_svg {
@@ -67,7 +92,7 @@ body.brand-hiding .navbar-brand span {
 .splash_svg rect {
   width: 100%;
   height: 100%;
-  fill: #b9e8c8;
+  fill: var(--splash-expand-one);
   stroke: 0;
   -webkit-clip-path: polygon(45% 40%, 55% 40%, 55% 60%, 45% 60%);
   clip-path: polygon(45% 40%, 55% 40%, 55% 60%, 45% 60%);
@@ -95,6 +120,7 @@ body.brand-hiding .navbar-brand span {
   height: 100%;
   -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  fill: var(--splash-overlay-color);
   animation: scale 0.2s ease-out forwards 1s, hide 1.3s ease-out forwards 1.2s;
 }
 
@@ -109,10 +135,14 @@ body.brand-hiding .navbar-brand span {
   font-size: 44px;
   font-weight: bold;
   font-family: 'Pangolin', cursive, sans-serif;
-  color: #1f1f1f;
+  color: var(--splash-text-color);
 white-space: nowrap;
   animation:
     on 0.45s ease-out 3.2s forwards;
+}
+
+:root[data-theme='dark'] .navbar-brand {
+  color: #d8c7d4;
 }
 
 .splash-text p {
@@ -164,42 +194,42 @@ white-space: nowrap;
   12.5% {
     -webkit-clip-path: polygon(45% 40%, 55% 40%, 55% 60%, 45% 60%);
     clip-path: polygon(45% 40%, 55% 40%, 55% 60%, 45% 60%);
-    fill: #b9e8c8;
+    fill: var(--splash-expand-one);
   }
   25% {
     -webkit-clip-path: polygon(0% 0%, 55% 40%, 55% 58%, 45% 58%);
     clip-path: polygon(0% 0%, 55% 40%, 55% 60%, 45% 60%);
-    fill: #ffe4ef;
+    fill: var(--splash-expand-two);
   }
   37.5% {
     -webkit-clip-path: polygon(0% 0%, 55% 40%, 55% 58%, 45% 58%);
     clip-path: polygon(0% 0%, 55% 40%, 55% 60%, 45% 60%);
-    fill: #ffd9b3;
+    fill: var(--splash-expand-three);
   }
   50% {
     -webkit-clip-path: polygon(0% 0%, 100% 0%, 55% 60%, 45% 60%);
     clip-path: polygon(0% 0%, 100% 0%, 55% 60%, 45% 60%);
-    fill: #fff0b4;
+    fill: var(--splash-expand-four);
   }
   62.5% {
     -webkit-clip-path: polygon(0% 0%, 100% 0%, 55% 60%, 45% 60%);
     clip-path: polygon(0% 0%, 100% 0%, 55% 60%, 45% 60%);
-    fill: #b9f2ea;
+    fill: var(--splash-expand-five);
   }
   75% {
     -webkit-clip-path: polygon(0% 0%, 100% 0%, 55% 60%, 0% 100%);
     clip-path: polygon(0% 0%, 100% 0%, 55% 60%, 0% 100%);
-    fill: #bfe0ff;
+    fill: var(--splash-expand-six);
   }
   87.5% {
     -webkit-clip-path: polygon(0% 0%, 100% 0%, 55% 60%, 0% 100%);
     clip-path: polygon(0% 0%, 100% 0%, 55% 60%, 0% 100%);
-    fill: #e3d4ff;
+    fill: var(--splash-expand-seven);
   }
   100% {
     -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-    fill: #ffe4ef;
+    fill: var(--splash-expand-two);
   }
 }
 
@@ -230,42 +260,42 @@ white-space: nowrap;
     12.5% {
       -webkit-clip-path: polygon(42% 40%, 58% 40%, 58% 60%, 42% 60%);
       clip-path: polygon(42% 40%, 58% 40%, 58% 60%, 42% 60%);
-      fill: #b9e8c8;
+      fill: var(--splash-expand-one);
     }
     25% {
       -webkit-clip-path: polygon(0% 0%, 58% 40%, 58% 58%, 42% 58%);
       clip-path: polygon(0% 0%, 58% 40%, 58% 60%, 42% 60%);
-      fill: #ffe4ef;
+      fill: var(--splash-expand-two);
     }
     37.5% {
       -webkit-clip-path: polygon(0% 0%, 58% 40%, 58% 58%, 42% 58%);
       clip-path: polygon(0% 0%, 58% 40%, 58% 60%, 42% 60%);
-      fill: #ffd9b3;
+      fill: var(--splash-expand-three);
     }
     50% {
       -webkit-clip-path: polygon(0% 0%, 100% 0%, 58% 60%, 42% 60%);
       clip-path: polygon(0% 0%, 100% 0%, 58% 60%, 42% 60%);
-      fill: #fff0b4;
+      fill: var(--splash-expand-four);
     }
     62.5% {
       -webkit-clip-path: polygon(0% 0%, 100% 0%, 58% 60%, 42% 60%);
       clip-path: polygon(0% 0%, 100% 0%, 58% 60%, 42% 60%);
-      fill: #b9f2ea;
+      fill: var(--splash-expand-five);
     }
     75% {
       -webkit-clip-path: polygon(0% 0%, 100% 0%, 58% 60%, 0% 100%);
       clip-path: polygon(0% 0%, 100% 0%, 58% 60%, 0% 100%);
-      fill: #bfe0ff;
+      fill: var(--splash-expand-six);
     }
     87.5% {
       -webkit-clip-path: polygon(0% 0%, 100% 0%, 58% 60%, 0% 100%);
       clip-path: polygon(0% 0%, 100% 0%, 58% 60%, 0% 100%);
-      fill: #e3d4ff;
+      fill: var(--splash-expand-seven);
     }
     100% {
       -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
       clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-      fill: #ffe4ef;
+      fill: var(--splash-expand-two);
     }
   }
 }
