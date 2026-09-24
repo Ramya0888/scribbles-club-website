@@ -1,0 +1,204 @@
+.nira-announcement-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(15, 12, 16, 0.68);
+  backdrop-filter: blur(8px);
+}
+
+.nira-announcement-modal {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(180px, 0.72fr) minmax(220px, 1fr);
+  gap: clamp(1.25rem, 3vw, 3rem);
+  align-items: center;
+  width: min(920px, 100%);
+  max-height: min(720px, calc(100dvh - 2rem));
+  overflow: auto;
+  padding: clamp(1.25rem, 4vw, 3.5rem);
+  border: 1px solid var(--border-soft);
+  border-radius: 24px;
+  background: var(--surface-main);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.32);
+}
+
+.nira-announcement-copy {
+  order: 1;
+  padding: 1rem 0;
+}
+
+.nira-announcement-copy h2 {
+  margin: 0.35rem 0 0.75rem;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 0.95;
+}
+
+.nira-announcement-copy > p:not(.eyebrow) {
+  max-width: 28rem;
+  margin: 0 0 1.5rem;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.nira-announcement-poster-wrap {
+  order: 2;
+  min-width: 0;
+  max-height: calc(100dvh - 5rem);
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--surface-muted);
+}
+
+.nira-announcement-poster {
+  display: block;
+  width: 100%;
+  max-height: calc(100dvh - 5rem);
+  object-fit: contain;
+}
+
+.nira-announcement-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  z-index: 1;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid var(--border-soft);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface-main) 88%, transparent);
+  color: var(--text-main);
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.nira-announcement-close:hover,
+.nira-announcement-close:focus-visible {
+  background: var(--light-pink);
+}
+
+.nira-announcement-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 2.9rem;
+}
+
+.nira-announcement-banner {
+  position: fixed;
+  top: calc(var(--nav-h) + 0.75rem);
+  right: 0;
+  left: 0;
+  z-index: 900;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 5vw, 5rem);
+  padding: clamp(1.35rem, 3vw, 2.25rem) clamp(1.25rem, 6vw, 6rem);
+  border: 1px solid var(--border-soft);
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--surface-main) 92%, transparent);
+  box-shadow: 0 12px 35px var(--shadow-color);
+  backdrop-filter: blur(14px);
+}
+
+.nira-announcement-banner > div {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.65rem;
+}
+
+.nira-announcement-banner-label {
+  color: var(--warm-pink);
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.nira-announcement-banner-copy {
+  color: var(--text-main);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.4;
+}
+
+.nira-announcement-banner-action {
+  flex: 0 0 auto;
+  min-height: 3rem;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .nira-announcement-overlay {
+    padding: 0.75rem;
+  }
+
+  .nira-announcement-modal {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    max-height: calc(100dvh - 1.5rem);
+    padding: 1.25rem;
+    padding-top: 2.75rem;
+  }
+
+  .nira-announcement-copy {
+    order: 2;
+    padding: 0;
+  }
+
+  .nira-announcement-copy h2 {
+    font-size: 2.25rem;
+  }
+
+  .nira-announcement-copy > p:not(.eyebrow) {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .nira-announcement-poster-wrap {
+    order: 1;
+    max-height: min(58dvh, 480px);
+  }
+
+  .nira-announcement-poster {
+    max-height: min(58dvh, 480px);
+  }
+
+  .nira-announcement-banner {
+    top: calc(var(--nav-h) + 0.5rem);
+    min-height: 12rem;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: 1.5rem clamp(1rem, 5vw, 1.5rem);
+  }
+
+  .nira-announcement-banner > div {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .nira-announcement-banner-copy {
+    font-size: 1rem;
+  }
+
+  .nira-announcement-banner-action {
+    align-self: flex-start;
+    min-height: 2.9rem;
+    font-size: 0.95rem;
+  }
+}
