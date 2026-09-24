@@ -15,6 +15,8 @@ const VideoPage = lazy(() => import('./pages/Video/Video.jsx'));
 const Contact = lazy(() => import("./pages/Contact/Contact"));
 const Events = lazy(() => import("./pages/Events/Events"));
 const Blog = lazy(() => import("./pages/Blog/Blog"));
+const NiraPage = lazy(() => import("./pages/Nira/NiraPage"));
+const NiraEventDetails = lazy(() => import("./pages/Nira/NiraEventDetails"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function PageLoader() {
@@ -26,6 +28,7 @@ function AnimatedRoutes() {
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (location.pathname === '/nira') return;
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
@@ -48,6 +51,8 @@ function AnimatedRoutes() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/events" element={<Events />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/nira" element={<NiraPage />} />
+            <Route path="/nira/event/:eventId" element={<NiraEventDetails />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

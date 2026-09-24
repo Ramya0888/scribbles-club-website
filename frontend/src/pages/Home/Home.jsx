@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import TeamMemberCard from '../About/TeamMemberCard';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import NiraAnnouncement from '../../components/NiraAnnouncement';
 
 const officeBearers = [
   { name: 'Siddharth M', role: 'President', dept: 'Mechanical Engineering', image: '/OBs/Heads/IMG-20250114-WA0317(2)~2 - SIDDHARTH M.jpg', instagram: 'https://www.instagram.com/siddharth_chandran /', linkedin: 'https://www.linkedin.com/in/siddharth-chandran-0624ba367', quote: 'Somewhere between order and chaos 🙃' },
@@ -384,6 +385,7 @@ export default function HomePage() {
   return (
   <div className="page" style={{ position: "relative", overflow: "hidden" }}>
     <Navbar onAboutClick={handleAboutClick} />
+    <NiraAnnouncement />
 
     <Hero />
     <FeaturedSlider />
