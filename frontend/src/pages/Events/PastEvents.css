@@ -66,3 +66,35 @@
   .past-slider { grid-template-columns: 1fr; }
   .past-content { padding: 16px; }
 }
+
+:root[data-theme='dark'] .events-page .past-slider {
+  background: var(--card-dark-image-bg);
+  border: 1px solid var(--card-dark-border);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(12px);
+}
+
+:root[data-theme='dark'] .events-page .past-slider:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+:root[data-theme='dark'] .events-page .past-content {
+  background: var(--surface-strong);
+  border-color: var(--card-dark-border);
+}
+
+:root[data-theme='dark'] .events-page .past-slider .dot {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+:root[data-theme='dark'] .events-page .past-slider .dot.active {
+  background: var(--warm-pink);
+  box-shadow: 0 0 12px rgba(255, 124, 181, 0.45);
+}
+
+:root[data-theme='dark'] .events-page .past-slider .slider-controls button {
+  background: var(--surface-strong);
+  border-color: var(--card-dark-border);
+  color: var(--text-main);
+}

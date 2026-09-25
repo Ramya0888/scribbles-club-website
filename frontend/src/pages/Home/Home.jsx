@@ -5,6 +5,28 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import NiraAnnouncement from '../../components/NiraAnnouncement';
 
+/*
+{
+  title: 'Downcast',
+  artist: 'Venkatramanan R',
+  blurb: 'Graphite portrait where the softest shading carries the weight of the expression.',
+  tag: 'Graphite',
+  image: '/artworks/downcast.webp',
+},
+{
+  title: 'Devotion',
+  artist: 'Venkatramanan R',
+  blurb: 'Acrylic on canvas — the bond between Shiva and his vahana, rendered in devotional blues and gold.',
+  tag: 'Acrylic',
+},
+{
+  title: 'Gold Hour',
+  artist: 'Venkatramanan R',
+  blurb: 'Coloured pencil portrait — warm sepia and gold catch the jewellery and the light along her jaw.',
+  tag: 'Coloured Pencil',
+},
+*/
+
 const officeBearers = [
   { name: 'Siddharth M', role: 'President', dept: 'Mechanical Engineering', image: '/OBs/Heads/IMG-20250114-WA0317(2)~2 - SIDDHARTH M.jpg', instagram: 'https://www.instagram.com/siddharth_chandran /', linkedin: 'https://www.linkedin.com/in/siddharth-chandran-0624ba367', quote: 'Somewhere between order and chaos 🙃' },
   { name: 'Praveena Rajendiran', role: 'President', dept: 'IT', image: '/OBs/Heads/Praveena_Rajendiran_ President - Praveena Rajendiran.jpg', instagram: 'https://www.instagram.com/_._praveena_._/', linkedin: 'https://www.linkedin.com/in/praveena-rajendiran-a8a3762a0', quote: 'I connect with warmth and lead with heart !' },
@@ -23,6 +45,11 @@ const officeBearers = [
   { name: 'Dharunkumar G', role: 'Logistics', dept: 'Printing and Packaging Technology', image: '/OBs/Heads/Dharunkumar.jpg', instagram: 'https://www.instagram.com/dharun_7664/', linkedin: '', quote: 'Roots grow in silence' },
   { name: 'Abdullah S', role: 'ER PR', dept: 'IT', image: '/OBs/Heads/Abdullah.jpg', instagram: 'https://www.instagram.com/abdullahsansen', linkedin: 'https://www.linkedin.com/in/abdullah-s-baa383287', quote: 'Jack of all trades master of none, but often times better than master of one' }
   ];
+
+const founders = [
+  { name: 'Venkatraman', dept: 'Manufacturing', image: '/OBs/Founders/Venkatraman.jpeg' },
+  { name: 'Sowmya', dept: 'IT', image: '/OBs/Founders/Sowmya.jpeg' },
+];
 
 const deputyHeads = [
   { name: 'Lishaa Bharathi M S', role: 'Creatives', dept: 'Mechanical Engineering', image: '/OBs/Deputy_Heads/creative_head - Lishaa Bharathi.jpg', instagram: '', linkedin: 'https://www.linkedin.com/in/lishaa-bharathi-341786328?utm_source=share_via&utm_content=profile&utm_medium=member_android', quote: 'Be the change what you expect the world to be' },
@@ -58,29 +85,31 @@ const deputyHeads = [
   { name: 'Thrisha K', role: 'Web and Tech', dept: 'CSE', image: '/OBs/Deputy_Heads/ThrishaK2 - Thrisha K.jpg', instagram: 'https://www.instagram.com/thrisha_karthek/', linkedin: 'https://www.linkedin.com/in/thrishakarthek', quote: 'Yaadhumaagi Vaazh !' }
 ];
 
-function TeamSection({ title, members, scrollerId }) {
+function TeamSection({ title, members, scrollerId, showArrows = true, centered = false, cardSize = 'default', mobileStack = false }) {
   return (
     <div style={{ marginBottom: '3rem' }}>
       {title && <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>{title}</h3>}
       <div style={{ width: '100%', overflow: 'hidden', position: 'relative' }} id={scrollerId}>
         <div
-          className="no-scrollbar"
+          className={`no-scrollbar ${mobileStack ? 'founders-scroller' : ''}`}
           style={{
             display: 'flex',
-            gap: '1rem',
+            gap: centered ? '8rem' : '1rem',
             overflowX: 'auto',
             scrollBehavior: 'smooth',
             paddingBottom: '1rem',
+            justifyContent: centered ? 'center' : 'flex-start',
+            ...(centered ? { width: 'fit-content', maxWidth: '100%', margin: '0 auto' } : {}),
           }}
         >
           {members.map((m, i) => (
             <div key={i} style={{ flex: '0 0 auto' }}>
-              <TeamMemberCard {...m} />
+              <TeamMemberCard {...m} size={cardSize} />
             </div>
           ))}
         </div>
 
-        <button
+        {showArrows && <button
           className="scroll-arrow"
           onClick={() =>
             document.querySelector(`#${scrollerId} .no-scrollbar`)?.scrollBy({ left: -280, behavior: 'smooth' })
@@ -116,9 +145,9 @@ function TeamSection({ title, members, scrollerId }) {
           }}
         >
           ‹
-        </button>
+        </button>}
 
-        <button
+        {showArrows && <button
           className="scroll-arrow"
           onClick={() =>
             document.querySelector(`#${scrollerId} .no-scrollbar`)?.scrollBy({ left: 280, behavior: 'smooth' })
@@ -154,7 +183,7 @@ function TeamSection({ title, members, scrollerId }) {
           }}
         >
           ›
-        </button>
+        </button>}
       </div>
     </div>
   );
@@ -162,25 +191,25 @@ function TeamSection({ title, members, scrollerId }) {
 
 const featuredArtworks = [
   {
-    title: 'Echoes of Spring',
-    artist: 'Riya Malhotra',
-    blurb: 'Pastel strokes capturing early morning light and quiet city corners.',
-    tag: 'Watercolor',
-    image: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80',
+    title: 'Downcast',
+    artist: 'Venkatramanan R',
+    blurb: 'Graphite portrait where the softest shading carries the weight of the expression.',
+    tag: 'Graphite',
+    image: '/ArtWork/Downcast.jpeg',
   },
   {
-    title: 'Liminal Bloom',
-    artist: 'Aarav Sen',
-    blurb: 'Acrylic textures exploring growth, patience, and the rhythm of sketching.',
+    title: 'Devotion',
+    artist: 'Venkatramanan R',
+    blurb: 'Acrylic on canvas — the bond between Shiva and his vahana, rendered in devotional blues and gold.',
     tag: 'Acrylic',
-    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
+    image: '/ArtWork/Devotion.jpeg',
   },
   {
-    title: 'Midnight Scribbles',
-    artist: 'Zara Kapoor',
-    blurb: 'Ink illustrations of neon nights, quiet cafés, and rain on glass.',
-    tag: 'Ink',
-    image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80',
+    title: 'Gold Hour',
+    artist: 'Venkatramanan R',
+    blurb: 'Coloured pencil portrait — warm sepia and gold catch the jewellery and the light along her jaw.',
+    tag: 'Coloured Pencil',
+    image: '/ArtWork/Gold Hour.jpeg',
   },
 ];
 
@@ -393,6 +422,11 @@ export default function HomePage() {
     <StorySection />
     
     {/* ===== TEAM SECTIONS ===== */}
+    <section className="section">
+      <h2 style={{ fontSize: '2.2rem', marginBottom: '2rem', textAlign: 'center' }}>Founders</h2>
+      <TeamSection title="" members={founders} scrollerId="founders-scroll" showArrows={false} centered cardSize="large" mobileStack />
+    </section>
+
     <section className="section" id="team-section" style={{ paddingTop: '4rem' }}>
       <h2 style={{ fontSize: '2.2rem', marginBottom: '2rem', textAlign: 'center' }}>Office Bearers</h2>
       <TeamSection title="" members={officeBearers} scrollerId="office-bearers-scroll" />

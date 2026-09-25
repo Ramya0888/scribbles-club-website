@@ -589,3 +589,33 @@ color: #444;
 @media (max-width: 600px) {
   .thooriga-intro-card { padding: 16px; font-size: 0.95rem; }
 }
+
+:root[data-theme='dark'] .events-page .event-card,
+:root[data-theme='dark'] .events-page .rummy-card {
+  background: var(--card-dark-image-bg);
+  border: 1px solid var(--card-dark-border);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(12px);
+}
+
+:root[data-theme='dark'] .events-page .event-card:hover,
+:root[data-theme='dark'] .events-page .rummy-card:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+:root[data-theme='dark'] .events-page .event-card h3,
+:root[data-theme='dark'] .events-page .rummy-card h3 {
+  color: var(--text-main);
+}
+
+:root[data-theme='dark'] .events-page .event-date-time,
+:root[data-theme='dark'] .events-page .event-desc,
+:root[data-theme='dark'] .events-page .rummy-card p {
+  color: var(--text-muted);
+}
+
+:root[data-theme='dark'] .events-page .rummy-card p {
+  background: var(--surface-strong);
+  border-radius: 12px;
+}

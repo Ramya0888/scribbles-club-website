@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-function TeamMemberCard({ name, role, dept, image, instagram, linkedin, quote, onClick }) {
+function TeamMemberCard({ name, role, dept, image, instagram, linkedin, quote, onClick, size = 'default' }) {
   const raw = image ? (image.startsWith('/') ? image : `/${image}`) : '/logo.png';
+  const isLarge = size === 'large';
   return (
-    <div className="card image-card" style={{ width: 240, minHeight: 420, textAlign: 'center', cursor: 'pointer', padding: '0.85rem', borderRadius: 18, display: 'flex', flexDirection: 'column' }} onClick={onClick}>
-      <div style={{ width: 200, height: 230, margin: '0 auto 0.65rem', borderRadius: 16, overflow: 'hidden', background: 'rgba(255,255,255,0.06)' }}>
+    <div className={`card image-card team-card ${isLarge ? 'team-card--large' : ''}`} style={{ width: isLarge ? 300 : 240, minHeight: isLarge ? 480 : 420, textAlign: 'center', cursor: 'pointer', padding: '0.85rem', borderRadius: 18, display: 'flex', flexDirection: 'column' }} onClick={onClick}>
+      <div className="team-card-image" style={{ width: isLarge ? 260 : 200, height: isLarge ? 299 : 230, margin: '0 auto 0.65rem', borderRadius: 16, overflow: 'hidden', background: 'rgba(255,255,255,0.06)' }}>
         <img src={raw} alt={name} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/logo.png'; }} />
       </div>
       <h4 style={{ margin: '0.5rem 0 0.2rem', fontSize: '1.05rem', lineHeight: 1.2 }}>{name}</h4>

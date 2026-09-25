@@ -3,6 +3,7 @@ import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
 
 export default function VideoPage() {
+  /*
   return (
     <div className="video-page">
       <Navbar />
@@ -15,7 +16,7 @@ export default function VideoPage() {
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <div className="video-wrapper" style={{
             position: 'relative',
-            paddingBottom: '56.25%', /* 16:9 aspect ratio */
+            paddingBottom: '56.25%', 16:9 aspect ratio
             height: 0,
             overflow: 'hidden',
             borderRadius: 'var(--radius-lg)',
@@ -41,6 +42,23 @@ export default function VideoPage() {
             </p>
           </div>
         </div>
+      </section>
+      <Footer />
+    </div>
+  );
+  */
+
+  return (
+    <div className="video-page">
+      <Navbar />
+      <section className="coming-soon-section" aria-label="Intro video coming soon">
+        <h1 className="coming-soon-title" aria-label="Coming Soon">
+          {"Coming Soon...".split("").map((character, index) => (
+            <span key={`${character}-${index}`} style={{ "--i": index }}>
+              {character === " " ? "\u00a0" : character}
+            </span>
+          ))}
+        </h1>
       </section>
       <Footer />
     </div>

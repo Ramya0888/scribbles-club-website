@@ -3,6 +3,7 @@ import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import { useTheme } from "../../context/ThemeContext";
 
+/*
 const officeBearers = [
   { name: "Sowmya", role: "Past President", image: "/team/sowmya.webp", quote: "Scribbles gave me a canvas for everything I couldn't say in words. Four years later, the club still feels like my second home." },
   { name: "Venkatraman", role: "Past President", image: "/team/ven.webp", quote: "Leading this club taught me that art is less about talent and more about showing up for each other, every single week." },
@@ -136,8 +137,10 @@ function TestimonialsRow({ title, items, scrollerId }) {
     </section>
   );
 }
+*/
 
 export default function TestimonialsPage() {
+  /*
   const drops = React.useMemo(() => Array.from({ length: 28 }).map(() => ({
     left: Math.random() * 100, duration: 9 + Math.random() * 8, delay: Math.random() * 5, opacity: 0.3 + Math.random() * 0.4, size: 4 + Math.random() * 6, hue: Math.floor(180 + Math.random() * 180),
   })), []);
@@ -197,6 +200,23 @@ export default function TestimonialsPage() {
       <TestimonialsRow title="Past Office Bearers" items={officeBearers} scrollerId="t-row-office" />
       <TestimonialsRow title="Alumni" items={alumni} scrollerId="t-row-alumni" />
       <TestimonialsRow title="The Web Development Team" items={webTeam} scrollerId="t-row-web" />
+      <Footer />
+    </div>
+  );
+  */
+
+  return (
+    <div className="page testimonials-page" style={{ position: "relative", overflow: "hidden" }}>
+      <Navbar />
+      <section className="coming-soon-section" aria-label="Testimonials coming soon">
+        <h1 className="coming-soon-title" aria-label="Coming Soon">
+          {"Coming Soon...".split("").map((character, index) => (
+            <span key={`${character}-${index}`} style={{ "--i": index }}>
+              {character === " " ? "\u00a0" : character}
+            </span>
+          ))}
+        </h1>
+      </section>
       <Footer />
     </div>
   );
